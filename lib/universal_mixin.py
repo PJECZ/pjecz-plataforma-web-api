@@ -2,6 +2,9 @@
 UniversalMixin define las columnas y métodos comunes de todos los modelos
 """
 import sqlalchemy as db
+from sqlalchemy.ext.declarative import declarative_base
+
+BaseModel = declarative_base()
 
 
 class UniversalMixin:

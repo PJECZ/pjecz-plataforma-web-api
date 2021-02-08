@@ -2,11 +2,10 @@
 Autoridades, modelos
 """
 import sqlalchemy as db
-from lib.sqlalchemy import ModelBase
-from lib.universal_mixin import UniversalMixin
+from lib.universal_mixin import BaseModel, UniversalMixin
 
 
-class Autoridad(ModelBase, UniversalMixin):
+class Autoridad(BaseModel, UniversalMixin):
     """ Autoridad """
 
     # Nombre de la tabla

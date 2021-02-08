@@ -19,5 +19,5 @@ app.include_router(distritos, prefix="/distritos")
 
 @app.get("/")
 async def root():
-    """ Hola Mundo """
-    return {"message": "Hola Mundo."}
+    """ Mensaje de Bienvenida """
+    return {"message": "Bienvenido. Soy la API de Plataforma Web."}

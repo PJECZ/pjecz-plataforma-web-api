@@ -3,11 +3,10 @@ Distritos, modelos
 """
 import sqlalchemy as db
 from sqlalchemy.orm import relationship
-from lib.sqlalchemy import ModelBase
-from lib.universal_mixin import UniversalMixin
+from lib.universal_mixin import BaseModel, UniversalMixin
 
 
-class Distrito(ModelBase, UniversalMixin):
+class Distrito(BaseModel, UniversalMixin):
     """ Distrito """
 
     # Nombre de la tabla

@@ -2,11 +2,10 @@
 Abogados, modelos
 """
 import sqlalchemy as db
-from lib.sqlalchemy import ModelBase
-from lib.universal_mixin import UniversalMixin
+from lib.universal_mixin import BaseModel, UniversalMixin
 
 
-class Abogado(ModelBase, UniversalMixin):
+class Abogado(BaseModel, UniversalMixin):
     """ Abogado """
 
     # Nombre de la tabla
