@@ -4,4 +4,4 @@ API de la Plataforma Web del PJECZ.
 
 Arrancar
 
-    uvicorn api.main:app --reload
+    uvicorn api.app:app --reload
