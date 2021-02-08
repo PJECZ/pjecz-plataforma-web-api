@@ -1,0 +1,8 @@
+*.py[cod]
+.bashrc
+.directory
+.env
+.DS_Store
+.vscode/settings.json
+__pycache__/
+/venv/
