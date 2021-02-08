@@ -10,6 +10,6 @@ router = APIRouter()
 
 
 @router.get("/")
-async def abogados_activos():
+async def distritos_activos():
     """ Lista de Distritos activos """
     return db.session.query(Distrito).filter(Distrito.estatus == "A").all()
