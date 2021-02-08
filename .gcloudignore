@@ -1,10 +1,14 @@
 .bashrc
 .directory
 .env
+.gcloudignore
+.git
+.gitignore
+.vscode
 .DS_Store
-.vscode/settings.json
 *.py[cod]
 *.sqlite3
 __pycache__/
-/venv/
-/app.yaml
+/instance
+/setup.cfg
+/venv
