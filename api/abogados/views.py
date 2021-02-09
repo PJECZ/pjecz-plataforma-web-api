@@ -25,7 +25,7 @@ async def abogados_activos(ano: Optional[int] = None, fecha: Optional[date] = No
         consulta = consulta.filter(Abogado.libro == libro)
     if fecha:
         consulta = consulta.filter(Abogado.fecha == fecha)
-    return consulta.limit(100).all()
+    return consulta.filter(Abogado.estatus == "A").limit(100).all()
 
 
 @router.get("/{abogado_id}")
