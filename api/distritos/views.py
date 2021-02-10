@@ -9,7 +9,7 @@ from api.distritos.models import Distrito
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def distritos_activos():
     """ Lista de Distritos activos """
     return db.session.query(Distrito).filter(Distrito.estatus == "A").all()

@@ -11,7 +11,7 @@ from api.abogados.models import Abogado
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def abogados_activos(ano: Optional[int] = None, fecha: Optional[date] = None, libro: Optional[str] = None, nombre: Optional[str] = None):
     """ Lista de Abogados activos """
     consulta = db.session.query(Abogado)

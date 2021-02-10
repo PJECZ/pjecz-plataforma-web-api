@@ -9,7 +9,7 @@ from api.autoridades.models import Autoridad
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 async def autoridades_activas():
     """ Lista de Autoriades activas """
     return db.session.query(Autoridad).filter(Autoridad.estatus == "A").limit(100).all()
