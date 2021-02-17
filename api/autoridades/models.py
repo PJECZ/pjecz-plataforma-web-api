@@ -2,6 +2,7 @@
 Autoridades, modelos
 """
 import sqlalchemy as db
+from sqlalchemy.orm import relationship
 from lib.universal_mixin import BaseModel, UniversalMixin
 
 
@@ -20,3 +21,6 @@ class Autoridad(BaseModel, UniversalMixin):
     # Columnas
     descripcion = db.Column(db.String(256), nullable=False)
     email = db.Column(db.String(256))
+
+    # Hijos
+    ubicaciones_expedintes = relationship("UbicacionExpediente", backref="autoridad", lazy="noload")
