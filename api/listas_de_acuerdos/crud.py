@@ -1,5 +1,5 @@
 """
-CRUD: the four basic operations (create, read, update, and delete) of data storage, regarded collectively
+Listas de Acuerdos, CRUD: the four basic operations (create, read, update, and delete) of data storage, regarded collectively
 """
 from datetime import datetime
 from sqlalchemy.orm import Session

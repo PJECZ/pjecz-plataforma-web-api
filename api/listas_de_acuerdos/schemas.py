@@ -17,11 +17,11 @@ class ListaDeAcuerdoBase(BaseModel):
 
 
 class ListaDeAcuerdoNew(ListaDeAcuerdoBase):
-    """ Esquema para hacer una nueva Lista de Acuerdos """
+    """ Esquema para crear una nueva Lista de Acuerdos """
 
 
 class ListaDeAcuerdo(ListaDeAcuerdoNew):
-    """ Esquema para hacer una nueva Lista de Acuerdos """
+    """ Esquema Lista de Acuerdos """
 
     id: int
 
