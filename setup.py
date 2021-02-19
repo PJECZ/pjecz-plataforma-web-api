@@ -10,7 +10,6 @@ setup(
     include_package_data=True,
     install_requires=[
         "fastapi==0.63.0",
-        "FastAPI-SQLAlchemy==0.2.1",
         "gunicorn==20.0.4",
         "httptools==0.1.1",
         "PyMySQL==1.0.2",

@@ -5,18 +5,17 @@ from pathlib import Path
 from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi_sqlalchemy import DBSessionMiddleware
 
 from api.abogados.views import router as abogados
 from api.autoridades.views import router as autoridades
 from api.distritos.views import router as distritos
-from api.ubicaciones_expedientes.views import router as ubicaciones_expedientes
 from api.listas_de_acuerdos.views import router as listas_de_acuerdos
+from api.ubicaciones_expedientes.views import router as ubicaciones_expedientes
 
 if Path("instance/settings.py").exists():
-    from instance.settings import ORIGINS, SQLALCHEMY_DATABASE_URI
+    from instance.settings import ORIGINS
 else:
-    from config.settings import ORIGINS, SQLALCHEMY_DATABASE_URI
+    from config.settings import ORIGINS
 
 app = FastAPI()
 app.add_middleware(
@@ -26,7 +25,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.add_middleware(DBSessionMiddleware, db_url=SQLALCHEMY_DATABASE_URI)
 
 app.include_router(abogados, prefix="/abogados")
 app.include_router(autoridades, prefix="/autoridades")
