@@ -1,5 +1,5 @@
 """
-Listas de Acuerdos, esquemas
+Listas de Acuerdos, esquemas de pydantic
 """
 from datetime import date
 from typing import Optional
@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 
 class ListaDeAcuerdoBase(BaseModel):
-    """ Esquema para consultar Listas de Acuerdos """
+    """ Esquema base de Listas de Acuerdos """
 
     autoridad_id: int
     fecha: Optional[date] = None
@@ -20,8 +20,8 @@ class ListaDeAcuerdoNew(ListaDeAcuerdoBase):
     """ Esquema para crear una nueva Lista de Acuerdos """
 
 
-class ListaDeAcuerdo(ListaDeAcuerdoNew):
-    """ Esquema Lista de Acuerdos """
+class ListaDeAcuerdo(ListaDeAcuerdoBase):
+    """ Esquema para consultar Listas de Acuerdos """
 
     id: int
 

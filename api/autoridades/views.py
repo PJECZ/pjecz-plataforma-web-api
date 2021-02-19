@@ -1,15 +1,26 @@
 """
 Autoriades, vistas
 """
-from fastapi import APIRouter
-from fastapi_sqlalchemy import db
+from typing import List
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
-from api.autoridades.models import Autoridad
+from api.autoridades import crud, schemas
+from lib.database import get_db
 
 router = APIRouter()
 
 
-@router.get("")
-async def autoridades_activas():
-    """ Lista de Autoriades activas """
-    return db.session.query(Autoridad).filter(Autoridad.estatus == "A").limit(100).all()
+@router.get("", response_model=List[schemas.AutoridadList])
+async def listar_autoridades(distrito_id: int = None, db: Session = Depends(get_db)):
+    """ Lista de Autoridades """
+    return crud.get_autoridades(db, distrito_id=distrito_id)
+
+
+@router.get("/", response_model=schemas.Autoridad)
+async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_db)):
+    """ Consultar una Autoridad """
+    autoridad = crud.get_autoridad(db, autoridad_id=autoridad_id)
+    if autoridad is None:
+        raise HTTPException(status_code=400, detail="No existe la autoridad.")
+    return autoridad

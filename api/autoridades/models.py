@@ -22,6 +22,8 @@ class Autoridad(Base, UniversalMixin):
     # Columnas
     descripcion = Column(String(256), nullable=False)
     email = Column(String(256))
+    directorio_listas_de_acuerdos = Column(String(256))
+    directorio_sentencias = Column(String(256))
 
     # Hijos
     listas_de_acuerdos = relationship("ListaDeAcuerdo", backref="autoridad", lazy="noload")

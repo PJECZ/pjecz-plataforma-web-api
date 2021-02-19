@@ -17,6 +17,6 @@ class Abogado(Base, UniversalMixin):
 
     # Columnas
     fecha = Column(Date, nullable=False, index=True)
+    libro = Column(String(256), nullable=False)
     numero = Column(String(16), nullable=False)  # Hay datos como 000-Bis
     nombre = Column(String(256), nullable=False)
-    libro = Column(String(256), nullable=False)

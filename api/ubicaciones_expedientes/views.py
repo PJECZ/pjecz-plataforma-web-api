@@ -1,21 +1,30 @@
 """
 Ubicaciones de Expedientes, vistas
 """
-from fastapi import APIRouter
-from fastapi_sqlalchemy import db
+from typing import List
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
-from api.ubicaciones_expedientes.models import UbicacionExpediente
+from api.autoridades.crud import get_autoridad
+from api.ubicaciones_expedientes import crud, schemas
+from lib.database import get_db
 
 router = APIRouter()
 
 
-@router.get("")
-async def ubicaciones_expedientes_activos(
-    autoridad: int,
-    expediente: str,
-):
-    """ Ubicación de Expedientes """
-    consulta = db.session.query(UbicacionExpediente)
-    consulta = consulta.filter(UbicacionExpediente.autoridad_id == autoridad)
-    consulta = consulta.filter(UbicacionExpediente.expediente.like(f"%{expediente}%"))
-    return consulta.filter(UbicacionExpediente.estatus == "A").limit(100).all()
+@router.get("", response_model=List[schemas.UbicacionExpediente])
+async def listar_ubicaciones_expedientes(autoridad_id: int, expediente: str = None, db: Session = Depends(get_db)):
+    """ Lista de Ubicaciones de Expedientes """
+    autoridad = get_autoridad(db, autoridad_id=autoridad_id)
+    if autoridad is None:
+        raise HTTPException(status_code=400, detail="No existe la autoridad.")
+    return crud.get_ubicaciones_expedientes(db, autoridad_id=autoridad_id, expediente=expediente)
+
+
+@router.get("/", response_model=schemas.UbicacionExpediente)
+async def consultar_una_ubicacion_expediente(ubicacion_expediente_id: int, db: Session = Depends(get_db)):
+    """ Consultar una Ubicación de Expedientes """
+    ubicacion_expediente = crud.get_ubicacion_expediente(db, ubicacion_expediente_id=ubicacion_expediente_id)
+    if ubicacion_expediente is None:
+        raise HTTPException(status_code=400, detail="No existe la ubicación de expediente.")
+    return ubicacion_expediente
