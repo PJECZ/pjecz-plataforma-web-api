@@ -1,27 +1,26 @@
 """
 Listas de Acuerdos, vistas
 """
-from datetime import date
-from typing import Optional
-from fastapi import APIRouter
-from fastapi_sqlalchemy import db
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from typing import List
 
-from api.listas_de_acuerdos.models import ListaDeAcuerdo
+from lib.database import get_db
+from api.listas_de_acuerdos import crud, schemas
 
 router = APIRouter()
 
 
-@router.get("")
-async def listas_de_acuerdos_activas(
-    autoridad: int,
-    desde: Optional[date] = None,
-    hasta: Optional[date] = None,
-):
-    """ Listas de Acuerdos activas """
-    consulta = db.session.query(ListaDeAcuerdo)
-    consulta = consulta.filter(ListaDeAcuerdo.autoridad_id == autoridad)
-    if desde:
-        consulta = consulta.filter(ListaDeAcuerdo.fecha >= desde)
-    if hasta:
-        consulta = consulta.filter(ListaDeAcuerdo.fecha <= hasta)
-    return consulta.filter(ListaDeAcuerdo.estatus == "A").limit(100).all()
+@router.get("", response_model=List[schemas.ListaDeAcuerdo])
+async def listar_listas_de_acuerdos(autoridad_id: int, db: Session = Depends(get_db)):
+    """ Consultar Listas de Acuerdos """
+    autoridad = crud.get_autoridad(db, autoridad_id=autoridad_id)
+    if autoridad is None:
+        raise HTTPException(status_code=400, detail="No existe la autoridad.")
+    return crud.get_listas_de_acuerdos(db, autoridad_id=autoridad_id)
+
+
+@router.post("/nuevo", response_model=schemas.ListaDeAcuerdo)
+async def nueva_lista_de_acuerdo(lista_de_acuerdo: schemas.ListaDeAcuerdoNew, db: Session = Depends(get_db)):
+    """ Nueva Lista de Acuerdos """
+    return crud.new_lista_de_acuerdo(db, esquema=lista_de_acuerdo)

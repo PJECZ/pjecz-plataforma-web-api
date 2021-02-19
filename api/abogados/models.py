@@ -1,21 +1,26 @@
 """
 Abogados, modelos
 """
-import sqlalchemy as db
-from lib.universal_mixin import BaseModel, UniversalMixin
+from sqlalchemy import Column, Date, Integer, String
+from lib.database import Base
+from lib.universal_mixin import UniversalMixin
 
 
-class Abogado(BaseModel, UniversalMixin):
+class Abogado(Base, UniversalMixin):
     """ Abogado """
 
     # Nombre de la tabla
     __tablename__ = "abogados"
 
     # Clave primaria
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
 
     # Columnas
-    fecha = db.Column(db.Date, nullable=False, index=True)
-    numero = db.Column(db.String(16), nullable=False)  # Hay datos como 000-Bis
-    nombre = db.Column(db.String(256), nullable=False)
-    libro = db.Column(db.String(256), nullable=False)
+    fecha = Column(Date, nullable=False, index=True)
+    numero = Column(String(16), nullable=False)  # Hay datos como 000-Bis
+    nombre = Column(String(256), nullable=False)
+    libro = Column(String(256), nullable=False)
+
+    def __repr__(self):
+        """ Representación """
+        return f"<Abogado {self.nombre}>"
