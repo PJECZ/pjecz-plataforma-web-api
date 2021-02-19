@@ -10,8 +10,14 @@ from lib.universal_mixin import UniversalMixin
 class Distrito(Base, UniversalMixin):
     """ Distrito """
 
+    # Nombre de la tabla
     __tablename__ = "distritos"
 
+    # Clave primaria
     id = Column(Integer, primary_key=True)
+
+    # Columnas
     nombre = Column(String(256), unique=True, nullable=False)
+
+    # Hijos
     autoridades = relationship("Autoridad", backref="distrito")

@@ -20,7 +20,3 @@ class Abogado(Base, UniversalMixin):
     numero = Column(String(16), nullable=False)  # Hay datos como 000-Bis
     nombre = Column(String(256), nullable=False)
     libro = Column(String(256), nullable=False)
-
-    def __repr__(self):
-        """ Representación """
-        return f"<Abogado {self.nombre}>"

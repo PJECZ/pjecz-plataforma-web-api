@@ -33,7 +33,3 @@ class UbicacionExpediente(Base, UniversalMixin):
         index=True,
         nullable=False,
     )
-
-    def __repr__(self):
-        """ Representación """
-        return f"<Ubicación Expediente {self.expediente}>"
