@@ -10,6 +10,7 @@ from api.abogados.views import router as abogados
 from api.autoridades.views import router as autoridades
 from api.distritos.views import router as distritos
 from api.listas_de_acuerdos.views import router as listas_de_acuerdos
+from api.peritos.views import router as peritos
 from api.ubicaciones_expedientes.views import router as ubicaciones_expedientes
 
 if Path("instance/settings.py").exists():
@@ -29,8 +30,9 @@ app.add_middleware(
 app.include_router(abogados, prefix="/abogados")
 app.include_router(autoridades, prefix="/autoridades")
 app.include_router(distritos, prefix="/distritos")
-app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")
 app.include_router(listas_de_acuerdos, prefix="/listas_de_acuerdos")
+app.include_router(peritos, prefix="/peritos")
+app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")
 
 
 @app.get("/")
