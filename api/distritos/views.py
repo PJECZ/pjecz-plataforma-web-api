@@ -17,7 +17,7 @@ async def listar_distritos(db: Session = Depends(get_db)):
     return crud.get_distritos(db)
 
 
-@router.get("/", response_model=schemas.Distrito)
+@router.get("/{distrito_id}", response_model=schemas.Distrito)
 async def consultar_un_distrito(distrito_id: int, db: Session = Depends(get_db)):
     """ Consultar un Distrito """
     distrito = crud.get_distrito(db, distrito_id=distrito_id)

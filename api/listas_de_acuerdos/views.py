@@ -21,7 +21,7 @@ async def listar_listas_de_acuerdos(autoridad_id: int, db: Session = Depends(get
     return crud.get_listas_de_acuerdos(db, autoridad_id=autoridad_id)
 
 
-@router.get("/", response_model=schemas.ListaDeAcuerdo)
+@router.get("/{lista_de_acuerdo_id}", response_model=schemas.ListaDeAcuerdo)
 async def consultar_una_lista_de_acuerdos(lista_de_acuerdo_id: int, db: Session = Depends(get_db)):
     """ Consultar una Lista de Acuerdos """
     lista_de_acuerdo = crud.get_lista_de_acuerdo(db, lista_de_acuerdo_id=lista_de_acuerdo_id)

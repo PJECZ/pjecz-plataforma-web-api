@@ -17,7 +17,7 @@ async def listar_autoridades(distrito_id: int = None, db: Session = Depends(get_
     return crud.get_autoridades(db, distrito_id=distrito_id)
 
 
-@router.get("/", response_model=schemas.Autoridad)
+@router.get("/{autoridad_id}", response_model=schemas.Autoridad)
 async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_db)):
     """ Consultar una Autoridad """
     autoridad = crud.get_autoridad(db, autoridad_id=autoridad_id)

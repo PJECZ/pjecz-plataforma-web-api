@@ -16,6 +16,7 @@ setup(
         "psycopg2-binary==2.8.6",
         "pydantic==1.7.3",
         "SQLAlchemy==1.3.23",
+        "Unidecode==1.2.0",
         "uvicorn==0.13.3",
         "uvloop==0.14.0",
     ],
