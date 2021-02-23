@@ -3,16 +3,16 @@ Peritos, CRUD: the four basic operations (create, read, update, and delete) of d
 """
 from sqlalchemy.orm import Session
 from unidecode import unidecode
-from api.peritos import models
+from api.peritos.models import Perito
 
 
 def get_peritos(db: Session, distrito_id: int, nombre: str = None):
     """ Consultar peritos """
-    consulta = db.query(models.Perito).filter(models.Perito.distrito_id == distrito_id)
+    consulta = db.query(Perito).filter(Perito.distrito_id == distrito_id)
     if nombre:
         nombre = unidecode(nombre.strip()).upper()
-        consulta = consulta.filter(models.Perito.nombre.like(f"%{nombre}%"))
-    return consulta.order_by(models.Perito.nombre).limit(100).all()
+        consulta = consulta.filter(Perito.nombre.like(f"%{nombre}%"))
+    return consulta.filter(Perito.estatus == "A").order_by(Perito.nombre).limit(200).all()
 
 
 def get_perito(db: Session, perito_id: int):
