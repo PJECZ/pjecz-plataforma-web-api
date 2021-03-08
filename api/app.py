@@ -1,7 +1,6 @@
 """
 FastAPI App
 """
-from pathlib import Path
 from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,9 +12,9 @@ from api.listas_de_acuerdos.views import router as listas_de_acuerdos
 from api.peritos.views import router as peritos
 from api.ubicaciones_expedientes.views import router as ubicaciones_expedientes
 
-if Path("instance/settings.py").exists():
+try:
     from instance.settings import ORIGINS
-else:
+except:
     from config.settings import ORIGINS
 
 app = FastAPI()

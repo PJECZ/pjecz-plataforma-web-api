@@ -21,7 +21,7 @@ class Autoridad(Base, UniversalMixin):
 
     # Columnas
     descripcion = Column(String(256), nullable=False)
-    email = Column(String(256))
+    email = Column(String(256), unique=True, index=True)
     directorio_listas_de_acuerdos = Column(String(256))
     directorio_sentencias = Column(String(256))
 

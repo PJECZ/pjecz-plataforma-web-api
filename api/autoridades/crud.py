@@ -16,3 +16,8 @@ def get_autoridades(db: Session, distrito_id: int = None):
 def get_autoridad(db: Session, autoridad_id: int):
     """ Consultar una autoridad """
     return db.query(Autoridad).get(autoridad_id)
+
+
+def get_autoridad_with_email(db: Session, email: str):
+    """ Consultar una autoridad con su e-mail """
+    return db.query(Autoridad).filter(Autoridad.email == email).first()
