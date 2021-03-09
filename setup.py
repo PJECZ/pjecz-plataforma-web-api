@@ -1,13 +1,19 @@
 """
 Setup
 """
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 setup(
-    name="api",
+    name="cli",
     version="0.1",
-    include_package_data=True,
-    packages=find_packages(),
-    python_requires=">=3.8",
+    py_modules=[
+        "cli.distritos",
+        "cli.autoridades",
+    ],
+    entry_points="""
+        [console_scripts]
+        distritos=cli.distritos:cli
+        autoridades=cli.autoridades:cli
+    """,
 )

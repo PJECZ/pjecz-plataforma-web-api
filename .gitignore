@@ -5,6 +5,7 @@
 .vscode/settings.json
 *.py[cod]
 *.sqlite3
+*.egg-info/
 __pycache__/
 /venv/
 /app.yaml

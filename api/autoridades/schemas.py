@@ -5,10 +5,11 @@ from pydantic import BaseModel
 
 
 class AutoridadList(BaseModel):
-    """ Esquema Autoridad """
+    """ Esquema Autoridad Listado """
 
     id: int
     distrito_id: int
+    distrito_nombre: str
     descripcion: str
 
     class Config:
@@ -18,7 +19,7 @@ class AutoridadList(BaseModel):
 
 
 class Autoridad(AutoridadList):
-    """ Esquema Autoridad """
+    """ Esquema Autoridad Detalle """
 
     email: str
     directorio_listas_de_acuerdos: str

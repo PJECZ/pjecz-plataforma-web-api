@@ -3,14 +3,15 @@ Autoridades, CRUD: the four basic operations (create, read, update, and delete) 
 """
 from sqlalchemy.orm import Session
 from api.autoridades.models import Autoridad
+from api.distritos.models import Distrito
 
 
 def get_autoridades(db: Session, distrito_id: int = None):
     """ Consultar autoridades """
-    autoridades = db.query(Autoridad)
+    consulta = db.query(Distrito, Autoridad)
     if distrito_id:
-        autoridades = autoridades.filter(Autoridad.distrito_id == distrito_id)
-    return autoridades.filter(Autoridad.estatus == "A").order_by(Autoridad.descripcion).all()
+        consulta = consulta.filter(Autoridad.distrito_id == distrito_id)
+    return consulta.filter(Autoridad.estatus == "A").order_by(Autoridad.descripcion).all()
 
 
 def get_autoridad(db: Session, autoridad_id: int):
