@@ -1,4 +1,5 @@
 -- @block listar
+-- @conn pjecz_plataforma_web
 SELECT autoridades.id,
     distritos.nombre,
     autoridades.descripcion

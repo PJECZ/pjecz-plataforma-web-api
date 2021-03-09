@@ -5,7 +5,11 @@ import click
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from instance.settings import SQLALCHEMY_DATABASE_URI
+
+try:
+    from instance.settings import SQLALCHEMY_DATABASE_URI
+except ImportError:
+    from config.settings import SQLALCHEMY_DATABASE_URI
 
 
 class Config(object):

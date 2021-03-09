@@ -14,7 +14,7 @@ from api.ubicaciones_expedientes.views import router as ubicaciones_expedientes
 
 try:
     from instance.settings import ORIGINS
-except:
+except ImportError:
     from config.settings import ORIGINS
 
 app = FastAPI()
