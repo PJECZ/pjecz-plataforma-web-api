@@ -8,10 +8,18 @@ from api.distritos.models import Distrito
 
 def get_autoridades(db: Session, distrito_id: int = None):
     """ Consultar autoridades """
-    consulta = db.query(Distrito, Autoridad).filter(Autoridad.distrito_id == Distrito.id)
-    if distrito_id:
-        consulta = consulta.filter(Autoridad.distrito_id == distrito_id)
-    return consulta.filter(Autoridad.estatus == "A").order_by(Distrito.nombre, Autoridad.descripcion).all()
+    consulta = db.query(Autoridad, Distrito).filter(Autoridad.distrito_id == Distrito.id).all()
+    return consulta
+    #
+    # consulta = db.query(Autoridad).join(Autoridad.distrito).all()
+    # return consulta
+    #
+    # consulta = db.query(Autoridad.id, Autoridad.distrito_id, Distrito.nombre, Autoridad.descripcion).join(Distrito)
+    # consulta = consulta.with_entities()
+    # consulta = consulta.filter(Autoridad.distrito_id == Distrito.id)
+    # if distrito_id:
+    #     consulta = consulta.filter(Autoridad.distrito_id == distrito_id)
+    # return consulta.filter(Autoridad.estatus == "A").order_by(Distrito.nombre, Autoridad.descripcion).all()
 
 
 def get_autoridad(db: Session, autoridad_id: int):

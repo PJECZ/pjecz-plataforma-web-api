@@ -8,8 +8,7 @@ class AutoridadList(BaseModel):
     """ Esquema Autoridad Listado """
 
     id: int
-    distrito_id: int
-    distrito_nombre: str
+    nombre: str
     descripcion: str
 
     class Config:
