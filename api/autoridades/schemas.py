@@ -5,21 +5,15 @@ from pydantic import BaseModel
 
 
 class AutoridadList(BaseModel):
-    """ Esquema Autoridad Listado """
+    """ Esquema Autoridad para listado """
 
     id: int
-    nombre: str
-    descripcion: str
-
-    class Config:
-        """ Configurar modo ORM """
-
-        orm_mode = True
+    distrito_id: int
+    distrito: str
+    autoridad: str
 
 
 class Autoridad(AutoridadList):
-    """ Esquema Autoridad Detalle """
+    """ Esquema Autoridad para detalle """
 
     email: str
-    directorio_listas_de_acuerdos: str
-    directorio_sentencias: str

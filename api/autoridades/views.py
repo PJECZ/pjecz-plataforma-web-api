@@ -14,7 +14,17 @@ router = APIRouter()
 @router.get("", response_model=List[schemas.AutoridadList])
 async def listar_autoridades(distrito_id: int = None, db: Session = Depends(get_db)):
     """ Lista de Autoridades """
-    return crud.get_autoridades(db, distrito_id=distrito_id)
+    resultados = []
+    for autoridad, distrito in crud.get_autoridades(db, distrito_id=distrito_id):
+        resultados.append(
+            schemas.AutoridadList(
+                id=autoridad.id,
+                distrito_id=autoridad.distrito_id,
+                distrito=distrito.nombre,
+                autoridad=autoridad.descripcion,
+            )
+        )
+    return resultados
 
 
 @router.get("/{autoridad_id}", response_model=schemas.Autoridad)
@@ -23,4 +33,10 @@ async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_d
     autoridad = crud.get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:
         raise HTTPException(status_code=400, detail="No existe la autoridad.")
-    return autoridad
+    return schemas.Autoridad(
+        id=autoridad.id,
+        distrito_id=autoridad.distrito_id,
+        distrito=autoridad.distrito.nombre,
+        autoridad=autoridad.descripcion,
+        email=autoridad.email,
+    )
