@@ -7,5 +7,7 @@
 *.sqlite3
 *.egg-info/
 __pycache__/
-/venv/
 /app.yaml
+/config/settings.py
+/instance/settings.py
+/venv/
