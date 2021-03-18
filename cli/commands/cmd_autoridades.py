@@ -14,10 +14,11 @@ def cli():
 
 
 @click.command()
+@click.option("--distrito-id", type=int, default=None, help="Distrito ID")
 @pass_config
-def listar(config):
-    """ Listado de Autoridades """
-    consulta = get_autoridades(config.db)
+def listar(config, distrito_id):
+    """ Listar Autoridades """
+    consulta = get_autoridades(config.db, distrito_id=distrito_id)
     tabla = []
     for autoridad, distrito in consulta:
         tabla.append([autoridad.id, distrito.nombre, autoridad.descripcion])

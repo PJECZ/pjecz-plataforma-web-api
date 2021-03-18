@@ -21,8 +21,8 @@ def listar(config, nombre):
     consulta = get_abogados(config.db, nombre=nombre)
     tabla = []
     for abogado in consulta:
-        tabla.append([abogado.id, abogado.nombre])
-    click.echo(tabulate(tabla, headers=["id", "abogado"]))
+        tabla.append([abogado.id, abogado.fecha, abogado.libro, abogado.numero, abogado.nombre])
+    click.echo(tabulate(tabla, headers=["id", "fecha", "libro", "numero", "abogado"]))
     click.echo(f"{len(consulta)} abogados encontrados con {nombre}.")
 
 

@@ -28,9 +28,3 @@ async def consultar_una_lista_de_acuerdos(lista_de_acuerdo_id: int, db: Session 
     if lista_de_acuerdo is None:
         raise HTTPException(status_code=400, detail="No existe la lista de acuerdos.")
     return lista_de_acuerdo
-
-
-@router.post("/nuevo", response_model=schemas.ListaDeAcuerdo)
-async def nueva_lista_de_acuerdo(lista_de_acuerdo: schemas.ListaDeAcuerdoNew, db: Session = Depends(get_db)):
-    """ Nueva Lista de Acuerdos """
-    return crud.new_lista_de_acuerdo(db, esquema=lista_de_acuerdo)

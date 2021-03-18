@@ -16,7 +16,7 @@ def cli():
 @click.command()
 @pass_config
 def listar(config):
-    """ Listado de Distritos """
+    """ Listar Distritos """
     consulta = get_distritos(config.db)
     tabla = []
     for distrito in consulta:

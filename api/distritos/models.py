@@ -21,4 +21,4 @@ class Distrito(Base, UniversalMixin):
 
     # Hijos
     autoridades = relationship("Autoridad", backref="distrito")
-    peritos = relationship("Perito", backref="distrito")
+    peritos = relationship("Perito", backref="distrito", lazy="dynamic")

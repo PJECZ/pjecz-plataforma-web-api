@@ -14,7 +14,7 @@ def get_abogados(db: Session, nombre: str, ano_desde: int = None, ano_hasta: int
         consulta = consulta.filter(Abogado.fecha >= datetime.strptime(f"{ano_desde}-01-01", "%Y-%m-%d"))
     if ano_hasta and ano_hasta < datetime.now().year:
         consulta = consulta.filter(Abogado.fecha <= datetime.strptime(f"{ano_hasta}-12-31", "%Y-%m-%d"))
-    nombre = unidecode(nombre.strip()).upper()
+    nombre = unidecode(nombre.strip()).upper()  # Mayúsculas sin caracteres acentuados
     consulta = consulta.filter(Abogado.nombre.like(f"%{nombre}%"))
     return consulta.filter(Abogado.estatus == "A").order_by(Abogado.nombre).limit(100).all()
 
