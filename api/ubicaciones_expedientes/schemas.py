@@ -9,6 +9,7 @@ class UbicacionExpediente(BaseModel):
 
     id: int
     autoridad_id: int
+    # TODO: autoridad: str
     expediente: str
     ubicacion: str
 

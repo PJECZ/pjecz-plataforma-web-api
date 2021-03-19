@@ -10,6 +10,7 @@ class Perito(BaseModel):
 
     id: int
     distrito_id: int
+    # TODO: distrito: str
     nombre: Optional[str] = None
     tipo: str
     domicilio: str
