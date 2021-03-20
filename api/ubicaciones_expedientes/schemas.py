@@ -9,11 +9,6 @@ class UbicacionExpediente(BaseModel):
 
     id: int
     autoridad_id: int
-    # TODO: autoridad: str
+    autoridad: str
     expediente: str
     ubicacion: str
-
-    class Config:
-        """ Configurar modo ORM """
-
-        orm_mode = True

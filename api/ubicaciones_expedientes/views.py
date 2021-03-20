@@ -18,7 +18,18 @@ async def listar_ubicaciones_expedientes(autoridad_id: int, expediente: str = No
     autoridad = get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:
         raise HTTPException(status_code=400, detail="No existe la autoridad.")
-    return crud.get_ubicaciones_expedientes(db, autoridad_id=autoridad_id, expediente=expediente)
+    resultados = []
+    for ubicacion_expediente, autoridad in crud.get_ubicaciones_expedientes(db, autoridad_id=autoridad_id, expediente=expediente):
+        resultados.append(
+            schemas.UbicacionExpediente(
+                id=ubicacion_expediente.id,
+                autoridad_id=ubicacion_expediente.autoridad_id,
+                autoridad=autoridad.descripcion,
+                expediente=ubicacion_expediente.expediente,
+                ubicacion=ubicacion_expediente.ubicacion,
+            )
+        )
+    return
 
 
 @router.get("/{ubicacion_expediente_id}", response_model=schemas.UbicacionExpediente)
@@ -27,4 +38,10 @@ async def consultar_una_ubicacion_expediente(ubicacion_expediente_id: int, db: S
     ubicacion_expediente = crud.get_ubicacion_expediente(db, ubicacion_expediente_id=ubicacion_expediente_id)
     if ubicacion_expediente is None:
         raise HTTPException(status_code=400, detail="No existe la ubicación de expediente.")
-    return ubicacion_expediente
+    return schemas.UbicacionExpediente(
+        id=ubicacion_expediente.id,
+        autoridad_id=ubicacion_expediente.autoridad_id,
+        autoridad=ubicacion_expediente.autoridad.descripcion,
+        expediente=ubicacion_expediente.expediente,
+        ubicacion=ubicacion_expediente.ubicacion,
+    )

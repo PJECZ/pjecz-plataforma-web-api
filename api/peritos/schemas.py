@@ -1,8 +1,8 @@
 """
 Peritos, esquemas
 """
-from pydantic import BaseModel
 from typing import Optional
+from pydantic import BaseModel
 
 
 class Perito(BaseModel):
@@ -10,7 +10,7 @@ class Perito(BaseModel):
 
     id: int
     distrito_id: int
-    # TODO: distrito: str
+    distrito: str
     nombre: Optional[str] = None
     tipo: str
     domicilio: str
@@ -18,8 +18,3 @@ class Perito(BaseModel):
     telefono_celular: str
     email: str
     notas: str
-
-    class Config:
-        """ Configurar modo ORM """
-
-        orm_mode = True
