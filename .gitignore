@@ -8,6 +8,5 @@
 *.egg-info/
 __pycache__/
 /app.yaml
-/config/settings.py
 /instance/settings.py
 /venv/
