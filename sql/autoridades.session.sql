@@ -7,4 +7,4 @@ FROM distritos
     INNER JOIN autoridades ON autoridades.distrito = distritos.id
 WHERE autoridades.estatus = 'A'
 ORDER BY distritos.nombre,
-    autoridades.descripcion
+    autoridades.descripcion;

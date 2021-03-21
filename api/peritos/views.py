@@ -19,7 +19,7 @@ async def listar_peritos(distrito_id: int, nombre: str = None, db: Session = Dep
         resultados.append(
             schemas.Perito(
                 id=perito.id,
-                distrito_id=perito.autoridad_id,
+                distrito_id=perito.distrito_id,
                 distrito=distrito.nombre,
                 nombre=perito.nombre,
                 tipo=perito.tipo,
@@ -41,7 +41,7 @@ async def consultar_un_perito(perito_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="No existe el perito.")
     return schemas.Perito(
         id=perito.id,
-        distrito_id=perito.autoridad_id,
+        distrito_id=perito.distrito_id,
         distrito=perito.distrito.nombre,
         nombre=perito.nombre,
         tipo=perito.tipo,

@@ -18,7 +18,22 @@ async def listar_listas_de_acuerdos(autoridad_id: int, db: Session = Depends(get
     autoridad = get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:
         raise HTTPException(status_code=400, detail="No existe la autoridad.")
-    return crud.get_listas_de_acuerdos(db, autoridad_id=autoridad_id)
+    resultados = []
+    for lista_de_acuerdo, autoridad, distrito in crud.get_listas_de_acuerdos(db, autoridad_id=autoridad_id):
+        resultados.append(
+            schemas.ListaDeAcuerdo(
+                id=lista_de_acuerdo.id,
+                distrito_id=distrito.id,
+                distrito=distrito.nombre,
+                autoridad_id=autoridad.id,
+                autoridad=autoridad.descripcion,
+                fecha=lista_de_acuerdo.fecha,
+                archivo=lista_de_acuerdo.archivo,
+                descripcion=lista_de_acuerdo.descripcion,
+                url=lista_de_acuerdo.url,
+            )
+        )
+    return resultados
 
 
 @router.get("/{lista_de_acuerdo_id}", response_model=schemas.ListaDeAcuerdo)
@@ -27,4 +42,14 @@ async def consultar_una_lista_de_acuerdos(lista_de_acuerdo_id: int, db: Session 
     lista_de_acuerdo = crud.get_lista_de_acuerdo(db, lista_de_acuerdo_id=lista_de_acuerdo_id)
     if lista_de_acuerdo is None:
         raise HTTPException(status_code=400, detail="No existe la lista de acuerdos.")
-    return lista_de_acuerdo
+    return schemas.ListaDeAcuerdo(
+        id=lista_de_acuerdo.id,
+        distrito_id=lista_de_acuerdo.autoridad.distrito_id,
+        distrito=lista_de_acuerdo.autoridad.distrito.nombre,
+        autoridad_id=lista_de_acuerdo.autoridad_id,
+        autoridad=lista_de_acuerdo.autoridad.descripcion,
+        fecha=lista_de_acuerdo.fecha,
+        archivo=lista_de_acuerdo.archivo,
+        descripcion=lista_de_acuerdo.descripcion,
+        url=lista_de_acuerdo.url,
+    )

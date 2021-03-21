@@ -1,7 +1,6 @@
 """
 Peritos, esquemas
 """
-from typing import Optional
 from pydantic import BaseModel
 
 
@@ -11,7 +10,7 @@ class Perito(BaseModel):
     id: int
     distrito_id: int
     distrito: str
-    nombre: Optional[str] = None
+    nombre: str
     tipo: str
     domicilio: str
     telefono_fijo: str
