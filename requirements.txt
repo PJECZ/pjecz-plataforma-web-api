@@ -1,6 +1,7 @@
 black
 click
 fastapi
+gunicorn
 httptools
 psycopg2-binary
 pydantic
