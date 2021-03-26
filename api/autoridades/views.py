@@ -11,13 +11,13 @@ from lib.database import get_db
 router = APIRouter()
 
 
-@router.get("", response_model=List[schemas.AutoridadList])
+@router.get("", response_model=List[schemas.Autoridad])
 async def listar_autoridades(distrito_id: int = None, db: Session = Depends(get_db)):
     """ Lista de Autoridades """
     resultados = []
     for autoridad, distrito in crud.get_autoridades(db, distrito_id=distrito_id):
         resultados.append(
-            schemas.AutoridadList(
+            schemas.Autoridad(
                 id=autoridad.id,
                 distrito_id=autoridad.distrito_id,
                 distrito=distrito.nombre,
@@ -38,5 +38,4 @@ async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_d
         distrito_id=autoridad.distrito_id,
         distrito=autoridad.distrito.nombre,
         autoridad=autoridad.descripcion,
-        email=autoridad.email,
     )

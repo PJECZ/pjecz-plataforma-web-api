@@ -12,14 +12,14 @@ def get_autoridades(db: Session, distrito_id: int = None):
     consulta = db.query(Autoridad, Distrito).join(Distrito)
     if distrito_id:
         consulta = consulta.filter(Autoridad.distrito_id == distrito_id)
-    return consulta.filter(Autoridad.estatus == "A").order_by(Distrito.nombre, Autoridad.descripcion).all()
+    return (
+        consulta.filter(Autoridad.es_jurisdiccional == True)
+        .filter(Autoridad.estatus == "A")
+        .order_by(Distrito.nombre, Autoridad.descripcion)
+        .all()
+    )
 
 
 def get_autoridad(db: Session, autoridad_id: int):
     """ Consultar una autoridad """
     return db.query(Autoridad).get(autoridad_id)
-
-
-def get_autoridad_with_email(db: Session, email: str):
-    """ Consultar una autoridad con su e-mail """
-    return db.query(Autoridad).filter(Autoridad.email == email).first()

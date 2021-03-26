@@ -1,7 +1,7 @@
 """
 Autoridades, modelos
 """
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
@@ -21,7 +21,7 @@ class Autoridad(Base, UniversalMixin):
 
     # Columnas
     descripcion = Column(String(256), nullable=False)
-    email = Column(String(256), unique=True, index=True)
+    es_jurisdiccional = Column(Boolean(), nullable=False)
     directorio_listas_de_acuerdos = Column(String(256))
     directorio_sentencias = Column(String(256))
 

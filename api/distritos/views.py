@@ -26,7 +26,4 @@ async def consultar_un_distrito(distrito_id: int, db: Session = Depends(get_db))
     distrito = crud.get_distrito(db, distrito_id=distrito_id)
     if distrito is None:
         raise HTTPException(status_code=400, detail="No existe el distrito.")
-    return schemas.Distrito(
-        id=distrito.id,
-        distrito=distrito.nombre,
-    )
+    return schemas.Distrito(id=distrito.id, distrito=distrito.nombre)
