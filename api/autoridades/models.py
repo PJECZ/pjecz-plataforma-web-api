@@ -21,7 +21,7 @@ class Autoridad(Base, UniversalMixin):
 
     # Columnas
     descripcion = Column(String(256), nullable=False)
-    es_jurisdiccional = Column(Boolean(), nullable=False)
+    es_jurisdiccional = Column(Boolean(), nullable=False, default=False)
     directorio_listas_de_acuerdos = Column(String(256))
     directorio_sentencias = Column(String(256))
 

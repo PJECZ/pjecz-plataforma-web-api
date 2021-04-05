@@ -18,7 +18,7 @@ class Distrito(Base, UniversalMixin):
 
     # Columnas
     nombre = Column(String(256), unique=True, nullable=False)
-    es_distrito_judicial = Column(Boolean(), nullable=False)
+    es_distrito_judicial = Column(Boolean(), nullable=False, default=False)
 
     # Hijos
     autoridades = relationship("Autoridad", backref="distrito")
