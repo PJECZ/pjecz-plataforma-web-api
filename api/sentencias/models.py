@@ -1,16 +1,16 @@
 """
-Listas de Acuerdos, modelos
+Sentencias, modelos
 """
-from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
-class ListaDeAcuerdo(Base, UniversalMixin):
-    """Lista de Acuerdo"""
+class Sentencia(Base, UniversalMixin):
+    """Sentencia"""
 
     # Nombre de la tabla
-    __tablename__ = "listas_de_acuerdos"
+    __tablename__ = "sentencias"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -20,6 +20,8 @@ class ListaDeAcuerdo(Base, UniversalMixin):
 
     # Columnas
     fecha = Column(Date, index=True, nullable=False)
-    descripcion = Column(String(256), nullable=False)
+    sentencia = Column(String(16), index=True, nullable=False)
+    expediente = Column(String(16), index=True, nullable=False)
+    es_paridad_genero = Column(Boolean, nullable=False, default=False)
     archivo = Column(String(256))
     url = Column(String(512))

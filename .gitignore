@@ -2,7 +2,6 @@
 .directory
 .env
 .DS_Store
-.vscode/settings.json
 *.py[cod]
 *.sqlite3
 __pycache__/

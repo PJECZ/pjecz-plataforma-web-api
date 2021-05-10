@@ -1,12 +1,12 @@
 """
-Listas de Acuerdos, esquemas de pydantic
+Sentencias, esquemas de pydantic
 """
 from datetime import date
 from pydantic import BaseModel
 
 
-class ListaDeAcuerdo(BaseModel):
-    """Esquema para consultar Listas de Acuerdos"""
+class Sentencia(BaseModel):
+    """Esquema para consultar sentencias"""
 
     id: int
     distrito_id: int
@@ -14,6 +14,8 @@ class ListaDeAcuerdo(BaseModel):
     autoridad_id: int
     autoridad: str
     fecha: date
-    descripcion: str
+    sentencia: str
+    expediente: str
+    es_paridad_genero: bool
     archivo: str
     url: str

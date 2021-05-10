@@ -28,8 +28,8 @@ async def listar_listas_de_acuerdos(autoridad_id: int, db: Session = Depends(get
                 autoridad_id=autoridad.id,
                 autoridad=autoridad.descripcion,
                 fecha=lista_de_acuerdo.fecha,
-                archivo=lista_de_acuerdo.archivo,
                 descripcion=lista_de_acuerdo.descripcion,
+                archivo=lista_de_acuerdo.archivo,
                 url=lista_de_acuerdo.url,
             )
         )
@@ -49,7 +49,7 @@ async def consultar_una_lista_de_acuerdos(lista_de_acuerdo_id: int, db: Session 
         autoridad_id=lista_de_acuerdo.autoridad_id,
         autoridad=lista_de_acuerdo.autoridad.descripcion,
         fecha=lista_de_acuerdo.fecha,
-        archivo=lista_de_acuerdo.archivo,
         descripcion=lista_de_acuerdo.descripcion,
+        archivo=lista_de_acuerdo.archivo,
         url=lista_de_acuerdo.url,
     )
