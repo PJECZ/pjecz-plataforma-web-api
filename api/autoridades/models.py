@@ -8,7 +8,7 @@ from lib.universal_mixin import UniversalMixin
 
 
 class Autoridad(Base, UniversalMixin):
-    """ Autoridad """
+    """Autoridad"""
 
     # Nombre de la tabla
     __tablename__ = "autoridades"
@@ -21,10 +21,16 @@ class Autoridad(Base, UniversalMixin):
 
     # Columnas
     descripcion = Column(String(256), nullable=False)
+    clave = Column(String(16), nullable=False, unique=True)
     es_jurisdiccional = Column(Boolean(), nullable=False, default=False)
+    es_notaria = Column(Boolean(), nullable=False, default=False)
+    directorio_edictos = Column(String(256))
+    directorio_glosas = Column(String(256))
     directorio_listas_de_acuerdos = Column(String(256))
     directorio_sentencias = Column(String(256))
 
     # Hijos
+    edictos = relationship("Edicto", backref="autoridad", lazy="noload")
     listas_de_acuerdos = relationship("ListaDeAcuerdo", backref="autoridad", lazy="noload")
+    sentencias = relationship("Sentencia", backref="autoridad", lazy="noload")
     ubicaciones_expedientes = relationship("UbicacionExpediente", backref="autoridad", lazy="noload")

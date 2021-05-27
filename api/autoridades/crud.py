@@ -15,7 +15,7 @@ def get_autoridades(db: Session, distrito_id: int = None):
     return (
         consulta.filter(Autoridad.es_jurisdiccional == True)
         .filter(Autoridad.estatus == "A")
-        .order_by(Distrito.nombre, Autoridad.descripcion)
+        .order_by(Distrito.nombre, Autoridad.clave)
         .all()
     )
 
