@@ -21,7 +21,7 @@ class Edicto(Base, UniversalMixin):
     # Columnas
     fecha = Column(Date, index=True, nullable=False)
     descripcion = Column(String(256), nullable=False)
-    expediente = Column(String(16), index=True, nullable=False)
-    numero_publicacion = Column(Integer(), nullable=False)
+    expediente = Column(String(16))
+    numero_publicacion = Column(String(16))
     archivo = Column(String(256))
     url = Column(String(512))
