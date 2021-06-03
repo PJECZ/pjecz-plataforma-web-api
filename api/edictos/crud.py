@@ -13,7 +13,7 @@ def get_edictos(db: Session, autoridad_id: int = None):
     edictos = db.query(Edicto, Autoridad, Distrito).select_from(Edicto).join(Autoridad).join(Distrito)
     if autoridad_id:
         edictos = edictos.filter(Edicto.autoridad_id == autoridad_id).order_by(Edicto.fecha.desc())
-    return edictos.filter(Edicto.estatus == "A").limit(100).all()
+    return edictos.filter(Edicto.estatus == "A").limit(500).all()
 
 
 def get_edicto(db: Session, edicto_id: int):

@@ -16,7 +16,7 @@ def get_sentencias(db: Session, autoridad_id: int = None, fecha: date = None):
         sentencias = sentencias.filter(Sentencia.autoridad_id == autoridad_id).order_by(Sentencia.fecha.desc())
     if fecha:
         sentencias = sentencias.filter(Sentencia.fecha == fecha).order_by(Autoridad.clave)
-    return sentencias.filter(Sentencia.estatus == "A").limit(100).all()
+    return sentencias.filter(Sentencia.estatus == "A").limit(500).all()
 
 
 def get_sentencia(db: Session, sentencia_id: int):
