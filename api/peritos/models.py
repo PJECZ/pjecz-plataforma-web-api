@@ -3,6 +3,7 @@ Peritos, modelos
 """
 from collections import OrderedDict
 from sqlalchemy import Column, Enum, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -61,7 +62,8 @@ class Perito(Base, UniversalMixin):
     id = Column(Integer, primary_key=True)
 
     # Clave foránea
-    distrito_id = Column("distrito", Integer, ForeignKey("distritos.id"), index=True, nullable=False)
+    distrito_id = Column(Integer, ForeignKey("distritos.id"), index=True, nullable=False)
+    distrito = relationship("Distrito", back_populates="peritos")
 
     # Columnas
     tipo = Column(

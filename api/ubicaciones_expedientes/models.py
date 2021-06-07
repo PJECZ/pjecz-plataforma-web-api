@@ -3,12 +3,13 @@ Ubicaciones de Expedientes, modelos
 """
 from collections import OrderedDict
 from sqlalchemy import Column, Enum, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
 class UbicacionExpediente(Base, UniversalMixin):
-    """ Ubicacion de Expediente """
+    """Ubicacion de Expediente"""
 
     UBICACIONES = OrderedDict(
         [
@@ -24,7 +25,8 @@ class UbicacionExpediente(Base, UniversalMixin):
     id = Column(Integer, primary_key=True)
 
     # Clave foránea
-    autoridad_id = Column("autoridad", Integer, ForeignKey("autoridades.id"), index=True, nullable=False)
+    autoridad_id = Column(Integer, ForeignKey("autoridades.id"), index=True, nullable=False)
+    autoridad = relationship("Autoridad", back_populates="ubicaciones_expedientes")
 
     # Columnas
     expediente = Column(String(256), nullable=False)

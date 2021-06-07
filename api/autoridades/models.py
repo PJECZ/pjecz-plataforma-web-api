@@ -17,7 +17,8 @@ class Autoridad(Base, UniversalMixin):
     id = Column(Integer, primary_key=True)
 
     # Clave foránea
-    distrito_id = Column("distrito", Integer, ForeignKey("distritos.id"), index=True, nullable=False)
+    distrito_id = Column(Integer, ForeignKey("distritos.id"), index=True, nullable=False)
+    distrito = relationship("Distrito", back_populates="autoridades")
 
     # Columnas
     descripcion = Column(String(256), nullable=False)
@@ -30,7 +31,11 @@ class Autoridad(Base, UniversalMixin):
     directorio_sentencias = Column(String(256))
 
     # Hijos
-    edictos = relationship("Edicto", backref="autoridad", lazy="noload")
-    listas_de_acuerdos = relationship("ListaDeAcuerdo", backref="autoridad", lazy="noload")
-    sentencias = relationship("Sentencia", backref="autoridad", lazy="noload")
-    ubicaciones_expedientes = relationship("UbicacionExpediente", backref="autoridad", lazy="noload")
+    # edictos = relationship("Edicto", backref="autoridad", lazy="noload")
+    edictos = relationship("Edicto", back_populates="autoridad")
+    # listas_de_acuerdos = relationship("ListaDeAcuerdo", backref="autoridad", lazy="noload")
+    listas_de_acuerdos = relationship("ListaDeAcuerdo", back_populates="autoridad")
+    # sentencias = relationship("Sentencia", backref="autoridad", lazy="noload")
+    sentencias = relationship("Sentencia", back_populates="autoridad")
+    # ubicaciones_expedientes = relationship("UbicacionExpediente", backref="autoridad", lazy="noload")
+    ubicaciones_expedientes = relationship("UbicacionExpediente", back_populates="autoridad")
