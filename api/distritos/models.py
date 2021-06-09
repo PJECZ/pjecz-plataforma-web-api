@@ -21,7 +21,5 @@ class Distrito(Base, UniversalMixin):
     es_distrito_judicial = Column(Boolean(), nullable=False, default=False)
 
     # Hijos
-    # autoridades = relationship("Autoridad", backref="distrito")
     autoridades = relationship("Autoridad", back_populates="distrito")
-    # peritos = relationship("Perito", backref="distrito", lazy="dynamic")
     peritos = relationship("Perito", back_populates="distrito")
