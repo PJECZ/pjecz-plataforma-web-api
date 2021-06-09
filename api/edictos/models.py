@@ -2,6 +2,7 @@
 Edictos, modelos
 """
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -16,12 +17,13 @@ class Edicto(Base, UniversalMixin):
     id = Column(Integer, primary_key=True)
 
     # Clave foránea
-    autoridad_id = Column("autoridad", Integer, ForeignKey("autoridades.id"), index=True, nullable=False)
+    autoridad_id = Column(Integer, ForeignKey("autoridades.id"), index=True, nullable=False)
+    autoridad = relationship("Autoridad", back_populates="edictos")
 
     # Columnas
     fecha = Column(Date, index=True, nullable=False)
     descripcion = Column(String(256), nullable=False)
-    expediente = Column(String(16), index=True, nullable=False)
-    numero_publicacion = Column(Integer(), nullable=False)
+    expediente = Column(String(16))
+    numero_publicacion = Column(String(16))
     archivo = Column(String(256))
     url = Column(String(512))
