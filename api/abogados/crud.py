@@ -8,7 +8,7 @@ from api.abogados.models import Abogado
 
 
 def get_abogados(db: Session, nombre: str, ano_desde: int = None, ano_hasta: int = None):
-    """ Consultar abogados """
+    """Consultar abogados"""
     consulta = db.query(Abogado)
     if ano_desde and ano_desde > 1925:
         consulta = consulta.filter(Abogado.fecha >= datetime.strptime(f"{ano_desde}-01-01", "%Y-%m-%d"))
@@ -20,5 +20,5 @@ def get_abogados(db: Session, nombre: str, ano_desde: int = None, ano_hasta: int
 
 
 def get_abogado(db: Session, abogado_id: int):
-    """ Consultar un abogado """
+    """Consultar un abogado"""
     return db.query(Abogado).get(abogado_id)

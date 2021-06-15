@@ -12,15 +12,17 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[schemas.Autoridad])
-async def listar_autoridades(distrito_id: int = None, con_notarias: bool = False, db: Session = Depends(get_db)):
+async def listar_autoridades(distrito_id: int = None, materia_id: int = None, organo_jurisdiccional: str = None, con_notarias: bool = False, db: Session = Depends(get_db)):
     """ Lista de Autoridades """
     resultados = []
-    for autoridad, distrito in crud.get_autoridades(db, distrito_id=distrito_id, con_notarias=con_notarias):
+    for autoridad, distrito, materia in crud.get_autoridades(db, distrito_id=distrito_id, materia_id=materia_id, organo_jurisdiccional=organo_jurisdiccional, con_notarias=con_notarias):
         resultados.append(
             schemas.Autoridad(
                 id=autoridad.id,
                 distrito_id=autoridad.distrito_id,
                 distrito=distrito.nombre,
+                materia_id=autoridad.materia_id,
+                materia=materia.nombre,
                 autoridad=autoridad.descripcion,
             )
         )

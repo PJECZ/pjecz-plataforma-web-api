@@ -10,4 +10,6 @@ class Autoridad(BaseModel):
     id: int
     distrito_id: int
     distrito: str
+    materia_id: int
+    materia: str
     autoridad: str
