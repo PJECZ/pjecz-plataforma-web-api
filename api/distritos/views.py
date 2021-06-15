@@ -12,10 +12,10 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[schemas.Distrito])
-async def listar_distritos(db: Session = Depends(get_db)):
+async def listar_distritos(solo_distritos: bool = False, db: Session = Depends(get_db)):
     """ Lista de Distritos """
     resultados = []
-    for distrito in crud.get_distritos(db):
+    for distrito in crud.get_distritos(db, solo_distritos=solo_distritos):
         resultados.append(schemas.Distrito(id=distrito.id, distrito=distrito.nombre))
     return resultados
 
