@@ -13,13 +13,13 @@ router = APIRouter()
 
 
 @router.get('', response_model=List[schemas.Glosa])
-async def listar_glosas(autoridad_id: int, db: Session = Depends(get_db)):
+async def listar_glosas(autoridad_id: int, ano: int, db: Session = Depends(get_db)):
     """ Lista de glosas """
     autoridad = get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:
         raise HTTPException(status_code=400, detail='No existe la autoridad.')
     resultados = []
-    for glosa, autoridad, distrito in crud.get_glosas(db, autoridad_id=autoridad_id):
+    for glosa, autoridad, distrito in crud.get_glosas(db, autoridad_id=autoridad_id, ano=ano):
         resultados.append(
             schemas.Glosa(
                 id=glosa.id,

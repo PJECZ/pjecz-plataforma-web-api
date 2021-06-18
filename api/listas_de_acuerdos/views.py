@@ -13,13 +13,13 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[schemas.ListaDeAcuerdo])
-async def listar_listas_de_acuerdos(autoridad_id: int, db: Session = Depends(get_db)):
+async def listar_listas_de_acuerdos(autoridad_id: int, ano: int, db: Session = Depends(get_db)):
     """ Lista de Listas de Acuerdos """
     autoridad = get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:
         raise HTTPException(status_code=400, detail="No existe la autoridad.")
     resultados = []
-    for lista_de_acuerdo, autoridad, distrito in crud.get_listas_de_acuerdos(db, autoridad_id=autoridad_id):
+    for lista_de_acuerdo, autoridad, distrito in crud.get_listas_de_acuerdos(db, autoridad_id=autoridad_id, ano=ano):
         resultados.append(
             schemas.ListaDeAcuerdo(
                 id=lista_de_acuerdo.id,

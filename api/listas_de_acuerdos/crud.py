@@ -16,7 +16,7 @@ def get_listas_de_acuerdos(db: Session, autoridad_id: int = None, fecha: date = 
         listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.autoridad_id == autoridad_id)
     if fecha:
         listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.fecha == fecha)
-    if ano and ano >= 2000 and ano <= date.today().year:
+    if ano >= 2000 and ano <= date.today().year:
         listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.fecha >= date(ano, 1, 1)).filter(ListaDeAcuerdo.fecha <= date(ano, 12, 31))
     return listas_de_acuerdos.filter(ListaDeAcuerdo.estatus == "A").order_by(ListaDeAcuerdo.fecha.desc()).limit(500).all()
 
