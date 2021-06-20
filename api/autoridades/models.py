@@ -4,6 +4,7 @@ Autoridades, modelos
 from collections import OrderedDict
 from sqlalchemy import Column, Enum, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -43,13 +44,10 @@ class Autoridad(Base, UniversalMixin):
         index=True,
         nullable=False,
     )
-    directorio_edictos = Column(String(256), nullable=False, default="")
-    directorio_glosas = Column(String(256), nullable=False, default="")
-    directorio_listas_de_acuerdos = Column(String(256), nullable=False, default="")
-    directorio_sentencias = Column(String(256), nullable=False, default="")
 
     # Hijos
     edictos = relationship("Edicto", back_populates="autoridad", lazy="noload")
+    glosas = relationship("Glosa", back_populates="autoridad", lazy="noload")
     listas_de_acuerdos = relationship("ListaDeAcuerdo", back_populates="autoridad", lazy="noload")
     sentencias = relationship("Sentencia", back_populates="autoridad", lazy="noload")
     ubicaciones_expedientes = relationship("UbicacionExpediente", back_populates="autoridad", lazy="noload")
