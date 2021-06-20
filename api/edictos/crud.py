@@ -4,9 +4,9 @@ Edictos, CRUD: the four basic operations (create, read, update, and delete) of d
 from datetime import date
 from sqlalchemy.orm import Session
 
-from api.edictos.models import Edicto
 from api.autoridades.models import Autoridad
 from api.distritos.models import Distrito
+from api.edictos.models import Edicto
 
 
 def get_edictos(db: Session, autoridad_id: int = None, ano: int = None):
@@ -14,7 +14,7 @@ def get_edictos(db: Session, autoridad_id: int = None, ano: int = None):
     edictos = db.query(Edicto, Autoridad, Distrito).select_from(Edicto).join(Autoridad).join(Distrito)
     if autoridad_id:
         edictos = edictos.filter(Edicto.autoridad_id == autoridad_id)
-    if ano >= 2000 and ano <= date.today().year:
+    if 2000 <= ano <= date.today().year:
         edictos = edictos.filter(Edicto.fecha >= date(ano, 1, 1)).filter(Edicto.fecha <= date(ano, 12, 31))
     return edictos.filter(Edicto.estatus == "A").order_by(Edicto.fecha.desc()).limit(500).all()
 
