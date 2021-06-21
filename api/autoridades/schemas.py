@@ -13,3 +13,4 @@ class Autoridad(BaseModel):
     materia_id: int
     materia: str
     autoridad: str
+    autoridad_corta: str

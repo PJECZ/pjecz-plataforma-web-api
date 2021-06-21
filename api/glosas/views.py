@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.get('', response_model=List[schemas.Glosa])
-async def listar_glosas(autoridad_id: int, ano: int, db: Session = Depends(get_db)):
+async def listar_glosas(autoridad_id: int, ano: int = None, db: Session = Depends(get_db)):
     """ Lista de glosas """
     autoridad = get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:

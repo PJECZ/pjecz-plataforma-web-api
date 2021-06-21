@@ -1,7 +1,6 @@
 """
 Autoridades, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
-from lib.safe_string import safe_string
 from sqlalchemy.orm import Session
 from lib.safe_string import safe_string
 

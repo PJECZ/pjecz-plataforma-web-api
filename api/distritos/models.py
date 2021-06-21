@@ -18,6 +18,7 @@ class Distrito(Base, UniversalMixin):
 
     # Columnas
     nombre = Column(String(256), unique=True, nullable=False)
+    nombre_corto = Column(String(64), nullable=False, default="")
     es_distrito_judicial = Column(Boolean(), nullable=False, default=False)
 
     # Hijos
