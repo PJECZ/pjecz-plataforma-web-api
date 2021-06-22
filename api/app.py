@@ -9,7 +9,9 @@ from api.abogados.views import router as abogados
 from api.autoridades.views import router as autoridades
 from api.distritos.views import router as distritos
 from api.edictos.views import router as edictos
+from api.glosas.views import router as glosas
 from api.listas_de_acuerdos.views import router as listas_de_acuerdos
+from api.materias.views import router as materias
 from api.peritos.views import router as peritos
 from api.sentencias.views import router as sentencias
 from api.ubicaciones_expedientes.views import router as ubicaciones_expedientes
@@ -32,7 +34,9 @@ app.include_router(abogados, prefix="/abogados")
 app.include_router(autoridades, prefix="/autoridades")
 app.include_router(distritos, prefix="/distritos")
 app.include_router(edictos, prefix="/edictos")
+app.include_router(glosas, prefix="/glosas")
 app.include_router(listas_de_acuerdos, prefix="/listas_de_acuerdos")
+app.include_router(materias, prefix="/materias")
 app.include_router(peritos, prefix="/peritos")
 app.include_router(sentencias, prefix="/sentencias")
 app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")

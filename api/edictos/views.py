@@ -13,13 +13,13 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[schemas.Edicto])
-async def listar_edictos(autoridad_id: int, db: Session = Depends(get_db)):
+async def listar_edictos(autoridad_id: int, ano: int = None, db: Session = Depends(get_db)):
     """Lista de Edictos"""
     autoridad = get_autoridad(db, autoridad_id=autoridad_id)
     if autoridad is None:
         raise HTTPException(status_code=400, detail="No existe la autoridad.")
     resultados = []
-    for edicto, autoridad, distrito in crud.get_edictos(db, autoridad_id=autoridad_id):
+    for edicto, autoridad, distrito in crud.get_edictos(db, autoridad_id=autoridad_id, ano=ano):
         resultados.append(
             schemas.Edicto(
                 id=edicto.id,

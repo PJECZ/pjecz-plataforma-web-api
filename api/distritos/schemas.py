@@ -9,3 +9,4 @@ class Distrito(BaseModel):
 
     id: int
     distrito: str
+    distrito_corto: str
