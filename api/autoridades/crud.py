@@ -22,7 +22,7 @@ def get_autoridades(db: Session, distrito_id: int = None, materia_id: int = None
     if con_notarias is False:
         consulta = consulta.filter(Autoridad.es_notaria == False)
     if para_glosas:
-        consulta = consulta.filter(Autoridad.organo_jurisdiccional.in_(["PLENO O SALA DEL TSJ", "TRIBUNAL DISTRITAL"]))
+        consulta = consulta.filter(Autoridad.organo_jurisdiccional.in_(["PLENO O SALA DEL TSJ", "TRIBUNAL DISTRITAL", "TRIBUNAL DE CONCILIACION Y ARBITRAJE"]))
     return consulta.filter(Autoridad.es_jurisdiccional == True).filter(Autoridad.estatus == "A").order_by(Distrito.nombre, Autoridad.clave).all()
 
 
