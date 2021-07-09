@@ -25,3 +25,6 @@ class ListaDeAcuerdo(Base, UniversalMixin):
     descripcion = Column(String(256), nullable=False)
     archivo = Column(String(256))
     url = Column(String(512))
+
+    # Hijos
+    listas_de_acuerdos_acuerdos = relationship('ListaDeAcuerdoAcuerdo', back_populates='lista_de_acuerdo')
