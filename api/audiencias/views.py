@@ -1,6 +1,7 @@
 """
 Audiencias, vistas
 """
+from datetime import date
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -27,19 +28,19 @@ async def listar_audiencias(autoridad_id: int, fecha: date = None, ano: int = No
                 distrito=distrito.nombre,
                 autoridad_id=autoridad.id,
                 autoridad=autoridad.descripcion,
-                tiempo=autoridad.tiempo,
-                tipo_audiencia=autoridad.tipo_audiencia,
-                expediente=autoridad.expediente,
-                actores=autoridad.actores,
-                demandados=autoridad.demandados,
-                sala=autoridad.sala,
-                caracter=autoridad.caracter,
-                causa_penal=autoridad.causa_penal,
-                delitos=autoridad.delitos,
-                toca=autoridad.toca,
-                expediente_origen=autoridad.expediente_origen,
-                imputados=autoridad.imputados,
-                origen=autoridad.origen,
+                tiempo=audiencia.tiempo,
+                tipo_audiencia=audiencia.tipo_audiencia,
+                expediente=audiencia.expediente,
+                actores=audiencia.actores,
+                demandados=audiencia.demandados,
+                sala=audiencia.sala,
+                caracter=audiencia.caracter,
+                causa_penal=audiencia.causa_penal,
+                delitos=audiencia.delitos,
+                toca=audiencia.toca,
+                expediente_origen=audiencia.expediente_origen,
+                imputados=audiencia.imputados,
+                origen=audiencia.origen,
             )
         )
     return resultados

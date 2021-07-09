@@ -13,6 +13,7 @@ class Audiencia(Base, UniversalMixin):
 
     CARACTERES = OrderedDict(
         [
+            ("NO DEFINIDO", "No definido"),
             ("PUBLICA", "Pública"),
             ("PRIVADA", "Privada"),
         ]

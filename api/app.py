@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.abogados.views import router as abogados
+from api.audiencias.views import router as audiencias
 from api.autoridades.views import router as autoridades
 from api.distritos.views import router as distritos
 from api.edictos.views import router as edictos
@@ -31,6 +32,7 @@ app.add_middleware(
 )
 
 app.include_router(abogados, prefix="/abogados")
+app.include_router(audiencias, prefix="/audiencias")
 app.include_router(autoridades, prefix="/autoridades")
 app.include_router(distritos, prefix="/distritos")
 app.include_router(edictos, prefix="/edictos")
