@@ -10,7 +10,7 @@ from api.listas_de_acuerdos.models import ListaDeAcuerdo
 
 
 def get_listas_de_acuerdos(db: Session, autoridad_id: int = None, fecha: date = None, ano: int = None):
-    """ Consultar listas de acuerdos """
+    """Consultar listas de acuerdos"""
     listas_de_acuerdos = db.query(ListaDeAcuerdo, Autoridad, Distrito).select_from(ListaDeAcuerdo).join(Autoridad).join(Distrito)
     if autoridad_id:
         listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.autoridad_id == autoridad_id)

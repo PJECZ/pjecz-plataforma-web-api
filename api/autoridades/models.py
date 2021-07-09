@@ -21,6 +21,15 @@ class Autoridad(Base, UniversalMixin):
             ("TRIBUNAL DE CONCILIACION Y ARBITRAJE", "Tribunal de Conciliación y Arbitraje"),
         ]
     )
+    AUDIENCIAS_CATEGORIAS = OrderedDict(
+        [
+            ("NO DEFINIDO", "No Definido"),
+            ("CIVIL FAMILIAR MERCANTIL LETRADO TCYA", "Civil Familiar Mercantil Letrado TCyA"),
+            ("MATERIA ACUSATORIO PENAL ORAL", "Materia Acusatorio Penal Oral"),
+            ("DISTRITALES", "Distritales"),
+            ("SALAS", "Salas"),
+        ]
+    )
 
     # Nombre de la tabla
     __tablename__ = "autoridades"
@@ -35,9 +44,9 @@ class Autoridad(Base, UniversalMixin):
     materia = relationship("Materia", back_populates="autoridades")
 
     # Columnas
+    clave = Column(String(16), nullable=False, unique=True)
     descripcion = Column(String(256), nullable=False)
     descripcion_corta = Column(String(64), nullable=False, default="")
-    clave = Column(String(16), nullable=False, unique=True)
     es_jurisdiccional = Column(Boolean(), nullable=False, default=False)
     es_notaria = Column(Boolean(), nullable=False, default=False)
     organo_jurisdiccional = Column(
@@ -45,8 +54,14 @@ class Autoridad(Base, UniversalMixin):
         index=True,
         nullable=False,
     )
+    audiencia_categoria = Column(
+        Enum(*AUDIENCIAS_CATEGORIAS, name="tipos_audiencias_categorias", native_enum=False),
+        index=True,
+        nullable=False,
+    )
 
     # Hijos
+    audiencias = relationship("Audiencia", back_populates="autoridad", lazy="noload")
     edictos = relationship("Edicto", back_populates="autoridad", lazy="noload")
     glosas = relationship("Glosa", back_populates="autoridad", lazy="noload")
     listas_de_acuerdos = relationship("ListaDeAcuerdo", back_populates="autoridad", lazy="noload")

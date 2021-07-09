@@ -25,6 +25,8 @@ async def listar_autoridades(distrito_id: int = None, materia_id: int = None, or
                 materia=materia.nombre,
                 autoridad=autoridad.descripcion,
                 autoridad_corta=autoridad.descripcion_corta,
+                organo_jurisdiccional=autoridad.organo_jurisdiccional,
+                audiencia_categoria=autoridad.audiencia_categoria,
             )
         )
     return resultados
@@ -44,4 +46,6 @@ async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_d
         materia=autoridad.materia.nombre,
         autoridad=autoridad.descripcion,
         autoridad_corta=autoridad.descripcion_corta,
+        organo_jurisdiccional=autoridad.organo_jurisdiccional,
+        audiencia_categoria=autoridad.audiencia_categoria,
     )
