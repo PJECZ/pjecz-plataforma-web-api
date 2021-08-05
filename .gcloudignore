@@ -10,5 +10,6 @@
 *.sqlite3
 __pycache__/
 /instance
-/setup.cfg
+/notebooks
+/sql
 /venv
