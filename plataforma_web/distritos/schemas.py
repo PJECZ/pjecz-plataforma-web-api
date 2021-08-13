@@ -5,8 +5,13 @@ from pydantic import BaseModel
 
 
 class Distrito(BaseModel):
-    """ Esquema Distrito """
+    """Esquema Distrito"""
 
     id: int
     distrito: str
     distrito_corto: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class UbicacionExpediente(BaseModel):
-    """ Esquema UbicacionExpediente """
+    """Esquema Ubicación de Expediente"""
 
     id: int
     distrito_id: int
@@ -14,3 +14,8 @@ class UbicacionExpediente(BaseModel):
     autoridad: str
     expediente: str
     ubicacion: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

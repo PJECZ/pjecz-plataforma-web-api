@@ -2,12 +2,13 @@
 Abogados, modelos
 """
 from sqlalchemy import Column, Date, Integer, String
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
 class Abogado(Base, UniversalMixin):
-    """ Abogado """
+    """Abogado"""
 
     # Nombre de la tabla
     __tablename__ = "abogados"

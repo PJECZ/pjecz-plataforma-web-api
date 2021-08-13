@@ -36,9 +36,12 @@ async def listar_peritos(distrito_id: int, nombre: str = None, db: Session = Dep
 @router.get("/{perito_id}", response_model=schemas.Perito)
 async def consultar_un_perito(perito_id: int, db: Session = Depends(get_db)):
     """Consultar un Perito"""
-    perito = crud.get_perito(db, perito_id=perito_id)
-    if perito is None:
-        raise HTTPException(status_code=400, detail="No existe el perito.")
+    try:
+        perito = crud.get_perito(db, perito_id=perito_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Perito(
         id=perito.id,
         distrito_id=perito.distrito_id,

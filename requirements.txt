@@ -1,5 +1,4 @@
 black
-click
 fastapi
 gunicorn
 httptools
@@ -10,7 +9,6 @@ pylint-sqlalchemy
 PyMySQL
 SQLAlchemy
 SQLAlchemy-Utils
-tabulate
 Unidecode
 uvicorn
 uvloop

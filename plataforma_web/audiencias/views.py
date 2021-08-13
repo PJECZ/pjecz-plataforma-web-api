@@ -49,9 +49,12 @@ async def listar_audiencias(autoridad_id: int, fecha: date = None, ano: int = No
 @router.get("/{audiencia_id}", response_model=schemas.Audiencia)
 async def consultar_un_audiencia(audiencia_id: int, db: Session = Depends(get_db)):
     """Consultar un audiencia"""
-    audiencia = crud.get_audiencia(db, audiencia_id=audiencia_id)
-    if audiencia is None:
-        raise HTTPException(status_code=400, detail="No existe el audiencia.")
+    try:
+        audiencia = crud.get_audiencia(db, audiencia_id=audiencia_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Audiencia(
         id=audiencia.id,
         distrito_id=audiencia.autoridad.distrito.id,

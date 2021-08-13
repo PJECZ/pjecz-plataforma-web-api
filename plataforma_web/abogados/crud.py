@@ -8,7 +8,12 @@ from lib.safe_string import safe_string
 from plataforma_web.abogados.models import Abogado
 
 
-def get_abogados(db: Session, nombre: str, ano_desde: int = None, ano_hasta: int = None):
+def get_abogados(
+    db: Session,
+    nombre: str,
+    ano_desde: int = None,
+    ano_hasta: int = None,
+):
     """Consultar abogados"""
     consulta = db.query(Abogado)
     if ano_desde and ano_desde > 1925:
@@ -18,9 +23,14 @@ def get_abogados(db: Session, nombre: str, ano_desde: int = None, ano_hasta: int
     nombre = safe_string(nombre)
     if nombre != "":
         consulta = consulta.filter(Abogado.nombre.like(f"%{nombre}%"))
-    return consulta.filter(Abogado.estatus == "A").order_by(Abogado.nombre).limit(100).all()
+    return consulta.filter_by(estatus="A").order_by(Abogado.nombre).limit(100).all()
 
 
 def get_abogado(db: Session, abogado_id: int):
     """Consultar un abogado"""
-    return db.query(Abogado).get(abogado_id)
+    abogado = db.query(Abogado).get(abogado_id)
+    if abogado is None:
+        raise IndexError
+    if abogado.estatus != "A":
+        raise ValueError("No es activo el abogado, está eliminado")
+    return abogado

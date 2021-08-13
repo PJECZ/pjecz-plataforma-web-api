@@ -3,6 +3,7 @@ Edictos, modelos
 """
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 

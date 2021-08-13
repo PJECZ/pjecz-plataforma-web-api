@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class Edicto(BaseModel):
-    """Esquema para consultar Edictos"""
+    """Esquema Edicto"""
 
     id: int
     distrito_id: int
@@ -19,3 +19,8 @@ class Edicto(BaseModel):
     numero_publicacion: str
     archivo: str
     url: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

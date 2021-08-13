@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class Abogado(BaseModel):
-    """ Esquema Abogado """
+    """Esquema Abogado"""
 
     id: int
     fecha: date
@@ -15,6 +15,6 @@ class Abogado(BaseModel):
     nombre: str
 
     class Config:
-        """ Configurar modo ORM """
+        """SQLAlchemy config"""
 
         orm_mode = True

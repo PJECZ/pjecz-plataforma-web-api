@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from lib.safe_string import safe_expediente
 
 from plataforma_web.autoridades.models import Autoridad
+from plataforma_web.autoridades.crud import get_autoridad
 from plataforma_web.distritos.models import Distrito
 from plataforma_web.ubicaciones_expedientes.models import UbicacionExpediente
 
@@ -13,7 +14,8 @@ def get_ubicaciones_expedientes(db: Session, autoridad_id: int = None, expedient
     """Consultar ubicaciones de expedientes"""
     consulta = db.query(UbicacionExpediente, Autoridad, Distrito).select_from(UbicacionExpediente).join(Autoridad).join(Distrito)
     if autoridad_id:
-        consulta = consulta.filter(UbicacionExpediente.autoridad_id == autoridad_id)
+        autoridad = get_autoridad(db, autoridad_id=autoridad_id)
+        consulta = consulta.filter(UbicacionExpediente.autoridad == autoridad)
     try:
         expediente = safe_expediente(expediente)
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
@@ -24,4 +26,9 @@ def get_ubicaciones_expedientes(db: Session, autoridad_id: int = None, expedient
 
 def get_ubicacion_expediente(db: Session, ubicacion_expediente_id: int):
     """Consultar una ubicacion de expediente"""
-    return db.query(UbicacionExpediente).get(ubicacion_expediente_id)
+    ubicacion_expediente = db.query(UbicacionExpediente).get(ubicacion_expediente_id)
+    if ubicacion_expediente is None:
+        raise IndexError
+    if ubicacion_expediente.estatus != "A":
+        raise ValueError("No es activa la ubicacion de expediente, está eliminada")
+    return ubicacion_expediente

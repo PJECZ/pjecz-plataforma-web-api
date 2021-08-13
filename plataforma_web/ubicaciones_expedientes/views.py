@@ -37,9 +37,12 @@ async def listar_ubicaciones_expedientes(autoridad_id: int, expediente: str = No
 @router.get("/{ubicacion_expediente_id}", response_model=schemas.UbicacionExpediente)
 async def consultar_una_ubicacion_expediente(ubicacion_expediente_id: int, db: Session = Depends(get_db)):
     """Consultar una Ubicación de Expedientes"""
-    ubicacion_expediente = crud.get_ubicacion_expediente(db, ubicacion_expediente_id=ubicacion_expediente_id)
-    if ubicacion_expediente is None:
-        raise HTTPException(status_code=400, detail="No existe la ubicación de expediente.")
+    try:
+        ubicacion_expediente = crud.get_ubicacion_expediente(db, ubicacion_expediente_id=ubicacion_expediente_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.UbicacionExpediente(
         id=ubicacion_expediente.id,
         distrito_id=ubicacion_expediente.autoridad.distrito_id,

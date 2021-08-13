@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class Autoridad(BaseModel):
-    """ Esquema Autoridad para listado """
+    """Esquema Autoridad"""
 
     id: int
     distrito_id: int
@@ -16,3 +16,8 @@ class Autoridad(BaseModel):
     autoridad_corta: str
     organo_jurisdiccional: str
     audiencia_categoria: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

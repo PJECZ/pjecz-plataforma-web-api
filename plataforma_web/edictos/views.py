@@ -41,9 +41,12 @@ async def listar_edictos(autoridad_id: int, ano: int = None, db: Session = Depen
 @router.get("/{edicto_id}", response_model=schemas.Edicto)
 async def consultar_un_edicto(edicto_id: int, db: Session = Depends(get_db)):
     """Consultar un Edicto"""
-    edicto = crud.get_edicto(db, edicto_id=edicto_id)
-    if edicto is None:
-        raise HTTPException(status_code=400, detail="No existe la lista de acuerdos.")
+    try:
+        edicto = crud.get_edicto(db, edicto_id=edicto_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Edicto(
         id=edicto.id,
         distrito_id=edicto.autoridad.distrito_id,

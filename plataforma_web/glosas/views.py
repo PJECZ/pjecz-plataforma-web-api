@@ -41,9 +41,12 @@ async def listar_glosas(autoridad_id: int, ano: int = None, db: Session = Depend
 @router.get("/{glosa_id}", response_model=schemas.Glosa)
 async def consultar_un_glosa(glosa_id: int, db: Session = Depends(get_db)):
     """Consultar un glosa"""
-    glosa = crud.get_glosa(db, glosa_id=glosa_id)
-    if glosa is None:
-        raise HTTPException(status_code=400, detail="No existe el glosa.")
+    try:
+        glosa = crud.get_glosa(db, glosa_id=glosa_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Glosa(
         id=glosa.id,
         distrito_id=glosa.autoridad.distrito.id,

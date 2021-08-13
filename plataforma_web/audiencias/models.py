@@ -4,12 +4,13 @@ Audiencias, modelos
 from collections import OrderedDict
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
 class Audiencia(Base, UniversalMixin):
-    """ Audiencia """
+    """Audiencia"""
 
     CARACTERES = OrderedDict(
         [
@@ -20,7 +21,7 @@ class Audiencia(Base, UniversalMixin):
     )
 
     # Nombre de la tabla
-    __tablename__ = 'audiencias'
+    __tablename__ = "audiencias"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)

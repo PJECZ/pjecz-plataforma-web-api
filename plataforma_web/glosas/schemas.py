@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class Glosa(BaseModel):
-    """ Esquema para consultar glosas """
+    """Esquema Glosa"""
 
     id: int
     distrito_id: int
@@ -19,3 +19,8 @@ class Glosa(BaseModel):
     expediente: str
     archivo: str
     url: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

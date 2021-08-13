@@ -40,9 +40,12 @@ async def listar_listas_de_acuerdos(autoridad_id: int, fecha: date = None, ano: 
 @router.get("/{lista_de_acuerdo_id}", response_model=schemas.ListaDeAcuerdo)
 async def consultar_una_lista_de_acuerdos(lista_de_acuerdo_id: int, db: Session = Depends(get_db)):
     """Consultar una Lista de Acuerdos"""
-    lista_de_acuerdo = crud.get_lista_de_acuerdo(db, lista_de_acuerdo_id=lista_de_acuerdo_id)
-    if lista_de_acuerdo is None:
-        raise HTTPException(status_code=400, detail="No existe la lista de acuerdos.")
+    try:
+        lista_de_acuerdo = crud.get_lista_de_acuerdo(db, lista_de_acuerdo_id=lista_de_acuerdo_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.ListaDeAcuerdo(
         id=lista_de_acuerdo.id,
         distrito_id=lista_de_acuerdo.autoridad.distrito_id,

@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class Audiencia(BaseModel):
-    """ Esquema para consultar audencias """
+    """Esquema Audencia"""
 
     id: int
     distrito_id: int
@@ -26,3 +26,8 @@ class Audiencia(BaseModel):
     expediente_origen: str
     imputados: str
     origen: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

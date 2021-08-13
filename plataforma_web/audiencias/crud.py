@@ -5,6 +5,7 @@ from datetime import datetime, date
 from sqlalchemy.orm import Session
 
 from plataforma_web.audiencias.models import Audiencia
+from plataforma_web.autoridades.crud import get_autoridad
 from plataforma_web.autoridades.models import Autoridad
 from plataforma_web.distritos.models import Distrito
 
@@ -13,7 +14,8 @@ def get_audiencias(db: Session, autoridad_id: int = None, fecha: date = None, an
     """Consultar audiencias"""
     audiencias = db.query(Audiencia, Autoridad, Distrito).select_from(Audiencia).join(Autoridad).join(Distrito)
     if autoridad_id:
-        audiencias = audiencias.filter(Audiencia.autoridad_id == autoridad_id)
+        autoridad = get_autoridad(db, autoridad_id=autoridad_id)
+        audiencias = audiencias.filter(Audiencia.autoridad == autoridad)
     if fecha:
         desde = datetime(year=fecha.year, month=fecha.month, day=fecha.day, hour=0, minute=0, second=0)
         hasta = datetime(year=fecha.year, month=fecha.month, day=fecha.day, hour=23, minute=59, second=59)
@@ -25,4 +27,9 @@ def get_audiencias(db: Session, autoridad_id: int = None, fecha: date = None, an
 
 def get_audiencia(db: Session, audiencia_id: int):
     """Consultar un audiencia"""
-    return db.query(Audiencia).get(audiencia_id)
+    audiencia = db.query(Audiencia).get(audiencia_id)
+    if audiencia is None:
+        raise IndexError
+    if audiencia.estatus != "A":
+        raise ValueError("No es activa la audiencia, está eliminada")
+    return audiencia

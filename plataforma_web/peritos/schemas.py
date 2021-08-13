@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class Perito(BaseModel):
-    """ Esquema Perito """
+    """Esquema Perito"""
 
     id: int
     distrito_id: int
@@ -17,3 +17,8 @@ class Perito(BaseModel):
     telefono_celular: str
     email: str
     notas: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

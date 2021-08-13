@@ -4,12 +4,13 @@ Glosas, modelos
 from collections import OrderedDict
 from sqlalchemy import Column, Date, Enum, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
 class Glosa(Base, UniversalMixin):
-    """ Glosa """
+    """Glosa"""
 
     TIPOS_JUICIOS = OrderedDict(
         [
@@ -28,7 +29,7 @@ class Glosa(Base, UniversalMixin):
     )
 
     # Nombre de la tabla
-    __tablename__ = 'glosas'
+    __tablename__ = "glosas"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)

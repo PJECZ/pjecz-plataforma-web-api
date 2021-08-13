@@ -41,9 +41,12 @@ async def listar_sentencias(autoridad_id: int, ano: int = None, db: Session = De
 @router.get("/{sentencia_id}", response_model=schemas.Sentencia)
 async def consultar_un_sentencia(sentencia_id: int, db: Session = Depends(get_db)):
     """Consultar un sentencia"""
-    sentencia = crud.get_sentencia(db, sentencia_id=sentencia_id)
-    if sentencia is None:
-        raise HTTPException(status_code=400, detail="No existe el sentencia.")
+    try:
+        sentencia = crud.get_sentencia(db, sentencia_id=sentencia_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Sentencia(
         id=sentencia.id,
         distrito_id=sentencia.autoridad.distrito.id,

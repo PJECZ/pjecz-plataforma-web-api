@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class ListaDeAcuerdoAcuerdo(BaseModel):
-    """Esquema para consultar acuerdos"""
+    """Esquema Lista de Acuerdo Acuerdo"""
 
     id: int
     lista_de_acuerdo_id: int
@@ -17,3 +17,8 @@ class ListaDeAcuerdoAcuerdo(BaseModel):
     demandado: str
     tipo_acuerdo: str
     tipo_juicio: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

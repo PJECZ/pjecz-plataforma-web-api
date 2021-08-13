@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class Sentencia(BaseModel):
-    """Esquema para consultar sentencias"""
+    """Esquema Sentencia"""
 
     id: int
     distrito_id: int
@@ -19,3 +19,8 @@ class Sentencia(BaseModel):
     es_paridad_genero: bool
     archivo: str
     url: str
+
+    class Config:
+        """SQLAlchemy config"""
+
+        orm_mode = True

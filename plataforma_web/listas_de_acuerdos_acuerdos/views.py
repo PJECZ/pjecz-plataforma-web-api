@@ -39,9 +39,12 @@ async def listar_listas_de_acuerdos_acuerdos(lista_de_acuerdo_id: int, db: Sessi
 @router.get("/{acuerdo_id}", response_model=schemas.ListaDeAcuerdoAcuerdo)
 async def consultar_un_acuerdo(lista_de_acuerdo_acuerdo_id: int, db: Session = Depends(get_db)):
     """Consultar un acuerdo"""
-    acuerdo = crud.get_lista_de_acuerdo_acuerdo(db, lista_de_acuerdo_acuerdo_id=lista_de_acuerdo_acuerdo_id)
-    if acuerdo is None:
-        raise HTTPException(status_code=400, detail="No existe el acuerdo.")
+    try:
+        acuerdo = crud.get_lista_de_acuerdo_acuerdo(db, lista_de_acuerdo_acuerdo_id=lista_de_acuerdo_acuerdo_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.ListaDeAcuerdoAcuerdo(
         id=acuerdo.id,
         lista_de_acuerdo_id=acuerdo.lista_de_acuerdo_id,

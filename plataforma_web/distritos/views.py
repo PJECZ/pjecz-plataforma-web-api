@@ -29,9 +29,12 @@ async def listar_distritos(solo_distritos: bool = False, db: Session = Depends(g
 @router.get("/{distrito_id}", response_model=schemas.Distrito)
 async def consultar_un_distrito(distrito_id: int, db: Session = Depends(get_db)):
     """Consultar un Distrito"""
-    distrito = crud.get_distrito(db, distrito_id=distrito_id)
-    if distrito is None:
-        raise HTTPException(status_code=400, detail="No existe el distrito.")
+    try:
+        distrito = crud.get_distrito(db, distrito_id=distrito_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Distrito(
         id=distrito.id,
         distrito=distrito.nombre,

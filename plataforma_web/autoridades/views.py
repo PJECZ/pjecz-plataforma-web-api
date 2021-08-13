@@ -35,9 +35,12 @@ async def listar_autoridades(distrito_id: int = None, materia_id: int = None, or
 @router.get("/{autoridad_id}", response_model=schemas.Autoridad)
 async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_db)):
     """Consultar una Autoridad"""
-    autoridad = crud.get_autoridad(db, autoridad_id=autoridad_id)
-    if autoridad is None:
-        raise HTTPException(status_code=400, detail="No existe la autoridad.")
+    try:
+        autoridad = crud.get_autoridad(db, autoridad_id=autoridad_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return schemas.Autoridad(
         id=autoridad.id,
         distrito_id=autoridad.distrito_id,
