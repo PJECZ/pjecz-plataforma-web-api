@@ -40,9 +40,9 @@ Para Bash Shell cree un archivo `.bashrc` con este contenido
     echo "   PYTHONPATH: ${PYTHONPATH}"
     echo
 
-    alias arrancar="uvicorn api.app:app --port 8001 --reload"
-    echo "-- FastAPI"
-    echo "   arrancar == uvicorn api.app:app --port 8001 --reload"
+    alias arrancar="uvicorn --host=0.0.0.0 --port=8001 plataforma_web.app:app --reload"
+    echo "-- Aliases"
+    echo "   arrancar = uvicorn --host=0.0.0.0 --port=8001 plataforma_web.app:app --reload"
     echo
 
 Cree el archivo `instance/settings.py` que cargue las variables de entorno
