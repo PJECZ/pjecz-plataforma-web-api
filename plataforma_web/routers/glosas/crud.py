@@ -18,7 +18,7 @@ def get_glosas(db: Session, autoridad_id: int = None, ano: int = None):
         glosas = glosas.filter(Glosa.autoridad == autoridad)
     if ano is not None and 2000 <= ano <= date.today().year:
         glosas = glosas.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
-    return glosas.filter_by(estatus="A").order_by(Glosa.fecha.desc()).limit(100).all()
+    return glosas.filter(Glosa.estatus == "A").order_by(Glosa.fecha.desc()).limit(100).all()
 
 
 def get_glosa(db: Session, glosa_id: int):

@@ -10,10 +10,10 @@ from .models import ListaDeAcuerdoAcuerdo
 
 def get_listas_de_acuerdos_acuerdos(db: Session, lista_de_acuerdo_id: int):
     """Consultar listas_de_acuerdos_acuerdos"""
-    consulta = db.query(ListaDeAcuerdoAcuerdo, ListaDeAcuerdo).join(ListaDeAcuerdo)
     lista_de_acuerdo = get_lista_de_acuerdo(db, lista_de_acuerdo_id)
+    consulta = db.query(ListaDeAcuerdoAcuerdo, ListaDeAcuerdo).join(ListaDeAcuerdo)
     consulta = consulta.filter(ListaDeAcuerdoAcuerdo.lista_de_acuerdo == lista_de_acuerdo)
-    return consulta.filter_by(estatus="A").order_by(ListaDeAcuerdoAcuerdo.id).limit(500).all()
+    return consulta.filter(ListaDeAcuerdoAcuerdo.estatus == "A").order_by(ListaDeAcuerdoAcuerdo.id).limit(500).all()
 
 
 def get_lista_de_acuerdo_acuerdo(db: Session, lista_de_acuerdo_acuerdo_id: int):
