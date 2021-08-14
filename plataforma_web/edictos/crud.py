@@ -18,7 +18,7 @@ def get_edictos(db: Session, autoridad_id: int = None, ano: int = None):
         edictos = edictos.filter(Edicto.autoridad == autoridad)
     if ano is not None and 2000 <= ano <= date.today().year:
         edictos = edictos.filter(Edicto.fecha >= date(ano, 1, 1)).filter(Edicto.fecha <= date(ano, 12, 31))
-    return edictos.filter(Edicto.estatus == "A").order_by(Edicto.fecha.desc()).limit(500).all()
+    return edictos.filter_by(estatus="A").order_by(Edicto.fecha.desc()).limit(500).all()
 
 
 def get_edicto(db: Session, edicto_id: int):

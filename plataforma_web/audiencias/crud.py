@@ -10,7 +10,12 @@ from plataforma_web.autoridades.models import Autoridad
 from plataforma_web.distritos.models import Distrito
 
 
-def get_audiencias(db: Session, autoridad_id: int = None, fecha: date = None, ano: int = None):
+def get_audiencias(
+    db: Session,
+    autoridad_id: int = None,
+    fecha: date = None,
+    ano: int = None,
+):
     """Consultar audiencias"""
     audiencias = db.query(Audiencia, Autoridad, Distrito).select_from(Audiencia).join(Autoridad).join(Distrito)
     if autoridad_id:
@@ -22,7 +27,7 @@ def get_audiencias(db: Session, autoridad_id: int = None, fecha: date = None, an
         audiencias = audiencias.filter(Audiencia.tiempo >= desde).filter(Audiencia.tiempo <= hasta)
     elif ano is not None and 2000 <= ano <= date.today().year:
         audiencias = audiencias.filter(Audiencia.tiempo >= date(ano, 1, 1)).filter(Audiencia.tiempo <= date(ano, 12, 31))
-    return audiencias.filter(Audiencia.estatus == "A").order_by(Audiencia.tiempo.desc()).limit(500).all()
+    return audiencias.filter_by(estatus="A").order_by(Audiencia.tiempo.desc()).limit(500).all()
 
 
 def get_audiencia(db: Session, audiencia_id: int):

@@ -21,7 +21,7 @@ def get_ubicaciones_expedientes(db: Session, autoridad_id: int = None, expedient
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
     except (IndexError, ValueError):
         pass
-    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(100).all()
+    return consulta.filter_by(estatus="A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(100).all()
 
 
 def get_ubicacion_expediente(db: Session, ubicacion_expediente_id: int):

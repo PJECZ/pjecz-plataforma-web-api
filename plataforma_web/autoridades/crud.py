@@ -34,7 +34,7 @@ def get_autoridades(
         consulta = consulta.filter_by(es_notaria=False)
     if para_glosas:
         consulta = consulta.filter(Autoridad.organo_jurisdiccional.in_(["PLENO O SALA DEL TSJ", "TRIBUNAL DE CONCILIACION Y ARBITRAJE"]))
-    return consulta.filter_by(es_jurisdiccional=True).filter(Autoridad.estatus == "A").order_by(Distrito.nombre, Autoridad.clave).all()
+    return consulta.filter_by(es_jurisdiccional=True).filter_by(estatus="A").order_by(Distrito.nombre, Autoridad.clave).all()
 
 
 def get_autoridad(db: Session, autoridad_id: int):
