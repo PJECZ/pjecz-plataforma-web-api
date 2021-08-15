@@ -5,49 +5,55 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from ..autoridades.crud import get_autoridad
-from . import crud, schemas
 from lib.database import get_db
+from .crud import get_sentencia, get_sentencias
+from .schemas import SentenciaOut
 
 router = APIRouter()
 
 
-@router.get("", response_model=List[schemas.Sentencia])
-async def listar_sentencias(autoridad_id: int, ano: int = None, db: Session = Depends(get_db)):
+@router.get("", response_model=List[SentenciaOut])
+async def listar_sentencias(
+    autoridad_id: int,
+    ano: int = None,
+    db: Session = Depends(get_db),
+):
     """Lista de sentencias"""
-    autoridad = get_autoridad(db, autoridad_id=autoridad_id)
-    if autoridad is None:
-        raise HTTPException(status_code=400, detail="No existe la autoridad.")
     resultados = []
-    for sentencia, autoridad, distrito in crud.get_sentencias(db, autoridad_id=autoridad_id, ano=ano):
-        resultados.append(
-            schemas.Sentencia(
-                id=sentencia.id,
-                distrito_id=distrito.id,
-                distrito=distrito.nombre,
-                autoridad_id=autoridad.id,
-                autoridad=autoridad.descripcion,
-                fecha=sentencia.fecha,
-                sentencia=sentencia.sentencia,
-                expediente=sentencia.expediente,
-                es_paridad_genero=sentencia.es_paridad_genero,
-                archivo=sentencia.archivo,
-                url=sentencia.url,
-            )
-        )
-    return resultados
-
-
-@router.get("/{sentencia_id}", response_model=schemas.Sentencia)
-async def consultar_un_sentencia(sentencia_id: int, db: Session = Depends(get_db)):
-    """Consultar un sentencia"""
     try:
-        sentencia = crud.get_sentencia(db, sentencia_id=sentencia_id)
+        for sentencia, autoridad, distrito in get_sentencias(db, autoridad_id=autoridad_id, ano=ano):
+            resultados.append(
+                SentenciaOut(
+                    id=sentencia.id,
+                    distrito_id=distrito.id,
+                    distrito=distrito.nombre,
+                    autoridad_id=autoridad.id,
+                    autoridad=autoridad.descripcion,
+                    fecha=sentencia.fecha,
+                    sentencia=sentencia.sentencia,
+                    expediente=sentencia.expediente,
+                    es_paridad_genero=sentencia.es_paridad_genero,
+                    archivo=sentencia.archivo,
+                    url=sentencia.url,
+                )
+            )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return schemas.Sentencia(
+    return resultados
+
+
+@router.get("/{sentencia_id}", response_model=SentenciaOut)
+async def consultar_un_sentencia(sentencia_id: int, db: Session = Depends(get_db)):
+    """Consultar un sentencia"""
+    try:
+        sentencia = get_sentencia(db, sentencia_id=sentencia_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return SentenciaOut(
         id=sentencia.id,
         distrito_id=sentencia.autoridad.distrito.id,
         distrito=sentencia.autoridad.distrito.nombre,

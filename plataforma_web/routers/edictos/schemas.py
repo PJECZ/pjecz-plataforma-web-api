@@ -5,7 +5,7 @@ from datetime import date
 from pydantic import BaseModel
 
 
-class Edicto(BaseModel):
+class EdictoOut(BaseModel):
     """Esquema Edicto"""
 
     id: int

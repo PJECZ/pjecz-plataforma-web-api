@@ -4,7 +4,7 @@ Materias, esquemas de pydantic
 from pydantic import BaseModel
 
 
-class Materia(BaseModel):
+class MateriaOut(BaseModel):
     """Esquema Materia"""
 
     id: int

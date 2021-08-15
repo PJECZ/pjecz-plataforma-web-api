@@ -4,7 +4,7 @@ Ubicaciones de Expedientes, esquemas de pydantic
 from pydantic import BaseModel
 
 
-class UbicacionExpediente(BaseModel):
+class UbicacionExpedienteOut(BaseModel):
     """Esquema Ubicación de Expediente"""
 
     id: int

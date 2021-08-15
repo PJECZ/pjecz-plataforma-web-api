@@ -5,7 +5,7 @@ from datetime import date
 from pydantic import BaseModel
 
 
-class Glosa(BaseModel):
+class GlosaOut(BaseModel):
     """Esquema Glosa"""
 
     id: int

@@ -4,7 +4,7 @@ Peritos, esquemas
 from pydantic import BaseModel
 
 
-class Perito(BaseModel):
+class PeritoOut(BaseModel):
     """Esquema Perito"""
 
     id: int

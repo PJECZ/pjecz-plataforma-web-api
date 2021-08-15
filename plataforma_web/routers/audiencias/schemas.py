@@ -5,7 +5,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class Audiencia(BaseModel):
+class AudienciaOut(BaseModel):
     """Esquema Audencia"""
 
     id: int

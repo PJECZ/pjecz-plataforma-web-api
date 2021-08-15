@@ -5,7 +5,7 @@ from datetime import date
 from pydantic import BaseModel
 
 
-class ListaDeAcuerdo(BaseModel):
+class ListaDeAcuerdoOut(BaseModel):
     """Esquema Listas de Acuerdos"""
 
     id: int

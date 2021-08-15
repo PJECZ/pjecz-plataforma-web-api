@@ -5,7 +5,7 @@ from datetime import date
 from pydantic import BaseModel
 
 
-class Abogado(BaseModel):
+class AbogadoOut(BaseModel):
     """Esquema Abogado"""
 
     id: int

@@ -4,7 +4,7 @@ Autoridades, esquemas de pydantic
 from pydantic import BaseModel
 
 
-class Autoridad(BaseModel):
+class AutoridadOut(BaseModel):
     """Esquema Autoridad"""
 
     id: int

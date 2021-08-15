@@ -4,7 +4,7 @@ Distritos, esquemas de pydantic
 from pydantic import BaseModel
 
 
-class Distrito(BaseModel):
+class DistritoOut(BaseModel):
     """Esquema Distrito"""
 
     id: int
