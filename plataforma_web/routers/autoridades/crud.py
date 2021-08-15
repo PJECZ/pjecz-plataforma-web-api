@@ -21,10 +21,10 @@ def get_autoridades(
 ):
     """Consultar autoridades"""
     consulta = db.query(Autoridad, Distrito, Materia).select_from(Autoridad).join(Distrito).join(Materia)
-    if distrito_id:
+    if distrito_id is not None:
         distrito = get_distrito(db, distrito_id)
         consulta = consulta.filter(Autoridad.distrito == distrito)
-    if materia_id:
+    if materia_id is not None:
         materia = get_materia(db, materia_id)
         consulta = consulta.filter(Autoridad.materia == materia)
     organo_jurisdiccional = safe_string(organo_jurisdiccional)

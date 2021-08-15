@@ -1,5 +1,5 @@
 """
-Materias, vistas
+Materias, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException

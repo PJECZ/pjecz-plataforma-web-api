@@ -1,5 +1,5 @@
 """
-Ubicaciones de Expedientes, vistas
+Ubicaciones de Expedientes, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
@@ -13,7 +13,11 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[UbicacionExpedienteOut])
-async def listar_ubicaciones_expedientes(autoridad_id: int, expediente: str = None, db: Session = Depends(get_db),):
+async def listar_ubicaciones_expedientes(
+    autoridad_id: int,
+    expediente: str = None,
+    db: Session = Depends(get_db),
+):
     """Lista de Ubicaciones de Expedientes"""
     resultados = []
     try:

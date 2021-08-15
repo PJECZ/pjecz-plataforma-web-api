@@ -10,17 +10,19 @@ from ..distritos.models import Distrito
 from .models import UbicacionExpediente
 
 
-def get_ubicaciones_expedientes(db: Session, autoridad_id: int = None, expediente: str = None):
+def get_ubicaciones_expedientes(
+    db: Session,
+    autoridad_id: int = None,
+    expediente: str = None,
+):
     """Consultar ubicaciones de expedientes"""
     consulta = db.query(UbicacionExpediente, Autoridad, Distrito).select_from(UbicacionExpediente).join(Autoridad).join(Distrito)
-    if autoridad_id:
+    if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(UbicacionExpediente.autoridad == autoridad)
-    try:
+    if expediente is not None:
         expediente = safe_expediente(expediente)
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
-    except (IndexError, ValueError):
-        pass
     return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(100).all()
 
 

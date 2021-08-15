@@ -15,13 +15,12 @@ def get_peritos(
     nombre: str = None,
 ):
     """Consultar peritos"""
-    consulta = db.query(Perito, Distrito).join(Distrito)
-    if distrito_id:
-        distrito = get_distrito(db, distrito_id)
-        consulta = consulta.filter(Perito.distrito == distrito)
-    nombre = safe_string(nombre)
-    if nombre != "":
-        consulta = consulta.filter(Perito.nombre.like(f"%{nombre}%"))
+    distrito = get_distrito(db, distrito_id)
+    consulta = db.query(Perito, Distrito).join(Distrito).filter(Perito.distrito == distrito)
+    if nombre is not None:
+        nombre = safe_string(nombre)
+        if nombre != "":
+            consulta = consulta.filter(Perito.nombre.like(f"%{nombre}%"))
     return consulta.filter(Perito.estatus == "A").order_by(Distrito.nombre, Perito.nombre).limit(200).all()
 
 

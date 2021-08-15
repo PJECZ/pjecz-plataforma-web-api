@@ -1,5 +1,5 @@
 """
-Listas de Acuerdos Acuerdos, vistas
+Listas de Acuerdos Acuerdos, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
@@ -41,7 +41,7 @@ async def listar_listas_de_acuerdos_acuerdos(
     return resultados
 
 
-@router.get("/{acuerdo_id}", response_model=ListaDeAcuerdoAcuerdoOut)
+@router.get("/{lista_de_acuerdo_acuerdo_id}", response_model=ListaDeAcuerdoAcuerdoOut)
 async def consultar_un_acuerdo(lista_de_acuerdo_acuerdo_id: int, db: Session = Depends(get_db)):
     """Consultar un acuerdo"""
     try:

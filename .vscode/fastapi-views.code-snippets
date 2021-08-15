@@ -4,7 +4,7 @@
         "prefix": "fviewssimple",
         "body": [
             "\"\"\"",
-            "${1:Modulos}, vistas",
+            "${1:Modulos}, rutas",
             "\"\"\"",
             "from typing import List",
             "from fastapi import APIRouter, Depends, HTTPException",
@@ -41,7 +41,7 @@
         "prefix": "fviewsauto",
         "body": [
             "\"\"\"",
-            "${1:Modulos}, vistas",
+            "${1:Modulos}, rutas",
             "\"\"\"",
             "from typing import List",
             "from fastapi import APIRouter, Depends, HTTPException",

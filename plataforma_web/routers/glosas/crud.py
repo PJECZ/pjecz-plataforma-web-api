@@ -10,14 +10,21 @@ from ..distritos.models import Distrito
 from .models import Glosa
 
 
-def get_glosas(db: Session, autoridad_id: int = None, ano: int = None):
+def get_glosas(
+    db: Session,
+    autoridad_id: int = None,
+    ano: int = None,
+):
     """Consultar glosas"""
     glosas = db.query(Glosa, Autoridad, Distrito).select_from(Glosa).join(Autoridad).join(Distrito)
-    if autoridad_id:
+    if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         glosas = glosas.filter(Glosa.autoridad == autoridad)
-    if ano is not None and 2000 <= ano <= date.today().year:
-        glosas = glosas.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
+    if ano is not None:
+        if 2000 <= ano <= date.today().year:
+            glosas = glosas.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
+        else:
+            raise ValueError("Año fuera de rango.")
     return glosas.filter(Glosa.estatus == "A").order_by(Glosa.fecha.desc()).limit(100).all()
 
 

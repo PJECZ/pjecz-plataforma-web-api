@@ -16,10 +16,16 @@ def get_abogados(
 ):
     """Consultar abogados"""
     consulta = db.query(Abogado)
-    if ano_desde and ano_desde > 1925:
-        consulta = consulta.filter(Abogado.fecha >= datetime.strptime(f"{ano_desde}-01-01", "%Y-%m-%d"))
-    if ano_hasta and ano_hasta < datetime.now().year:
-        consulta = consulta.filter(Abogado.fecha <= datetime.strptime(f"{ano_hasta}-12-31", "%Y-%m-%d"))
+    if ano_desde is not None:
+        if 1925 <= ano_desde <= datetime.now().year:
+            consulta = consulta.filter(Abogado.fecha >= datetime.strptime(f"{ano_desde}-01-01", "%Y-%m-%d"))
+        else:
+            raise ValueError("Año fuera de rango.")
+    if ano_hasta is not None:
+        if 1925 <= ano_hasta <= datetime.now().year:
+            consulta = consulta.filter(Abogado.fecha <= datetime.strptime(f"{ano_hasta}-12-31", "%Y-%m-%d"))
+        else:
+            raise ValueError("Año fuera de rango.")
     nombre = safe_string(nombre)
     if nombre != "":
         consulta = consulta.filter(Abogado.nombre.like(f"%{nombre}%"))

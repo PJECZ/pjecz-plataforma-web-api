@@ -1,5 +1,5 @@
 """
-Peritos, vistas
+Peritos, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
@@ -13,7 +13,11 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[PeritoOut])
-async def listar_peritos(distrito_id: int, nombre: str = None, db: Session = Depends(get_db),):
+async def listar_peritos(
+    distrito_id: int,
+    nombre: str = None,
+    db: Session = Depends(get_db),
+):
     """Lista de Peritos"""
     resultados = []
     try:

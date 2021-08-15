@@ -20,16 +20,18 @@ async def listar_abogados(
     db: Session = Depends(get_db),
 ):
     """Lista de Abogados"""
-    return get_abogados(db, nombre=nombre, ano_desde=ano_desde, ano_hasta=ano_hasta)
+    try:
+        return get_abogados(db, nombre=nombre, ano_desde=ano_desde, ano_hasta=ano_hasta)
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
 
 
 @router.get("/{abogado_id}", response_model=AbogadoOut)
 async def consultar_un_abogado(abogado_id: int, db: Session = Depends(get_db)):
     """Consultar un Abogado"""
     try:
-        abogado = get_abogado(db, abogado_id)
+        return get_abogado(db, abogado_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return abogado

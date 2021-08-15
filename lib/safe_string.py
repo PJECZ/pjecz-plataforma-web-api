@@ -35,6 +35,6 @@ def safe_expediente(input_str):
         raise error
     if numero < 0:
         raise ValueError
-    if ano < 1950 or ano > date.today().year:
+    if not 1925 <= ano <= date.today().year:
         raise ValueError
     return f"{str(numero)}/{str(ano)}"

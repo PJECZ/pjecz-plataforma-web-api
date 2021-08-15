@@ -1,5 +1,5 @@
 """
-Listas de Acuerdos, vistas
+Listas de Acuerdos, rutas
 """
 from datetime import date
 from typing import List

@@ -1,5 +1,5 @@
 """
-Glosas, vistas
+Glosas, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException

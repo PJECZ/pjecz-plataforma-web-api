@@ -1,5 +1,5 @@
 """
-Distritos, vistas
+Distritos, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
