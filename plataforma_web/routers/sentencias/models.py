@@ -24,6 +24,6 @@ class Sentencia(Base, UniversalMixin):
     fecha = Column(Date, index=True, nullable=False)
     sentencia = Column(String(16), index=True, nullable=False)
     expediente = Column(String(16), index=True, nullable=False)
-    es_paridad_genero = Column(Boolean, nullable=False, default=False)
+    es_perspectiva_genero = Column(Boolean, nullable=False, default=False)
     archivo = Column(String(256))
     url = Column(String(512))
