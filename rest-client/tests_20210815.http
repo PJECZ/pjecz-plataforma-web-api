@@ -55,6 +55,9 @@ GET http://127.0.0.1:8001/listas_de_acuerdos_acuerdos/1
 GET http://127.0.0.1:8001/sentencias?autoridad_id=77&ano=2018
 
 ###
+GET http://127.0.0.1:8001/sentencias/48063
+
+###
 GET http://127.0.0.1:8001/ubicaciones_expedientes?autoridad_id=9
 
 ###

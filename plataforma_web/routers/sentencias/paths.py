@@ -32,7 +32,7 @@ async def listar_sentencias(
                     fecha=sentencia.fecha,
                     sentencia=sentencia.sentencia,
                     expediente=sentencia.expediente,
-                    es_paridad_genero=sentencia.es_paridad_genero,
+                    es_perspectiva_genero=sentencia.es_perspectiva_genero,
                     archivo=sentencia.archivo,
                     url=sentencia.url,
                 )
@@ -62,7 +62,7 @@ async def consultar_un_sentencia(sentencia_id: int, db: Session = Depends(get_db
         fecha=sentencia.fecha,
         sentencia=sentencia.sentencia,
         expediente=sentencia.expediente,
-        es_paridad_genero=sentencia.es_paridad_genero,
+        es_perspectiva_genero=sentencia.es_perspectiva_genero,
         archivo=sentencia.archivo,
         url=sentencia.url,
     )

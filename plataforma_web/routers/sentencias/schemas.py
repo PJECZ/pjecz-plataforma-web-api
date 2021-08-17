@@ -16,7 +16,7 @@ class SentenciaOut(BaseModel):
     fecha: date
     sentencia: str
     expediente: str
-    es_paridad_genero: bool
+    es_perspectiva_genero: bool
     archivo: str
     url: str
 
