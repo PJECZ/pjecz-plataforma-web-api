@@ -6,7 +6,7 @@ API de la Plataforma Web del PJECZ.
 
 Cree un archivo para las variables de entorno `.env`
 
-    # MariaDB en Minos
+    # Base de datos
     DB_USER=pjeczadmin
     DB_PASS=****************
     DB_NAME=pjecz_plataforma_web
@@ -34,15 +34,18 @@ Para Bash Shell cree un archivo `.bashrc` con este contenido
     export $(grep -v '^#' .env | xargs)
     echo "-- Variables de entorno"
     echo "   DB_USER: ${DB_USER}"
-    echo "   DB_HOST: ${DB_HOST}"
+    echo "   DB_PASS: ${DB_PASS}"
     echo "   DB_NAME: ${DB_NAME}"
     echo "   DB_HOST: ${DB_HOST}"
+    echo "   SECRET_KEY: ${SECRET_KEY}"
+    echo "   ALGORITHM: ${ALGORITHM}"
+    echo "   ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES}"
     echo "   PYTHONPATH: ${PYTHONPATH}"
     echo
 
-    alias arrancar="uvicorn --host=0.0.0.0 --port=8001 plataforma_web.app:app --reload"
+    alias arrancar="uvicorn --port=8001 --reload plataforma_web.app:app"
     echo "-- Aliases"
-    echo "   arrancar = uvicorn --host=0.0.0.0 --port=8001 plataforma_web.app:app --reload"
+    echo "   arrancar = uvicorn --port=8001 --reload plataforma_web.app:app"
     echo
 
 Cree el archivo `instance/settings.py` que cargue las variables de entorno
