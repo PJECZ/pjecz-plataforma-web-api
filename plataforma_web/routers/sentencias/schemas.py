@@ -13,6 +13,8 @@ class SentenciaOut(BaseModel):
     distrito: str
     autoridad_id: int
     autoridad: str
+    materia_tipo_juicio_id: int
+    materia_tipo_juicio: str
     fecha: date
     sentencia: str
     expediente: str

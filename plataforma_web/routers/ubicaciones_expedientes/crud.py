@@ -23,7 +23,7 @@ def get_ubicaciones_expedientes(
     if expediente is not None:
         expediente = safe_expediente(expediente)
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
-    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(100).all()
+    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(500).all()
 
 
 def get_ubicacion_expediente(db: Session, ubicacion_expediente_id: int):

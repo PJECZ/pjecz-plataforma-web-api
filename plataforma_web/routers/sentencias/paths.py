@@ -21,7 +21,7 @@ async def listar_sentencias(
     """Lista de sentencias"""
     resultados = []
     try:
-        for sentencia, autoridad, distrito in get_sentencias(db, autoridad_id=autoridad_id, ano=ano):
+        for sentencia, autoridad, distrito, materia_tipo_juicio in get_sentencias(db, autoridad_id=autoridad_id, ano=ano):
             resultados.append(
                 SentenciaOut(
                     id=sentencia.id,
@@ -29,6 +29,8 @@ async def listar_sentencias(
                     distrito=distrito.nombre,
                     autoridad_id=autoridad.id,
                     autoridad=autoridad.descripcion,
+                    materia_tipo_juicio_id=materia_tipo_juicio.id,
+                    materia_tipo_juicio=materia_tipo_juicio.descripcion,
                     fecha=sentencia.fecha,
                     sentencia=sentencia.sentencia,
                     expediente=sentencia.expediente,
@@ -55,10 +57,12 @@ async def consultar_un_sentencia(sentencia_id: int, db: Session = Depends(get_db
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return SentenciaOut(
         id=sentencia.id,
-        distrito_id=sentencia.autoridad.distrito.id,
+        distrito_id=sentencia.autoridad.distrito_id,
         distrito=sentencia.autoridad.distrito.nombre,
-        autoridad_id=sentencia.autoridad.id,
+        autoridad_id=sentencia.autoridad_id,
         autoridad=sentencia.autoridad.descripcion,
+        materia_tipo_juicio_id=sentencia.materia_tipo_juicio_id,
+        materia_tipo_juicio=sentencia.materia_tipo_juicio.descripcion,
         fecha=sentencia.fecha,
         sentencia=sentencia.sentencia,
         expediente=sentencia.expediente,

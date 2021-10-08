@@ -22,7 +22,7 @@ async def listar_materias(db: Session = Depends(get_db)):
 
 
 @router.get("/{materia_id}", response_model=MateriaOut)
-async def consultar_un_materia(materia_id: int, db: Session = Depends(get_db)):
+async def consultar_una_materia(materia_id: int, db: Session = Depends(get_db)):
     """Consultar un materia"""
     try:
         materia = get_materia(db, materia_id=materia_id)

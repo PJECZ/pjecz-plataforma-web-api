@@ -15,7 +15,7 @@ def get_materia(db: Session, materia_id: int):
     """Consultar un materia"""
     materia = db.query(Materia).get(materia_id)
     if materia is None:
-        raise IndexError
+        raise IndexError("No existe esa materia")
     if materia.estatus != "A":
         raise ValueError("No es activa la materia, está eliminada")
     return materia
