@@ -33,7 +33,7 @@ def get_sentencia(db: Session, sentencia_id: int):
     """Consultar una sentencia"""
     sentencia = db.query(Sentencia).get(sentencia_id)
     if sentencia is None:
-        raise IndexError
+        raise IndexError("No existe esa sentencia")
     if sentencia.estatus != "A":
         raise ValueError("No es activa la sentencia, está eliminada")
     return sentencia

@@ -28,7 +28,7 @@ def get_perito(db: Session, perito_id: int):
     """Consultar un perito"""
     perito = db.query(Perito).get(perito_id)
     if perito is None:
-        raise IndexError
+        raise IndexError("No existe ese perito")
     if perito.estatus != "A":
         raise ValueError("No es activo el perito, está eliminado")
     return perito

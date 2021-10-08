@@ -32,7 +32,7 @@ def get_glosa(db: Session, glosa_id: int):
     """Consultar un glosa"""
     glosa = db.query(Glosa).get(glosa_id)
     if glosa is None:
-        raise IndexError
+        raise IndexError("No existe esa glosa")
     if glosa.estatus != "A":
         raise ValueError("No es activa la glosa, está eliminada")
     return glosa

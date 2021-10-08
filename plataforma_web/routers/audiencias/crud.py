@@ -37,7 +37,7 @@ def get_audiencia(db: Session, audiencia_id: int):
     """Consultar un audiencia"""
     audiencia = db.query(Audiencia).get(audiencia_id)
     if audiencia is None:
-        raise IndexError
+        raise IndexError("No existe esa audiencia en la agenda")
     if audiencia.estatus != "A":
         raise ValueError("No es activa la audiencia, está eliminada")
     return audiencia

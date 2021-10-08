@@ -41,7 +41,7 @@ def get_autoridad(db: Session, autoridad_id: int):
     """Consultar una autoridad"""
     autoridad = db.query(Autoridad).get(autoridad_id)
     if autoridad is None:
-        raise IndexError
+        raise IndexError("No existe esa autoridad")
     if autoridad.estatus != "A":
         raise ValueError("No es activa la autoridad, está eliminada")
     return autoridad

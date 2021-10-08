@@ -35,7 +35,7 @@ def get_lista_de_acuerdo(db: Session, lista_de_acuerdo_id: int):
     """Consultar una lista de acuerdos"""
     lista_de_acuerdo = db.query(ListaDeAcuerdo).get(lista_de_acuerdo_id)
     if lista_de_acuerdo is None:
-        raise IndexError
+        raise IndexError("No existe esa lista de acuerdos")
     if lista_de_acuerdo.estatus != "A":
         raise ValueError("No es activa la lista de acuerdos, está eliminada")
     return lista_de_acuerdo
