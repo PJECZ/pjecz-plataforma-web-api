@@ -6,6 +6,17 @@ from datetime import date
 from unidecode import unidecode
 
 
+def safe_clave(input_str):
+    """Safe clave"""
+    if not isinstance(input_str, str):
+        raise ValueError("La clave esta vacia")
+    new_string = input_str.strip().upper()
+    regexp = re.compile("^[A-Z0-9-]{2,16}$")
+    if regexp.match(new_string) is None:
+        raise ValueError("La clave es incorrecta")
+    return new_string
+
+
 def safe_string(input_str):
     """Safe string"""
     if not isinstance(input_str, str):
@@ -13,14 +24,6 @@ def safe_string(input_str):
     new_string = re.sub(r"[^a-zA-Z0-9]+", " ", unidecode(input_str))
     removed_multiple_spaces = re.sub(r"\s+", " ", new_string)
     return removed_multiple_spaces.strip().upper()
-
-
-def safe_message(input_str):
-    """Safe message"""
-    message = str(input_str)
-    if message == '':
-        message = "Sin descripción"
-    return (message[:250] + '...') if len(message) > 250 else message
 
 
 def safe_expediente(input_str):
@@ -34,7 +37,7 @@ def safe_expediente(input_str):
     except (IndexError, ValueError) as error:
         raise error
     if numero < 0:
-        raise ValueError
+        raise ValueError("Fuera de rango")
     if not 1925 <= ano <= date.today().year:
-        raise ValueError
+        raise ValueError("Fuera de rango")
     return f"{str(numero)}/{str(ano)}"

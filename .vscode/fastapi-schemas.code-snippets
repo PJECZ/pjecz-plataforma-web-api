@@ -10,8 +10,8 @@
             "from pydantic import BaseModel",
             "",
             "",
-            "class ${2:Esquema}(BaseModel):",
-            "\t\"\"\" Esquema para consultar ${3:plural} \"\"\"",
+            "class ${2:Esquema}Out(BaseModel):",
+            "\t\"\"\"Esquema para consultar ${3:plural}\"\"\"",
             "",
             "\tid: int",
             "\tdistrito_id: int",
@@ -22,6 +22,11 @@
             "\tdescripcion: str",
             "\tarchivo: str",
             "\turl: str",
+            "",
+            "\tclass Config:",
+            "\t\t\"\"\"SQLAlchemy config\"\"\"",
+            "",
+            "\t\torm_mode = True",
             ""
         ],
         "description": "Contenido para schemas.py"

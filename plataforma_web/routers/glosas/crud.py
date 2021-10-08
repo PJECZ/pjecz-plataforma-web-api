@@ -25,14 +25,14 @@ def get_glosas(
             glosas = glosas.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return glosas.filter(Glosa.estatus == "A").order_by(Glosa.fecha.desc()).limit(100).all()
+    return glosas.filter(Glosa.estatus == "A").order_by(Glosa.fecha.desc()).limit(500).all()
 
 
 def get_glosa(db: Session, glosa_id: int):
     """Consultar un glosa"""
     glosa = db.query(Glosa).get(glosa_id)
     if glosa is None:
-        raise IndexError
+        raise IndexError("No existe esa glosa")
     if glosa.estatus != "A":
         raise ValueError("No es activa la glosa, está eliminada")
     return glosa

@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from ..autoridades.models import Autoridad
 from ..autoridades.crud import get_autoridad
 from ..distritos.models import Distrito
+from ..materias_tipos_juicios.models import MateriaTipoJuicio
 from .models import Sentencia
 
 
@@ -16,7 +17,7 @@ def get_sentencias(
     ano: int = None,
 ):
     """Consultar sentencias"""
-    sentencias = db.query(Sentencia, Autoridad, Distrito).select_from(Sentencia).join(Autoridad).join(Distrito)
+    sentencias = db.query(Sentencia, Autoridad, Distrito, MateriaTipoJuicio).select_from(Sentencia).join(Autoridad).join(Distrito).join(MateriaTipoJuicio)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         sentencias = sentencias.filter(Sentencia.autoridad == autoridad)
@@ -32,7 +33,7 @@ def get_sentencia(db: Session, sentencia_id: int):
     """Consultar una sentencia"""
     sentencia = db.query(Sentencia).get(sentencia_id)
     if sentencia is None:
-        raise IndexError
+        raise IndexError("No existe esa sentencia")
     if sentencia.estatus != "A":
         raise ValueError("No es activa la sentencia, está eliminada")
     return sentencia

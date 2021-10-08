@@ -23,14 +23,14 @@ def get_ubicaciones_expedientes(
     if expediente is not None:
         expediente = safe_expediente(expediente)
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
-    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(100).all()
+    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(500).all()
 
 
 def get_ubicacion_expediente(db: Session, ubicacion_expediente_id: int):
     """Consultar una ubicacion de expediente"""
     ubicacion_expediente = db.query(UbicacionExpediente).get(ubicacion_expediente_id)
     if ubicacion_expediente is None:
-        raise IndexError
+        raise IndexError("No existe esa ubicación de expediente")
     if ubicacion_expediente.estatus != "A":
         raise ValueError("No es activa la ubicacion de expediente, está eliminada")
     return ubicacion_expediente

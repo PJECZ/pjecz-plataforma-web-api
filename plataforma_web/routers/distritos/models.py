@@ -25,3 +25,11 @@ class Distrito(Base, UniversalMixin):
     # Hijos
     autoridades = relationship("Autoridad", back_populates="distrito")
     peritos = relationship("Perito", back_populates="distrito")
+
+    @property
+    def distrito(self):
+        return self.nombre
+
+    @property
+    def distrito_corto(self):
+        return self.nombre_corto

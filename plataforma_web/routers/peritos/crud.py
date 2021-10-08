@@ -21,14 +21,14 @@ def get_peritos(
         nombre = safe_string(nombre)
         if nombre != "":
             consulta = consulta.filter(Perito.nombre.like(f"%{nombre}%"))
-    return consulta.filter(Perito.estatus == "A").order_by(Distrito.nombre, Perito.nombre).limit(200).all()
+    return consulta.filter(Perito.estatus == "A").order_by(Distrito.nombre, Perito.nombre).limit(500).all()
 
 
 def get_perito(db: Session, perito_id: int):
     """Consultar un perito"""
     perito = db.query(Perito).get(perito_id)
     if perito is None:
-        raise IndexError
+        raise IndexError("No existe ese perito")
     if perito.estatus != "A":
         raise ValueError("No es activo el perito, está eliminado")
     return perito
