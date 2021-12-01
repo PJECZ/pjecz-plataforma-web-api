@@ -21,7 +21,10 @@ def get_ubicaciones_expedientes(
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(UbicacionExpediente.autoridad == autoridad)
     if expediente is not None:
-        expediente = safe_expediente(expediente)
+        try:
+            expediente = safe_expediente(expediente)
+        except (IndexError, ValueError) as error:
+            raise ValueError("No correcto el expediente") from error
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
     return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(500).all()
 
