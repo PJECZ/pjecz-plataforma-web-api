@@ -42,12 +42,6 @@ class TesisJurisprudencia(Base, UniversalMixin):
     # Clave primaria
     id = Column(Integer, primary_key=True)
 
-    # Columnas
-    fecha = Column(Date, index=True, nullable=False)
-    descripcion = Column(String(256), nullable=False)
-    archivo = Column(String(256))
-    url = Column(String(512))
-
     # Clave foránea Órgano jurisdiccional
     autoridad_id = Column(Integer, ForeignKey("autoridades.id"), index=True, nullable=False)
     autoridad = relationship("Autoridad", back_populates="tesis_jurisprudencias")
@@ -67,7 +61,6 @@ class TesisJurisprudencia(Base, UniversalMixin):
     estado = Column(Enum(*ESTADOS, name="estados", native_enum=False), index=True, nullable=False)
     clave_control = Column(String(24), nullable=False)
     clase = Column(Enum(*CLASES, name="clases", native_enum=False), index=True, nullable=False)
-    instancia = Column(String(256), nullable=False)
     rubro = Column(String(256), nullable=False)
     texto = Column(Text(), nullable=False)
     precedentes = Column(Text(), nullable=False)
@@ -78,10 +71,10 @@ class TesisJurisprudencia(Base, UniversalMixin):
     aplicacion_tiempo = Column(DateTime(), nullable=False)
 
     # Hijos de funcionarios
-    tesis_jurisprudencias_funcionarios = relationship('TesisJurisprudenciaFuncionario', back_populates='tesis_jurisprudencias')
+    #tesis_jurisprudencias_funcionarios = relationship('TesisJurisprudenciaFuncionario', back_populates='tesis_jurisprudencias')
 
     # Hijos a Sentencias
-    tesis_jurisprudencias_sentencias = relationship('TesisJurisprudenciaSentencia', back_populates='tesis_jurisprudencia')
+    #tesis_jurisprudencias_sentencias = relationship('TesisJurisprudenciaSentencia', back_populates='tesis_jurisprudencia')
 
     @property
     def numero_registro_digital(self):

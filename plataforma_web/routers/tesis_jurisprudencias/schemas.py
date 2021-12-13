@@ -23,7 +23,6 @@ class TesisJurisprudenciaOut(BaseModel):
     estado: str
     clave_control: str
     clase: str
-    instancia: str
     rubro: str
     texto: str
     precedentes: str

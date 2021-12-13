@@ -8,7 +8,7 @@ class EpocaOut(BaseModel):
     """Esquema Epoca"""
 
     id: int
-    nombre: str
+    epoca: str
 
     class Config:
         """SQLAlchemy config"""
