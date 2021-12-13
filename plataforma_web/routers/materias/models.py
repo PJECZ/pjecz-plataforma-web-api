@@ -23,3 +23,4 @@ class Materia(Base, UniversalMixin):
     # Hijos
     autoridades = relationship("Autoridad", back_populates="materia")
     materias_tipos_juicios = relationship("MateriaTipoJuicio", back_populates="materia")
+    tesis_jurisprudencias = relationship("TesisJurisprudencia", back_populates="materia", lazy="noload")
