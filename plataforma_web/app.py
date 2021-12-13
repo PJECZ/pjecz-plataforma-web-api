@@ -10,6 +10,7 @@ from plataforma_web.routers.audiencias.paths import router as audiencias
 from plataforma_web.routers.autoridades.paths import router as autoridades
 from plataforma_web.routers.distritos.paths import router as distritos
 from plataforma_web.routers.edictos.paths import router as edictos
+from plataforma_web.routers.epocas.paths import router as epocas
 from plataforma_web.routers.glosas.paths import router as glosas
 from plataforma_web.routers.listas_de_acuerdos.paths import router as listas_de_acuerdos
 from plataforma_web.routers.listas_de_acuerdos_acuerdos.paths import router as listas_de_acuerdos_acuerdos
@@ -17,6 +18,7 @@ from plataforma_web.routers.materias.paths import router as materias
 from plataforma_web.routers.materias_tipos_juicios.paths import router as materias_tipos_juicios
 from plataforma_web.routers.peritos.paths import router as peritos
 from plataforma_web.routers.sentencias.paths import router as sentencias
+from plataforma_web.routers.tesis_jurisprudencias.paths import router as tesis_jurisprudencias
 from plataforma_web.routers.ubicaciones_expedientes.paths import router as ubicaciones_expedientes
 
 try:
@@ -38,6 +40,7 @@ app.include_router(audiencias, prefix="/audiencias")
 app.include_router(autoridades, prefix="/autoridades")
 app.include_router(distritos, prefix="/distritos")
 app.include_router(edictos, prefix="/edictos")
+app.include_router(epocas, prefix="/epocas")
 app.include_router(glosas, prefix="/glosas")
 app.include_router(listas_de_acuerdos, prefix="/listas_de_acuerdos")
 app.include_router(listas_de_acuerdos_acuerdos, prefix="/listas_de_acuerdos_acuerdos")
@@ -45,6 +48,7 @@ app.include_router(materias, prefix="/materias")
 app.include_router(materias_tipos_juicios, prefix="/materias_tipos_juicios")
 app.include_router(peritos, prefix="/peritos")
 app.include_router(sentencias, prefix="/sentencias")
+app.include_router(tesis_jurisprudencias, prefix="/tesis_jurisprudencias")
 app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")
 
 

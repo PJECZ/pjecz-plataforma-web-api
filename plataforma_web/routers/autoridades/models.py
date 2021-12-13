@@ -66,4 +66,5 @@ class Autoridad(Base, UniversalMixin):
     glosas = relationship("Glosa", back_populates="autoridad", lazy="noload")
     listas_de_acuerdos = relationship("ListaDeAcuerdo", back_populates="autoridad", lazy="noload")
     sentencias = relationship("Sentencia", back_populates="autoridad", lazy="noload")
+    tesis_jurisprudencias = relationship("TesisJurisprudencia", back_populates="autoridad", lazy="noload")
     ubicaciones_expedientes = relationship("UbicacionExpediente", back_populates="autoridad", lazy="noload")
