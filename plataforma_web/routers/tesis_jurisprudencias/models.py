@@ -24,6 +24,7 @@ class TesisJurisprudencia(Base, UniversalMixin):
 
     ESTADOS = OrderedDict(
         [
+            ("ACTIVAR", "ACTIVAR"),
             ("INTERRUMPIR", "Interrumpir"),
             ("MODIFICAR", "Modificar"),
         ]
