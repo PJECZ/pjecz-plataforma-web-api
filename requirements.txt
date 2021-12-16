@@ -11,4 +11,3 @@ SQLAlchemy
 SQLAlchemy-Utils
 Unidecode
 uvicorn
-uvloop
