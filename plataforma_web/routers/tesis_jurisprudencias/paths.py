@@ -14,13 +14,28 @@ router = APIRouter()
 
 @router.get("", response_model=List[TesisJurisprudenciaOut])
 async def listar_tesis_jurisprudencias(
-    autoridad_id: int,
+    autoridad_id: int = None,
+    epoca_id: int = None,
+    materia_id: int = None,
+    clase: str = None,
+    titulo: str = None,
+    texto: str = None,
+    aprobacion_anio: int = None,
     db: Session = Depends(get_db),
 ):
     """Lista de tesis_jurisprudencias"""
     resultados = []
     try:
-        for tesis_jurisprudencia, autoridad, distrito in get_tesis_jurisprudencias(db, autoridad_id=autoridad_id):
+        for tesis_jurisprudencia, autoridad, distrito in get_tesis_jurisprudencias(
+            db,
+            autoridad_id=autoridad_id,
+            epoca_id=epoca_id,
+            materia_id=materia_id,
+            clase=clase,
+            titulo=titulo,
+            texto=texto,
+            aprobacion_anio=aprobacion_anio,
+        ):
             resultados.append(
                 TesisJurisprudenciaOut(
                     id=tesis_jurisprudencia.id,
