@@ -17,6 +17,7 @@ from plataforma_web.routers.listas_de_acuerdos_acuerdos.paths import router as l
 from plataforma_web.routers.materias.paths import router as materias
 from plataforma_web.routers.materias_tipos_juicios.paths import router as materias_tipos_juicios
 from plataforma_web.routers.peritos.paths import router as peritos
+from plataforma_web.routers.peritos_tipos.paths import router as peritos_tipos
 from plataforma_web.routers.sentencias.paths import router as sentencias
 from plataforma_web.routers.tesis_jurisprudencias.paths import router as tesis_jurisprudencias
 from plataforma_web.routers.ubicaciones_expedientes.paths import router as ubicaciones_expedientes
@@ -47,6 +48,7 @@ app.include_router(listas_de_acuerdos_acuerdos, prefix="/listas_de_acuerdos_acue
 app.include_router(materias, prefix="/materias")
 app.include_router(materias_tipos_juicios, prefix="/materias_tipos_juicios")
 app.include_router(peritos, prefix="/peritos")
+app.include_router(peritos_tipos, prefix="/peritos_tipos")
 app.include_router(sentencias, prefix="/sentencias")
 app.include_router(tesis_jurisprudencias, prefix="/tesis_jurisprudencias")
 app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")

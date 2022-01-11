@@ -10,8 +10,9 @@ class PeritoOut(BaseModel):
     id: int
     distrito_id: int
     distrito: str
+    perito_tipo_id: int
+    perito_tipo: str
     nombre: str
-    tipo: str
     domicilio: str
     telefono_fijo: str
     telefono_celular: str

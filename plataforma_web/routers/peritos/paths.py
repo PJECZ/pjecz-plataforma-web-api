@@ -21,14 +21,15 @@ async def listar_peritos(
     """Lista de Peritos"""
     resultados = []
     try:
-        for perito, distrito in get_peritos(db, distrito_id=distrito_id, nombre=nombre):
+        for perito, perito_tipo, distrito in get_peritos(db, distrito_id=distrito_id, nombre=nombre):
             resultados.append(
                 PeritoOut(
                     id=perito.id,
                     distrito_id=perito.distrito_id,
                     distrito=distrito.nombre,
+                    perito_tipo_id=perito.perito_tipo_id,
+                    perito_tipo=perito_tipo.nombre,
                     nombre=perito.nombre,
-                    tipo=perito.tipo,
                     domicilio=perito.domicilio,
                     telefono_fijo=perito.telefono_fijo,
                     telefono_celular=perito.telefono_celular,
@@ -56,8 +57,9 @@ async def consultar_un_perito(perito_id: int, db: Session = Depends(get_db)):
         id=perito.id,
         distrito_id=perito.distrito_id,
         distrito=perito.distrito.nombre,
+        perito_tipo_id=perito.perito_tipo_id,
+        perito_tipo=perito.perito_tipo.nombre,
         nombre=perito.nombre,
-        tipo=perito.tipo,
         domicilio=perito.domicilio,
         telefono_fijo=perito.telefono_fijo,
         telefono_celular=perito.telefono_celular,
