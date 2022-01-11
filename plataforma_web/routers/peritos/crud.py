@@ -6,6 +6,7 @@ from lib.safe_string import safe_string
 
 from ..distritos.models import Distrito
 from ..distritos.crud import get_distrito
+from ..peritos_tipos.models import PeritoTipo
 from .models import Perito
 
 
@@ -16,7 +17,7 @@ def get_peritos(
 ):
     """Consultar peritos"""
     distrito = get_distrito(db, distrito_id)
-    consulta = db.query(Perito, Distrito).join(Distrito).filter(Perito.distrito == distrito)
+    consulta = db.query(Perito, PeritoTipo, Distrito).select_from(Perito).join(PeritoTipo).join(Distrito).filter(Perito.distrito == distrito)
     if nombre is not None:
         nombre = safe_string(nombre)
         if nombre != "":
