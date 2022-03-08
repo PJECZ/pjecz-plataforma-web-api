@@ -16,8 +16,13 @@ from plataforma_web.routers.listas_de_acuerdos.paths import router as listas_de_
 from plataforma_web.routers.listas_de_acuerdos_acuerdos.paths import router as listas_de_acuerdos_acuerdos
 from plataforma_web.routers.materias.paths import router as materias
 from plataforma_web.routers.materias_tipos_juicios.paths import router as materias_tipos_juicios
+from plataforma_web.routers.materias_tipos_juzgados.paths import router as materias_tipos_juzgados
 from plataforma_web.routers.peritos.paths import router as peritos
 from plataforma_web.routers.peritos_tipos.paths import router as peritos_tipos
+from plataforma_web.routers.repsvm_agresores.paths import router as repsvm_agresores
+from plataforma_web.routers.repsvm_delitos_especificos.paths import router as repsvm_delitos_especificos
+from plataforma_web.routers.repsvm_delitos_genericos.paths import router as repsvm_delitos_genericos
+from plataforma_web.routers.repsvm_tipos_sentencias.paths import router as repsvm_tipos_sentencias
 from plataforma_web.routers.sentencias.paths import router as sentencias
 from plataforma_web.routers.tesis_jurisprudencias.paths import router as tesis_jurisprudencias
 from plataforma_web.routers.ubicaciones_expedientes.paths import router as ubicaciones_expedientes
@@ -47,8 +52,13 @@ app.include_router(listas_de_acuerdos, prefix="/listas_de_acuerdos")
 app.include_router(listas_de_acuerdos_acuerdos, prefix="/listas_de_acuerdos_acuerdos")
 app.include_router(materias, prefix="/materias")
 app.include_router(materias_tipos_juicios, prefix="/materias_tipos_juicios")
+app.include_router(materias_tipos_juzgados, prefix="/materias_tipos_juzgados")
 app.include_router(peritos, prefix="/peritos")
 app.include_router(peritos_tipos, prefix="/peritos_tipos")
+app.include_router(repsvm_agresores, prefix="/repsvm_agresores")
+app.include_router(repsvm_delitos_especificos, prefix="/repsvm_delitos_especificos")
+app.include_router(repsvm_delitos_genericos, prefix="/repsvm_delitos_genericos")
+app.include_router(repsvm_tipos_sentencias, prefix="/repsvm_tipos_sentencias")
 app.include_router(sentencias, prefix="/sentencias")
 app.include_router(tesis_jurisprudencias, prefix="/tesis_jurisprudencias")
 app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")

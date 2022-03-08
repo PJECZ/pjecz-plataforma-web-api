@@ -23,13 +23,16 @@ class Distrito(Base, UniversalMixin):
     es_distrito_judicial = Column(Boolean(), nullable=False, default=False)
 
     # Hijos
-    autoridades = relationship("Autoridad", back_populates="distrito")
-    peritos = relationship("Perito", back_populates="distrito")
+    autoridades = relationship("Autoridad", back_populates="distrito", lazy="noload")
+    peritos = relationship("Perito", back_populates="distrito", lazy="noload")
+    repsvm_agresores = relationship("REPSVMAgresor", back_populates="distrito", lazy="noload")
 
     @property
     def distrito(self):
+        """Nombre"""
         return self.nombre
 
     @property
     def distrito_corto(self):
+        """Nombre corto"""
         return self.nombre_corto
