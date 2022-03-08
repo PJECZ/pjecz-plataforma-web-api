@@ -13,11 +13,15 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[REPSVMAgresorOut])
-async def listar_repsvm_agresores(db: Session = Depends(get_db)):
+async def listar_repsvm_agresores(
+    distrito_id: int,
+    nombre: str = None,
+    db: Session = Depends(get_db),
+):
     """Lista de repsvm_agresores"""
     resultados = []
     try:
-        for repsvm_agresor in get_repsvm_agresores(db):
+        for repsvm_agresor in get_repsvm_agresores(db, distrito_id=distrito_id, nombre=nombre):
             resultados.append(
                 REPSVMAgresorOut(
                     id=repsvm_agresor.id,
