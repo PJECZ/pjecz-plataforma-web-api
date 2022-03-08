@@ -23,7 +23,7 @@ async def listar_repsvm_delitos_especificos(db: Session = Depends(get_db)):
                     id=repsvm_delito_especifico.id,
                     delito_generico_id=repsvm_delito_especifico.repsvm_delito_generico_id,
                     delito_generico=repsvm_delito_especifico.repsvm_delito_generico.nombre,
-                    delito_especifico=repsvm_delito_especifico.nombre,
+                    delito_especifico=repsvm_delito_especifico.descripcion,
                 )
             )
     except IndexError as error:
@@ -46,5 +46,5 @@ async def consultar_un_repsvm_delito_especifico(repsvm_delito_especifico_id: int
         id=repsvm_delito_especifico.id,
         delito_generico_id=repsvm_delito_especifico.repsvm_delito_generico_id,
         delito_generico=repsvm_delito_especifico.repsvm_delito_generico.nombre,
-        repsvm_delito_especifico=repsvm_delito_especifico.nombre,
+        repsvm_delito_especifico=repsvm_delito_especifico.descripcion,
     )

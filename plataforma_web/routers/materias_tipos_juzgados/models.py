@@ -21,7 +21,6 @@ class MateriaTipoJuzgado(Base, UniversalMixin):
     materia = relationship("Materia", back_populates="materias_tipos_juzgados")
 
     # Columnas
-    clave = Column(String(256), unique=True, nullable=False)
     descripcion = Column(String(256), nullable=False)
 
     # Hijos

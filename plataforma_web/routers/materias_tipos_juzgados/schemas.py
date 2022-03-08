@@ -10,7 +10,7 @@ class MateriaTipoJuzgadoOut(BaseModel):
     id: int
     materia_id: int
     materia: str
-    materia_tipo_juzgado: str
+    descripcion: str
 
     class Config:
         """SQLAlchemy config"""

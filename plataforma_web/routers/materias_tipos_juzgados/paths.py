@@ -23,7 +23,7 @@ async def listar_materias_tipos_juzgados(materia_id: int, db: Session = Depends(
                     id=materia_tipo_juzgado.id,
                     materia_id=materia.id,
                     materia=materia.nombre,
-                    descripcion=materia_tipo_juzgado.nombre,
+                    descripcion=materia_tipo_juzgado.descripcion,
                 )
             )
     except IndexError as error:
@@ -46,5 +46,5 @@ async def consultar_un_materia_tipo_juzgado(materia_tipo_juzgado_id: int, db: Se
         id=materia_tipo_juzgado.id,
         materia_id=materia_tipo_juzgado.materia_id,
         materia=materia_tipo_juzgado.materia.nombre,
-        descripcion=materia_tipo_juzgado.nombre,
+        descripcion=materia_tipo_juzgado.descripcion,
     )
