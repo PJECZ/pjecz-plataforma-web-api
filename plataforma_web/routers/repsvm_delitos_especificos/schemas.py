@@ -8,9 +8,9 @@ class REPSVMDelitoEspecificoOut(BaseModel):
     """Esquema para consultar delito especifico"""
 
     id: int
-    repsvm_delito_generico_id: int
-    repsvm_delito_generico: str
-    descripcion: str
+    delito_generico_id: int
+    delito_generico: str
+    delito_especifico: str
 
     class Config:
         """SQLAlchemy config"""

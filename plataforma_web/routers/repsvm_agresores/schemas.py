@@ -12,10 +12,12 @@ class REPSVMAgresorOut(BaseModel):
     distrito: str
     materia_tipo_juzgado_id: int
     materia_tipo_juzgado: str
-    repsvm_delito_especifico_id: int
-    repsvm_delito_especifico: str
-    repsvm_tipo_sentencia_id: int
-    repsvm_tipo_sentencia: str
+    delito_generico_id: int
+    delito_generico: str
+    delito_especifico_id: int
+    delito_especifico: str
+    tipo_sentencia_id: int
+    tipo_sentencia: str
     nombre: str
     numero_causa: str
     pena_impuesta: str

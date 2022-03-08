@@ -8,7 +8,7 @@ class REPSVMTipoSentenciaOut(BaseModel):
     """Esquema para consultar tipo de sentencia"""
 
     id: int
-    nombre: str
+    tipo_sentencia: str
 
     class Config:
         """SQLAlchemy config"""

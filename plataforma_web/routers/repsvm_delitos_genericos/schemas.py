@@ -8,7 +8,7 @@ class REPSVMDelitoGenericoOut(BaseModel):
     """Esquema para consultar delito generico"""
 
     id: int
-    nombre: str
+    delito_generico: str
 
     class Config:
         """SQLAlchemy config"""

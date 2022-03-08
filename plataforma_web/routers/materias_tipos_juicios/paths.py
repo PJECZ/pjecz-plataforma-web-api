@@ -1,5 +1,5 @@
 """
-Materias Tipos Juicios, rutas
+Materias Tipos de Juicios, rutas
 """
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
