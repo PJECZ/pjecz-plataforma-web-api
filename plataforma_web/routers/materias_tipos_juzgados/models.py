@@ -1,5 +1,5 @@
 """
-Materias Tipos de Juicios, modelos
+Materias Tipos de Juzgados, modelos
 """
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
@@ -7,11 +7,11 @@ from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
-class MateriaTipoJuicio(Base, UniversalMixin):
-    """MateriaTipoJuicio"""
+class MateriaTipoJuzgado(Base, UniversalMixin):
+    """MateriaTipoJuzgado"""
 
     # Nombre de la tabla
-    __tablename__ = 'materias_tipos_juicios'
+    __tablename__ = "materias_tipos_juzgados"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
