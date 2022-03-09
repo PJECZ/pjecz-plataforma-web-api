@@ -20,7 +20,7 @@ def get_repsvm_agresores(
         nombre = safe_string(nombre)
         if nombre != "":
             consulta = consulta.filter(REPSVMAgresor.nombre.contains(nombre))
-    return consulta.filter(REPSVMAgresor.estatus == "A").order_by(REPSVMAgresor.id.desc()).limit(50).all()
+    return consulta.filter(REPSVMAgresor.estatus == "A").order_by(REPSVMAgresor.id.desc()).limit(800).all()
 
 
 def get_repsvm_agresor(db: Session, repsvm_agresor_id: int):
