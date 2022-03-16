@@ -5,27 +5,27 @@ from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from plataforma_web.routers.abogados.paths import router as abogados
-from plataforma_web.routers.audiencias.paths import router as audiencias
-from plataforma_web.routers.autoridades.paths import router as autoridades
-from plataforma_web.routers.distritos.paths import router as distritos
-from plataforma_web.routers.edictos.paths import router as edictos
-from plataforma_web.routers.epocas.paths import router as epocas
-from plataforma_web.routers.glosas.paths import router as glosas
-from plataforma_web.routers.listas_de_acuerdos.paths import router as listas_de_acuerdos
-from plataforma_web.routers.listas_de_acuerdos_acuerdos.paths import router as listas_de_acuerdos_acuerdos
-from plataforma_web.routers.materias.paths import router as materias
-from plataforma_web.routers.materias_tipos_juicios.paths import router as materias_tipos_juicios
-from plataforma_web.routers.materias_tipos_juzgados.paths import router as materias_tipos_juzgados
-from plataforma_web.routers.peritos.paths import router as peritos
-from plataforma_web.routers.peritos_tipos.paths import router as peritos_tipos
-from plataforma_web.routers.repsvm_agresores.paths import router as repsvm_agresores
-from plataforma_web.routers.repsvm_delitos_especificos.paths import router as repsvm_delitos_especificos
-from plataforma_web.routers.repsvm_delitos_genericos.paths import router as repsvm_delitos_genericos
-from plataforma_web.routers.repsvm_tipos_sentencias.paths import router as repsvm_tipos_sentencias
-from plataforma_web.routers.sentencias.paths import router as sentencias
-from plataforma_web.routers.tesis_jurisprudencias.paths import router as tesis_jurisprudencias
-from plataforma_web.routers.ubicaciones_expedientes.paths import router as ubicaciones_expedientes
+from plataforma_web.v1.abogados.paths import router as abogados
+from plataforma_web.v1.audiencias.paths import router as audiencias
+from plataforma_web.v1.autoridades.paths import router as autoridades
+from plataforma_web.v1.distritos.paths import router as distritos
+from plataforma_web.v1.edictos.paths import router as edictos
+from plataforma_web.v1.epocas.paths import router as epocas
+from plataforma_web.v1.glosas.paths import router as glosas
+from plataforma_web.v1.listas_de_acuerdos.paths import router as listas_de_acuerdos
+from plataforma_web.v1.listas_de_acuerdos_acuerdos.paths import router as listas_de_acuerdos_acuerdos
+from plataforma_web.v1.materias.paths import router as materias
+from plataforma_web.v1.materias_tipos_juicios.paths import router as materias_tipos_juicios
+from plataforma_web.v1.materias_tipos_juzgados.paths import router as materias_tipos_juzgados
+from plataforma_web.v1.peritos.paths import router as peritos
+from plataforma_web.v1.peritos_tipos.paths import router as peritos_tipos
+from plataforma_web.v1.repsvm_agresores.paths import router as repsvm_agresores
+from plataforma_web.v1.repsvm_delitos_especificos.paths import router as repsvm_delitos_especificos
+from plataforma_web.v1.repsvm_delitos_genericos.paths import router as repsvm_delitos_genericos
+from plataforma_web.v1.repsvm_tipos_sentencias.paths import router as repsvm_tipos_sentencias
+from plataforma_web.v1.sentencias.paths import router as sentencias
+from plataforma_web.v1.tesis_jurisprudencias.paths import router as tesis_jurisprudencias
+from plataforma_web.v1.ubicaciones_expedientes.paths import router as ubicaciones_expedientes
 
 try:
     from instance.settings import ORIGINS

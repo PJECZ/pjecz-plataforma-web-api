@@ -2,7 +2,7 @@
 REPSVM Tipos de Sentencias, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
 from sqlalchemy.orm import Session
-from plataforma_web.routers.repsvm_tipos_sentencias.models import REPSVMTipoSentencia
+from .models import REPSVMTipoSentencia
 
 
 def get_repsvm_tipos_sentencias(db: Session):

@@ -2,10 +2,10 @@
 Materias Tipos de Juzgados, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
 from sqlalchemy.orm import Session
-from plataforma_web.routers.materias_tipos_juzgados.models import MateriaTipoJuzgado
+from .models import MateriaTipoJuzgado
 
-from plataforma_web.routers.materias.models import Materia
-from plataforma_web.routers.materias.crud import get_materia
+from ..materias.models import Materia
+from ..materias.crud import get_materia
 
 
 def get_materias_tipos_juzgados(db: Session, materia_id: int):

@@ -4,8 +4,8 @@ REPSVM, CRUD: the four basic operations (create, read, update, and delete) of da
 from sqlalchemy.orm import Session
 from lib.safe_string import safe_string
 
-from plataforma_web.routers.distritos.crud import get_distrito
-from plataforma_web.routers.repsvm_agresores.models import REPSVMAgresor
+from ..distritos.crud import get_distrito
+from .models import REPSVMAgresor
 
 
 def get_repsvm_agresores(

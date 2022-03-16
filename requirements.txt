@@ -1,5 +1,6 @@
 black
 fastapi
+fastapi-pagination[sqlalchemy]
 gunicorn
 httptools
 psycopg2-binary
@@ -11,3 +12,4 @@ SQLAlchemy
 SQLAlchemy-Utils
 Unidecode
 uvicorn
+uvloop

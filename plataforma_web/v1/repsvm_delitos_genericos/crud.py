@@ -2,7 +2,7 @@
 REPSVM Delitos Genericos, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
 from sqlalchemy.orm import Session
-from plataforma_web.routers.repsvm_delitos_genericos.models import REPSVMDelitoGenerico
+from .models import REPSVMDelitoGenerico
 
 
 def get_repsvm_delitos_genericos(db: Session):
