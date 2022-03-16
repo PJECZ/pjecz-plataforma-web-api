@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_repsvm_tipo_sentencia, get_repsvm_tipos_sentencias
 from .schemas import REPSVMTipoSentenciaOut
 
-router = APIRouter()
+repsvm_tipos_sentencias = APIRouter()
 
 
-@router.get('', response_model=List[REPSVMTipoSentenciaOut])
+@repsvm_tipos_sentencias.get('', response_model=List[REPSVMTipoSentenciaOut])
 async def listar_repsvm_tipos_sentencias(db: Session = Depends(get_db)):
     """ Lista de repsvm_tipos_sentencias """
     resultados = []
@@ -26,7 +26,7 @@ async def listar_repsvm_tipos_sentencias(db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get('/{repsvm_tipo_sentencia_id}', response_model=REPSVMTipoSentenciaOut)
+@repsvm_tipos_sentencias.get('/{repsvm_tipo_sentencia_id}', response_model=REPSVMTipoSentenciaOut)
 async def consultar_un_repsvm_tipo_sentencia(repsvm_tipo_sentencia_id: int, db: Session = Depends(get_db)):
     """ Consultar un repsvm_tipo_sentencia """
     try:

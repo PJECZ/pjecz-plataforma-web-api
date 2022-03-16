@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_edicto, get_edictos
 from .schemas import EdictoOut
 
-router = APIRouter()
+edictos = APIRouter()
 
 
-@router.get("", response_model=List[EdictoOut])
+@edictos.get("", response_model=List[EdictoOut])
 async def listar_edictos(
     autoridad_id: int,
     ano: int = None,
@@ -44,7 +44,7 @@ async def listar_edictos(
     return resultados
 
 
-@router.get("/{edicto_id}", response_model=EdictoOut)
+@edictos.get("/{edicto_id}", response_model=EdictoOut)
 async def consultar_un_edicto(edicto_id: int, db: Session = Depends(get_db)):
     """Consultar un Edicto"""
     try:

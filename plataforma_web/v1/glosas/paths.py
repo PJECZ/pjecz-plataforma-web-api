@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_glosa, get_glosas
 from .schemas import GlosaOut
 
-router = APIRouter()
+glosas = APIRouter()
 
 
-@router.get("", response_model=List[GlosaOut])
+@glosas.get("", response_model=List[GlosaOut])
 async def listar_glosas(
     autoridad_id: int,
     ano: int = None,
@@ -44,7 +44,7 @@ async def listar_glosas(
     return resultados
 
 
-@router.get("/{glosa_id}", response_model=GlosaOut)
+@glosas.get("/{glosa_id}", response_model=GlosaOut)
 async def consultar_un_glosa(glosa_id: int, db: Session = Depends(get_db)):
     """Consultar un glosa"""
     try:

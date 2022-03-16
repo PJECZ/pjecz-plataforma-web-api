@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_autoridad, get_autoridades, get_autoridad_from_clave
 from .schemas import AutoridadOut
 
-router = APIRouter()
+autoridades = APIRouter()
 
 
-@router.get("", response_model=List[AutoridadOut])
+@autoridades.get("", response_model=List[AutoridadOut])
 async def listar_autoridades(
     distrito_id: int = None,
     materia_id: int = None,
@@ -45,7 +45,7 @@ async def listar_autoridades(
     return resultados
 
 
-@router.get("/{autoridad_id}", response_model=AutoridadOut)
+@autoridades.get("/{autoridad_id}", response_model=AutoridadOut)
 async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_db)):
     """Consultar una Autoridad"""
     try:
@@ -67,7 +67,7 @@ async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_d
     )
 
 
-@router.get("/clave/{clave}", response_model=AutoridadOut)
+@autoridades.get("/clave/{clave}", response_model=AutoridadOut)
 async def detail_from_clave(
     clave: str,
     db: Session = Depends(get_db)

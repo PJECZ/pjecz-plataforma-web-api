@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_repsvm_agresor, get_repsvm_agresores
 from .schemas import REPSVMAgresorOut
 
-router = APIRouter()
+repsvm_agresores = APIRouter()
 
 
-@router.get("", response_model=List[REPSVMAgresorOut])
+@repsvm_agresores.get("", response_model=List[REPSVMAgresorOut])
 async def listar_repsvm_agresores(
     distrito_id: int,
     nombre: str = None,
@@ -49,7 +49,7 @@ async def listar_repsvm_agresores(
     return resultados
 
 
-@router.get("/{repsvm_agresor_id}", response_model=REPSVMAgresorOut)
+@repsvm_agresores.get("/{repsvm_agresor_id}", response_model=REPSVMAgresorOut)
 async def consultar_un_repsvm_agresor(repsvm_agresor_id: int, db: Session = Depends(get_db)):
     """Consultar un repsvm_agresor"""
     try:

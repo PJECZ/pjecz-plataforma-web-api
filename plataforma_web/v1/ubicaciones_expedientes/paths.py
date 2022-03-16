@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_ubicacion_expediente, get_ubicaciones_expedientes
 from .schemas import UbicacionExpedienteOut
 
-router = APIRouter()
+ubicaciones_expedientes = APIRouter()
 
 
-@router.get("", response_model=List[UbicacionExpedienteOut])
+@ubicaciones_expedientes.get("", response_model=List[UbicacionExpedienteOut])
 async def listar_ubicaciones_expedientes(
     autoridad_id: int,
     expediente: str = None,
@@ -40,7 +40,7 @@ async def listar_ubicaciones_expedientes(
     return resultados
 
 
-@router.get("/{ubicacion_expediente_id}", response_model=UbicacionExpedienteOut)
+@ubicaciones_expedientes.get("/{ubicacion_expediente_id}", response_model=UbicacionExpedienteOut)
 async def consultar_una_ubicacion_expediente(ubicacion_expediente_id: int, db: Session = Depends(get_db)):
     """Consultar una Ubicación de Expedientes"""
     try:

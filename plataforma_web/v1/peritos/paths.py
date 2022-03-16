@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_perito, get_peritos
 from .schemas import PeritoOut
 
-router = APIRouter()
+peritos = APIRouter()
 
 
-@router.get("", response_model=List[PeritoOut])
+@peritos.get("", response_model=List[PeritoOut])
 async def listar_peritos(
     distrito_id: int,
     nombre: str = None,
@@ -44,7 +44,7 @@ async def listar_peritos(
     return resultados
 
 
-@router.get("/{perito_id}", response_model=PeritoOut)
+@peritos.get("/{perito_id}", response_model=PeritoOut)
 async def consultar_un_perito(perito_id: int, db: Session = Depends(get_db)):
     """Consultar un Perito"""
     try:

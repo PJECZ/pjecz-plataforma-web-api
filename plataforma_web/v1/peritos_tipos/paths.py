@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_perito_tipo, get_peritos_tipos
 from .schemas import PeritoTipoOut
 
-router = APIRouter()
+peritos_tipos = APIRouter()
 
 
-@router.get('', response_model=List[PeritoTipoOut])
+@peritos_tipos.get('', response_model=List[PeritoTipoOut])
 async def listar_peritos_tipos(db: Session = Depends(get_db)):
     """ Lista de peritos_tipos """
     resultados = []
@@ -26,7 +26,7 @@ async def listar_peritos_tipos(db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get('/{perito_tipo_id}', response_model=PeritoTipoOut)
+@peritos_tipos.get('/{perito_tipo_id}', response_model=PeritoTipoOut)
 async def consultar_un_perito_tipo(perito_tipo_id: int, db: Session = Depends(get_db)):
     """ Consultar un perito_tipo """
     try:

@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_distrito, get_distritos
 from .schemas import DistritoOut
 
-router = APIRouter()
+distritos = APIRouter()
 
 
-@router.get("", response_model=List[DistritoOut])
+@distritos.get("", response_model=List[DistritoOut])
 async def listar_distritos(
     solo_distritos: bool = False,
     db: Session = Depends(get_db),
@@ -24,7 +24,7 @@ async def listar_distritos(
     return resultados
 
 
-@router.get("/{distrito_id}", response_model=DistritoOut)
+@distritos.get("/{distrito_id}", response_model=DistritoOut)
 async def consultar_un_distrito(distrito_id: int, db: Session = Depends(get_db)):
     """Consultar un Distrito"""
     try:

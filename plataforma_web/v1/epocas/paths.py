@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_epoca, get_epocas
 from .schemas import EpocaOut
 
-router = APIRouter()
+epocas = APIRouter()
 
 
-@router.get('', response_model=List[EpocaOut])
+@epocas.get('', response_model=List[EpocaOut])
 async def listar_epocas(db: Session = Depends(get_db)):
     """ Lista de epocas """
     resultados = []
@@ -21,7 +21,7 @@ async def listar_epocas(db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get('/{epoca_id}', response_model=EpocaOut)
+@epocas.get('/{epoca_id}', response_model=EpocaOut)
 async def consultar_un_epoca(epoca_id: int, db: Session = Depends(get_db)):
     """ Consultar una epoca """
     try:

@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_repsvm_delito_generico, get_repsvm_delitos_genericos
 from .schemas import REPSVMDelitoGenericoOut
 
-router = APIRouter()
+repsvm_delitos_genericos = APIRouter()
 
 
-@router.get('', response_model=List[REPSVMDelitoGenericoOut])
+@repsvm_delitos_genericos.get('', response_model=List[REPSVMDelitoGenericoOut])
 async def listar_repsvm_delitos_genericos(db: Session = Depends(get_db)):
     """ Lista de repsvm_delitos_genericos """
     resultados = []
@@ -26,7 +26,7 @@ async def listar_repsvm_delitos_genericos(db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get('/{repsvm_delito_generico_id}', response_model=REPSVMDelitoGenericoOut)
+@repsvm_delitos_genericos.get('/{repsvm_delito_generico_id}', response_model=REPSVMDelitoGenericoOut)
 async def consultar_un_repsvm_delito_generico(repsvm_delito_generico_id: int, db: Session = Depends(get_db)):
     """ Consultar un repsvm_delito_generico """
     try:

@@ -5,27 +5,27 @@ from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from plataforma_web.v1.abogados.paths import router as abogados
-from plataforma_web.v1.audiencias.paths import router as audiencias
-from plataforma_web.v1.autoridades.paths import router as autoridades
-from plataforma_web.v1.distritos.paths import router as distritos
-from plataforma_web.v1.edictos.paths import router as edictos
-from plataforma_web.v1.epocas.paths import router as epocas
-from plataforma_web.v1.glosas.paths import router as glosas
-from plataforma_web.v1.listas_de_acuerdos.paths import router as listas_de_acuerdos
-from plataforma_web.v1.listas_de_acuerdos_acuerdos.paths import router as listas_de_acuerdos_acuerdos
-from plataforma_web.v1.materias.paths import router as materias
-from plataforma_web.v1.materias_tipos_juicios.paths import router as materias_tipos_juicios
-from plataforma_web.v1.materias_tipos_juzgados.paths import router as materias_tipos_juzgados
-from plataforma_web.v1.peritos.paths import router as peritos
-from plataforma_web.v1.peritos_tipos.paths import router as peritos_tipos
-from plataforma_web.v1.repsvm_agresores.paths import router as repsvm_agresores
-from plataforma_web.v1.repsvm_delitos_especificos.paths import router as repsvm_delitos_especificos
-from plataforma_web.v1.repsvm_delitos_genericos.paths import router as repsvm_delitos_genericos
-from plataforma_web.v1.repsvm_tipos_sentencias.paths import router as repsvm_tipos_sentencias
-from plataforma_web.v1.sentencias.paths import router as sentencias
-from plataforma_web.v1.tesis_jurisprudencias.paths import router as tesis_jurisprudencias
-from plataforma_web.v1.ubicaciones_expedientes.paths import router as ubicaciones_expedientes
+from plataforma_web.v1.abogados.paths import abogados as abogados_v1
+from plataforma_web.v1.audiencias.paths import audiencias as audiencias_v1
+from plataforma_web.v1.autoridades.paths import autoridades as autoridades_v1
+from plataforma_web.v1.distritos.paths import distritos as distritos_v1
+from plataforma_web.v1.edictos.paths import edictos as edictos_v1
+from plataforma_web.v1.epocas.paths import epocas as epocas_v1
+from plataforma_web.v1.glosas.paths import glosas as glosas_v1
+from plataforma_web.v1.listas_de_acuerdos.paths import listas_de_acuerdos as listas_de_acuerdos_v1
+from plataforma_web.v1.listas_de_acuerdos_acuerdos.paths import listas_de_acuerdos_acuerdos as listas_de_acuerdos_acuerdos_v1
+from plataforma_web.v1.materias.paths import materias as materias_v1
+from plataforma_web.v1.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v1
+from plataforma_web.v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v1
+from plataforma_web.v1.peritos.paths import peritos as peritos_v1
+from plataforma_web.v1.peritos_tipos.paths import peritos_tipos as peritos_tipos_v1
+from plataforma_web.v1.repsvm_agresores.paths import repsvm_agresores as repsvm_agresores_v1
+from plataforma_web.v1.repsvm_delitos_especificos.paths import repsvm_delitos_especificos as repsvm_delitos_especificos_v1
+from plataforma_web.v1.repsvm_delitos_genericos.paths import repsvm_delitos_genericos as repsvm_delitos_genericos_v1
+from plataforma_web.v1.repsvm_tipos_sentencias.paths import repsvm_tipos_sentencias as repsvm_tipos_sentencias_v1
+from plataforma_web.v1.sentencias.paths import sentencias as sentencias_v1
+from plataforma_web.v1.tesis_jurisprudencias.paths import tesis_jurisprudencias as tesis_jurisprudencias_v1
+from plataforma_web.v1.ubicaciones_expedientes.paths import ubicaciones_expedientes as ubicaciones_expedientes_v1
 
 try:
     from instance.settings import ORIGINS
@@ -41,27 +41,48 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(abogados, prefix="/abogados")
-app.include_router(audiencias, prefix="/audiencias")
-app.include_router(autoridades, prefix="/autoridades")
-app.include_router(distritos, prefix="/distritos")
-app.include_router(edictos, prefix="/edictos")
-app.include_router(epocas, prefix="/epocas")
-app.include_router(glosas, prefix="/glosas")
-app.include_router(listas_de_acuerdos, prefix="/listas_de_acuerdos")
-app.include_router(listas_de_acuerdos_acuerdos, prefix="/listas_de_acuerdos_acuerdos")
-app.include_router(materias, prefix="/materias")
-app.include_router(materias_tipos_juicios, prefix="/materias_tipos_juicios")
-app.include_router(materias_tipos_juzgados, prefix="/materias_tipos_juzgados")
-app.include_router(peritos, prefix="/peritos")
-app.include_router(peritos_tipos, prefix="/peritos_tipos")
-app.include_router(repsvm_agresores, prefix="/repsvm_agresores")
-app.include_router(repsvm_delitos_especificos, prefix="/repsvm_delitos_especificos")
-app.include_router(repsvm_delitos_genericos, prefix="/repsvm_delitos_genericos")
-app.include_router(repsvm_tipos_sentencias, prefix="/repsvm_tipos_sentencias")
-app.include_router(sentencias, prefix="/sentencias")
-app.include_router(tesis_jurisprudencias, prefix="/tesis_jurisprudencias")
-app.include_router(ubicaciones_expedientes, prefix="/ubicaciones_expedientes")
+# Catalogos
+app.include_router(autoridades_v1, prefix="/autoridades", tags=["catalogos"])
+app.include_router(distritos_v1, prefix="/distritos", tags=["catalogos"])
+app.include_router(materias_v1, prefix="/materias", tags=["catalogos"])
+app.include_router(materias_tipos_juicios_v1, prefix="/materias_tipos_juicios", tags=["catalogos"])
+app.include_router(materias_tipos_juzgados_v1, prefix="/materias_tipos_juzgados", tags=["catalogos"])
+
+# Abogados registrados
+app.include_router(abogados_v1, prefix="/abogados", tags=["abogados"])
+
+# Agenda de Audiencias
+app.include_router(audiencias_v1, prefix="/audiencias", tags=["audiencias"])
+
+# Edictos
+app.include_router(edictos_v1, prefix="/edictos", tags=["edictos"])
+
+# Glosas
+app.include_router(glosas_v1, prefix="/glosas", tags=["glosas"])
+
+# Listas de Acuerdos
+app.include_router(listas_de_acuerdos_v1, prefix="/listas_de_acuerdos", tags=["listas de acuerdos"])
+app.include_router(listas_de_acuerdos_acuerdos_v1, prefix="/listas_de_acuerdos_acuerdos", tags=["listas de acuerdos"])
+
+# Peritos
+app.include_router(peritos_v1, prefix="/peritos", tags=["peritos"])
+app.include_router(peritos_tipos_v1, prefix="/peritos_tipos", tags=["peritos"])
+
+# REPSVM
+app.include_router(repsvm_agresores_v1, prefix="/repsvm_agresores", tags=["repsvm"])
+app.include_router(repsvm_delitos_especificos_v1, prefix="/repsvm_delitos_especificos", tags=["repsvm"])
+app.include_router(repsvm_delitos_genericos_v1, prefix="/repsvm_delitos_genericos", tags=["repsvm"])
+app.include_router(repsvm_tipos_sentencias_v1, prefix="/repsvm_tipos_sentencias", tags=["repsvm"])
+
+# Sentencias
+app.include_router(sentencias_v1, prefix="/sentencias", tags=["sentencias"])
+
+# Tesis y Jurisprudencias
+app.include_router(epocas_v1, prefix="/epocas")
+app.include_router(tesis_jurisprudencias_v1, prefix="/tesis_jurisprudencias")
+
+# Ubicaciones de Expedientes
+app.include_router(ubicaciones_expedientes_v1, prefix="/ubicaciones_expedientes")
 
 
 @app.get("/")

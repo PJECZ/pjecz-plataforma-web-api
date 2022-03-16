@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_tesis_jurisprudencia, get_tesis_jurisprudencias
 from .schemas import TesisJurisprudenciaOut
 
-router = APIRouter()
+tesis_jurisprudencias = APIRouter()
 
 
-@router.get("", response_model=List[TesisJurisprudenciaOut])
+@tesis_jurisprudencias.get("", response_model=List[TesisJurisprudenciaOut])
 async def listar_tesis_jurisprudencias(
     autoridad_id: int = None,
     epoca_id: int = None,
@@ -70,7 +70,7 @@ async def listar_tesis_jurisprudencias(
     return resultados
 
 
-@router.get("/{tesis_jurisprudencia_id}", response_model=TesisJurisprudenciaOut)
+@tesis_jurisprudencias.get("/{tesis_jurisprudencia_id}", response_model=TesisJurisprudenciaOut)
 async def consultar_un_tesis_jurisprudencia(tesis_jurisprudencia_id: int, db: Session = Depends(get_db)):
     """Consultar un tesis_jurisprudencia"""
     try:

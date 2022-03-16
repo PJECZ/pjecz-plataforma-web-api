@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_repsvm_delito_especifico, get_repsvm_delitos_especificos
 from .schemas import REPSVMDelitoEspecificoOut
 
-router = APIRouter()
+repsvm_delitos_especificos = APIRouter()
 
 
-@router.get("", response_model=List[REPSVMDelitoEspecificoOut])
+@repsvm_delitos_especificos.get("", response_model=List[REPSVMDelitoEspecificoOut])
 async def listar_repsvm_delitos_especificos(db: Session = Depends(get_db)):
     """Lista de repsvm_delitos_especificos"""
     resultados = []
@@ -33,7 +33,7 @@ async def listar_repsvm_delitos_especificos(db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get("/{repsvm_delito_especifico_id}", response_model=REPSVMDelitoEspecificoOut)
+@repsvm_delitos_especificos.get("/{repsvm_delito_especifico_id}", response_model=REPSVMDelitoEspecificoOut)
 async def consultar_un_repsvm_delito_especifico(repsvm_delito_especifico_id: int, db: Session = Depends(get_db)):
     """Consultar un repsvm_delito_especifico"""
     try:

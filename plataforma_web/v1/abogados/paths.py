@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_abogado, get_abogados
 from .schemas import AbogadoOut
 
-router = APIRouter()
+abogados = APIRouter()
 
 
-@router.get("", response_model=List[AbogadoOut])
+@abogados.get("", response_model=List[AbogadoOut])
 async def listar_abogados(
     nombre: str,
     ano_desde: int = None,
@@ -27,7 +27,7 @@ async def listar_abogados(
     return listado
 
 
-@router.get("/{abogado_id}", response_model=AbogadoOut)
+@abogados.get("/{abogado_id}", response_model=AbogadoOut)
 async def consultar_un_abogado(abogado_id: int, db: Session = Depends(get_db)):
     """Consultar un Abogado"""
     try:

@@ -10,10 +10,10 @@ from lib.database import get_db
 from .crud import get_audiencia, get_audiencias
 from .schemas import AudienciaOut
 
-router = APIRouter()
+audiencias = APIRouter()
 
 
-@router.get("", response_model=List[AudienciaOut])
+@audiencias.get("", response_model=List[AudienciaOut])
 async def listar_audiencias(
     autoridad_id: int,
     fecha: date = None,
@@ -53,7 +53,7 @@ async def listar_audiencias(
     return resultados
 
 
-@router.get("/{audiencia_id}", response_model=AudienciaOut)
+@audiencias.get("/{audiencia_id}", response_model=AudienciaOut)
 async def consultar_un_audiencia(audiencia_id: int, db: Session = Depends(get_db)):
     """Consultar un audiencia"""
     try:

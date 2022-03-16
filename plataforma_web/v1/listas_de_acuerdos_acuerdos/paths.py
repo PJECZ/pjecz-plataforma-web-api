@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_lista_de_acuerdo_acuerdo, get_listas_de_acuerdos_acuerdos
 from .schemas import ListaDeAcuerdoAcuerdoOut
 
-router = APIRouter()
+listas_de_acuerdos_acuerdos = APIRouter()
 
 
-@router.get("", response_model=List[ListaDeAcuerdoAcuerdoOut])
+@listas_de_acuerdos_acuerdos.get("", response_model=List[ListaDeAcuerdoAcuerdoOut])
 async def listar_listas_de_acuerdos_acuerdos(
     lista_de_acuerdo_id: int,
     db: Session = Depends(get_db),
@@ -41,7 +41,7 @@ async def listar_listas_de_acuerdos_acuerdos(
     return resultados
 
 
-@router.get("/{lista_de_acuerdo_acuerdo_id}", response_model=ListaDeAcuerdoAcuerdoOut)
+@listas_de_acuerdos_acuerdos.get("/{lista_de_acuerdo_acuerdo_id}", response_model=ListaDeAcuerdoAcuerdoOut)
 async def consultar_un_acuerdo(lista_de_acuerdo_acuerdo_id: int, db: Session = Depends(get_db)):
     """Consultar un acuerdo"""
     try:

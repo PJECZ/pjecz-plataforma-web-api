@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_materia_tipo_juicio, get_materias_tipos_juicios
 from .schemas import MateriaTipoJuicioOut
 
-router = APIRouter()
+materias_tipos_juicios = APIRouter()
 
 
-@router.get("", response_model=List[MateriaTipoJuicioOut])
+@materias_tipos_juicios.get("", response_model=List[MateriaTipoJuicioOut])
 async def listar_tipos_juicios(materia_id: int, db: Session = Depends(get_db)):
     """Lista de materias_tipos_juicios"""
     resultados = []
@@ -33,7 +33,7 @@ async def listar_tipos_juicios(materia_id: int, db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get("/{materia_tipo_juicio_id}", response_model=MateriaTipoJuicioOut)
+@materias_tipos_juicios.get("/{materia_tipo_juicio_id}", response_model=MateriaTipoJuicioOut)
 async def consultar_un_tipo_juicio(materia_tipo_juicio_id: int, db: Session = Depends(get_db)):
     """Consultar un materia_tipo_juicio"""
     try:

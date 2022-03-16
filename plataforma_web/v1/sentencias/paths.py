@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_sentencia, get_sentencias
 from .schemas import SentenciaOut
 
-router = APIRouter()
+sentencias = APIRouter()
 
 
-@router.get("", response_model=List[SentenciaOut])
+@sentencias.get("", response_model=List[SentenciaOut])
 async def listar_sentencias(
     autoridad_id: int,
     ano: int = None,
@@ -46,7 +46,7 @@ async def listar_sentencias(
     return resultados
 
 
-@router.get("/{sentencia_id}", response_model=SentenciaOut)
+@sentencias.get("/{sentencia_id}", response_model=SentenciaOut)
 async def consultar_un_sentencia(sentencia_id: int, db: Session = Depends(get_db)):
     """Consultar un sentencia"""
     try:

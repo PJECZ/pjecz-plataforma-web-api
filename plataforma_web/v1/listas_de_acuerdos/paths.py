@@ -10,10 +10,10 @@ from lib.database import get_db
 from .crud import get_lista_de_acuerdo, get_listas_de_acuerdos
 from .schemas import ListaDeAcuerdoOut
 
-router = APIRouter()
+listas_de_acuerdos = APIRouter()
 
 
-@router.get("", response_model=List[ListaDeAcuerdoOut])
+@listas_de_acuerdos.get("", response_model=List[ListaDeAcuerdoOut])
 async def listar_listas_de_acuerdos(
     autoridad_id: int,
     fecha: date = None,
@@ -44,7 +44,7 @@ async def listar_listas_de_acuerdos(
     return resultados
 
 
-@router.get("/{lista_de_acuerdo_id}", response_model=ListaDeAcuerdoOut)
+@listas_de_acuerdos.get("/{lista_de_acuerdo_id}", response_model=ListaDeAcuerdoOut)
 async def consultar_una_lista_de_acuerdos(lista_de_acuerdo_id: int, db: Session = Depends(get_db)):
     """Consultar una Lista de Acuerdos"""
     try:

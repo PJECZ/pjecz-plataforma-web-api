@@ -9,10 +9,10 @@ from lib.database import get_db
 from .crud import get_materia, get_materias
 from .schemas import MateriaOut
 
-router = APIRouter()
+materias = APIRouter()
 
 
-@router.get("", response_model=List[MateriaOut])
+@materias.get("", response_model=List[MateriaOut])
 async def listar_materias(db: Session = Depends(get_db)):
     """Lista de materias"""
     resultados = []
@@ -21,7 +21,7 @@ async def listar_materias(db: Session = Depends(get_db)):
     return resultados
 
 
-@router.get("/{materia_id}", response_model=MateriaOut)
+@materias.get("/{materia_id}", response_model=MateriaOut)
 async def consultar_una_materia(materia_id: int, db: Session = Depends(get_db)):
     """Consultar un materia"""
     try:
