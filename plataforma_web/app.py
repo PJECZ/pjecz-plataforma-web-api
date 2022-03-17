@@ -2,8 +2,8 @@
 FastAPI App
 """
 from fastapi import FastAPI
-
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi_pagination import add_pagination
 
 from plataforma_web.v1.abogados.paths import abogados as abogados_v1
 from plataforma_web.v1.audiencias.paths import audiencias as audiencias_v1
@@ -84,6 +84,8 @@ app.include_router(tesis_jurisprudencias_v1, prefix="/tesis_jurisprudencias")
 # Ubicaciones de Expedientes
 app.include_router(ubicaciones_expedientes_v1, prefix="/ubicaciones_expedientes")
 
+# Add pagination
+add_pagination(app)
 
 @app.get("/")
 async def root():
