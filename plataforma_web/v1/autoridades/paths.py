@@ -24,7 +24,14 @@ async def listar_autoridades(
     """Lista de Autoridades"""
     resultados = []
     try:
-        for autoridad, distrito, materia in get_autoridades(db, distrito_id=distrito_id, materia_id=materia_id, organo_jurisdiccional=organo_jurisdiccional, con_notarias=con_notarias, para_glosas=para_glosas):
+        for autoridad, distrito, materia in get_autoridades(
+            db,
+            distrito_id=distrito_id,
+            materia_id=materia_id,
+            organo_jurisdiccional=organo_jurisdiccional,
+            con_notarias=con_notarias,
+            para_glosas=para_glosas,
+        ):
             resultados.append(
                 AutoridadOut(
                     id=autoridad.id,
@@ -68,10 +75,7 @@ async def consultar_una_autoridad(autoridad_id: int, db: Session = Depends(get_d
 
 
 @autoridades.get("/clave/{clave}", response_model=AutoridadOut)
-async def detail_from_clave(
-    clave: str,
-    db: Session = Depends(get_db)
-):
+async def detail_from_clave(clave: str, db: Session = Depends(get_db)):
     """Detalle de una autoridad a partir de su clave"""
     try:
         autoridad = get_autoridad_from_clave(db, clave=clave)

@@ -17,7 +17,12 @@ async def listar_materias(db: Session = Depends(get_db)):
     """Lista de materias"""
     resultados = []
     for materia in get_materias(db):
-        resultados.append(MateriaOut(id=materia.id, materia=materia.nombre))
+        resultados.append(
+            MateriaOut(
+                id=materia.id,
+                materia=materia.nombre,
+            )
+        )
     return resultados
 
 
@@ -30,4 +35,7 @@ async def consultar_una_materia(materia_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return MateriaOut(id=materia.id, materia=materia.nombre)
+    return MateriaOut(
+        id=materia.id,
+        materia=materia.nombre,
+    )
