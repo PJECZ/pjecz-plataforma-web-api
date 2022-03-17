@@ -8,7 +8,7 @@ from .models import Distrito
 
 
 def get_distritos(db: Session, solo_distritos: bool = False) -> Any:
-    """Consultar los distritos judiciales activos"""
+    """Consultar los Distritos judiciales activos"""
     consulta = db.query(Distrito).filter_by(es_distrito_judicial=True)
     if solo_distritos:
         consulta = consulta.filter(Distrito.nombre.like("Distrito%"))
@@ -16,7 +16,7 @@ def get_distritos(db: Session, solo_distritos: bool = False) -> Any:
 
 
 def get_distrito(db: Session, distrito_id: int) -> Distrito:
-    """Consultar un distritos por su id"""
+    """Consultar un Distritos por su id"""
     distrito = db.query(Distrito).get(distrito_id)
     if distrito is None:
         raise IndexError("No existe ese distrito")

@@ -1,5 +1,5 @@
 """
-Materias Tipos Juzgados v2, CRUD (create, read, update, and delete)
+Materias Tipos de Juzgados v2, CRUD (create, read, update, and delete)
 """
 from typing import Any
 from sqlalchemy.orm import Session

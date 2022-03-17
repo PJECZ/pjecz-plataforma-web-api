@@ -1,5 +1,5 @@
 """
-Materias Tipos Juicios v2, esquemas de pydantic
+Materias Tipos de Juicios v2, esquemas de pydantic
 """
 from pydantic import BaseModel
 

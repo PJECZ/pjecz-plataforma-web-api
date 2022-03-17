@@ -1,11 +1,11 @@
 """
-Materias Tipos Juzgados v2, esquemas de pydantic
+Materias Tipos de Juzgados v2, esquemas de pydantic
 """
 from pydantic import BaseModel
 
 
-class MateriaTipoJuicioOut(BaseModel):
-    """Esquema para entregar tipo de juicio"""
+class MateriaTipoJuzgadoOut(BaseModel):
+    """Esquema para entregar tipo de juzgado"""
 
     id: int
     materia_id: int

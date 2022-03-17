@@ -1,5 +1,5 @@
 """
-Materias, modelos
+Materias v2, modelos
 """
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
