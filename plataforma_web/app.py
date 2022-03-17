@@ -7,16 +7,16 @@ from fastapi_pagination import add_pagination
 
 #from .v1.abogados.paths import abogados as abogados_v1
 #from .v1.audiencias.paths import audiencias as audiencias_v1
-#from .v1.autoridades.paths import autoridades as autoridades_v1
-#from .v1.distritos.paths import distritos as distritos_v1
+from .v1.autoridades.paths import autoridades as autoridades_v1
+from .v1.distritos.paths import distritos as distritos_v1
 #from .v1.edictos.paths import edictos as edictos_v1
 #from .v1.epocas.paths import epocas as epocas_v1
 #from .v1.glosas.paths import glosas as glosas_v1
 #from .v1.listas_de_acuerdos.paths import listas_de_acuerdos as listas_de_acuerdos_v1
 #from .v1.listas_de_acuerdos_acuerdos.paths import listas_de_acuerdos_acuerdos as listas_de_acuerdos_acuerdos_v1
-#from .v1.materias.paths import materias as materias_v1
-#from .v1.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v1
-#from .v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v1
+from .v1.materias.paths import materias as materias_v1
+from .v1.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v1
+from .v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v1
 #from .v1.peritos.paths import peritos as peritos_v1
 #from .v1.peritos_tipos.paths import peritos_tipos as peritos_tipos_v1
 #from .v1.repsvm_agresores.paths import repsvm_agresores as repsvm_agresores_v1
@@ -48,15 +48,15 @@ app.add_middleware(
 )
 
 # Catalogos
-#app.include_router(autoridades_v1, prefix="/autoridades", tags=["catalogos"])
+app.include_router(autoridades_v1, prefix="/v1/autoridades", tags=["catalogos"])
 app.include_router(autoridades_v2, prefix="/v2/autoridades", tags=["catalogos"])
-#app.include_router(distritos_v1, prefix="/distritos", tags=["catalogos"])
+app.include_router(distritos_v1, prefix="/v1/distritos", tags=["catalogos"])
 app.include_router(distritos_v2, prefix="/v2/distritos", tags=["catalogos"])
-#app.include_router(materias_v1, prefix="/materias", tags=["catalogos"])
+app.include_router(materias_v1, prefix="/v1/materias", tags=["catalogos"])
 app.include_router(materias_v2, prefix="/v2/materias", tags=["catalogos"])
-#app.include_router(materias_tipos_juicios_v1, prefix="/materias_tipos_juicios", tags=["catalogos"])
+app.include_router(materias_tipos_juicios_v1, prefix="/v1/materias_tipos_juicios", tags=["catalogos"])
 app.include_router(materias_tipos_juicios_v2, prefix="/v2/materias_tipos_juicios", tags=["catalogos"])
-#app.include_router(materias_tipos_juzgados_v1, prefix="/materias_tipos_juzgados", tags=["catalogos"])
+app.include_router(materias_tipos_juzgados_v1, prefix="/v1/materias_tipos_juzgados", tags=["catalogos"])
 app.include_router(materias_tipos_juzgados_v2, prefix="/v2/materias_tipos_juzgados", tags=["catalogos"])
 
 # Abogados registrados

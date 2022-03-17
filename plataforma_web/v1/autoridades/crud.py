@@ -2,12 +2,12 @@
 Autoridades, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
 from sqlalchemy.orm import Session
-
 from lib.safe_string import safe_clave, safe_string
-from .models import Autoridad
-from ..distritos.models import Distrito
+
+from ...models.autoridades.models import Autoridad
+from ...models.distritos.models import Distrito
+from ...models.materias.models import Materia
 from ..distritos.crud import get_distrito
-from ..materias.models import Materia
 from ..materias.crud import get_materia
 
 

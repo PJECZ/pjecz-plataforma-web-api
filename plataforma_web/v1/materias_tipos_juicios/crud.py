@@ -2,9 +2,9 @@
 Materias Tipos Juicios, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
 from sqlalchemy.orm import Session
-from .models import MateriaTipoJuicio
 
-from ..materias.models import Materia
+from ...models.materias.models import Materia
+from ...models.materias_tipos_juicios.models import MateriaTipoJuicio
 from ..materias.crud import get_materia
 
 

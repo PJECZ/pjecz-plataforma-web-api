@@ -4,7 +4,7 @@ Materias Tipos de Juicios v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from .models import MateriaTipoJuicio
+from ...models.materias_tipos_juicios.models import MateriaTipoJuicio
 from ..materias.crud import get_materia
 
 

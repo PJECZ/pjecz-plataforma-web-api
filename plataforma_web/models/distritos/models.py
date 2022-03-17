@@ -24,15 +24,9 @@ class Distrito(Base, UniversalMixin):
 
     # Hijos
     autoridades = relationship("Autoridad", back_populates="distrito", lazy="noload")
-    peritos = relationship("Perito", back_populates="distrito", lazy="noload")
-    repsvm_agresores = relationship("REPSVMAgresor", back_populates="distrito", lazy="noload")
+    # peritos = relationship("Perito", back_populates="distrito", lazy="noload")
+    # repsvm_agresores = relationship("REPSVMAgresor", back_populates="distrito", lazy="noload")
 
-    @property
-    def distrito(self):
-        """Nombre"""
-        return self.nombre
-
-    @property
-    def distrito_corto(self):
-        """Nombre corto"""
-        return self.nombre_corto
+    def __repr__(self):
+        """Representación"""
+        return f"<Distrito {self.nombre}>"

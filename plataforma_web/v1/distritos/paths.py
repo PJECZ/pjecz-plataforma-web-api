@@ -20,7 +20,13 @@ async def listar_distritos(
     """Lista de Distritos"""
     resultados = []
     for distrito in get_distritos(db, solo_distritos=solo_distritos):
-        resultados.append(DistritoOut.from_orm(distrito))
+        resultados.append(
+            DistritoOut(
+                id=distrito.id,
+                distrito=distrito.nombre,
+                distrito_corto=distrito.nombre_corto,
+            )
+        )
     return resultados
 
 
@@ -33,4 +39,8 @@ async def consultar_un_distrito(distrito_id: int, db: Session = Depends(get_db))
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return DistritoOut.from_orm(distrito)
+    return DistritoOut(
+        id=distrito.id,
+        distrito=distrito.nombre,
+        distrito_corto=distrito.nombre_corto,
+    )

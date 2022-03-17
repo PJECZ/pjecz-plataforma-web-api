@@ -61,10 +61,29 @@ class Autoridad(Base, UniversalMixin):
     )
 
     # Hijos
-    audiencias = relationship("Audiencia", back_populates="autoridad", lazy="noload")
-    edictos = relationship("Edicto", back_populates="autoridad", lazy="noload")
-    glosas = relationship("Glosa", back_populates="autoridad", lazy="noload")
-    listas_de_acuerdos = relationship("ListaDeAcuerdo", back_populates="autoridad", lazy="noload")
-    sentencias = relationship("Sentencia", back_populates="autoridad", lazy="noload")
-    tesis_jurisprudencias = relationship("TesisJurisprudencia", back_populates="autoridad", lazy="noload")
-    ubicaciones_expedientes = relationship("UbicacionExpediente", back_populates="autoridad", lazy="noload")
+    # audiencias = relationship("Audiencia", back_populates="autoridad", lazy="noload")
+    # edictos = relationship("Edicto", back_populates="autoridad", lazy="noload")
+    # glosas = relationship("Glosa", back_populates="autoridad", lazy="noload")
+    # listas_de_acuerdos = relationship("ListaDeAcuerdo", back_populates="autoridad", lazy="noload")
+    # sentencias = relationship("Sentencia", back_populates="autoridad", lazy="noload")
+    # tesis_jurisprudencias = relationship("TesisJurisprudencia", back_populates="autoridad", lazy="noload")
+    # ubicaciones_expedientes = relationship("UbicacionExpediente", back_populates="autoridad", lazy="noload")
+
+    @property
+    def distrito_nombre(self):
+        """Nombre del distrito"""
+        return self.distrito.nombre
+
+    @property
+    def distrito_nombre_corto(self):
+        """Nombre corto del distrito"""
+        return self.distrito.nombre_corto
+
+    @property
+    def materia_nombre(self):
+        """Nombre de la materia"""
+        return self.materia.nombre
+
+    def __repr__(self):
+        """Representación"""
+        return f"<Autoridad {self.clave}>"

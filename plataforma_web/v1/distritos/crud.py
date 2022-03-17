@@ -3,7 +3,7 @@ Distritos, CRUD: the four basic operations (create, read, update, and delete) of
 """
 from sqlalchemy.orm import Session
 
-from .models import Distrito
+from ...models.distritos.models import Distrito
 
 
 def get_distritos(db: Session, solo_distritos: bool = False):
