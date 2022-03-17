@@ -7,22 +7,43 @@ GET http://127.0.0.1:8001/distritos
 GET http://127.0.0.1:8001/distritos/6
 
 ###
+GET http://127.0.0.1:8001/autoridades
+
+###
+GET http://127.0.0.1:8001/autoridades/70
+
+###
+GET http://127.0.0.1:8001/autoridades/clave/trc-j5-fam
+
+###
 GET http://127.0.0.1:8001/materias
 
 ###
-GET http://127.0.0.1:8001/materias/3
+GET http://127.0.0.1:8001/materias/6
+
+###
+GET http://127.0.0.1:8001/materias_tipos_juicios?materia_id=6
+
+###
+GET http://127.0.0.1:8001/materias_tipos_juicios/216
+
+###
+GET http://127.0.0.1:8001/materias_tipos_juzgados?materia_id=7
+
+###
+GET http://127.0.0.1:8001/materias_tipos_juzgados/2
 
 ###
 GET http://127.0.0.1:8001/abogados?nombre=rosalba
 
 ###
-GET http://127.0.0.1:8001/abogados?nombre=rosalba&ano_desde=2010
+GET http://127.0.0.1:8001/abogados/8702
 
 ###
 GET http://127.0.0.1:8001/peritos?distrito_id=6&nombre=perez
 
 ###
-GET http://127.0.0.1:8001/peritos/1677
+GET http://127.0.0.1:8001/peritos/165
 
 ###
 GET http://127.0.0.1:8001/edictos?autoridad_id=60&ano=2020
