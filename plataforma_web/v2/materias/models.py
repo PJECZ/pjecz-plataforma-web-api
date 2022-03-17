@@ -23,8 +23,8 @@ class Materia(Base, UniversalMixin):
     # Hijos
     autoridades = relationship("Autoridad", back_populates="materia", lazy="noload")
     materias_tipos_juicios = relationship("MateriaTipoJuicio", back_populates="materia", lazy="noload")
-    materias_tipos_juzgados = relationship('MateriaTipoJuzgado', back_populates='materia', lazy="noload")
-    #tesis_jurisprudencias = relationship("TesisJurisprudencia", back_populates="materia", lazy="noload")
+    materias_tipos_juzgados = relationship("MateriaTipoJuzgado", back_populates="materia", lazy="noload")
+    # tesis_jurisprudencias = relationship("TesisJurisprudencia", back_populates="materia", lazy="noload")
 
     def __repr__(self):
         """Representación"""
