@@ -10,7 +10,7 @@ from lib.universal_mixin import UniversalMixin
 
 
 class Audiencia(Base, UniversalMixin):
-    """ Audiencia """
+    """Audiencia"""
 
     CARACTERES = OrderedDict(
         [
@@ -21,7 +21,7 @@ class Audiencia(Base, UniversalMixin):
     )
 
     # Nombre de la tabla
-    __tablename__ = 'audiencias'
+    __tablename__ = "audiencias"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -61,5 +61,5 @@ class Audiencia(Base, UniversalMixin):
     origen = Column(String(256))
 
     def __repr__(self):
-        """ Representación """
+        """Representación"""
         return f"<Audiencia {self.id}>"

@@ -1,15 +1,16 @@
 """
-Ubicaciones de Expedientes, modelos
+Ubicaciones Expedientes, modelos
 """
 from collections import OrderedDict
 from sqlalchemy import Column, Enum, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
 
 class UbicacionExpediente(Base, UniversalMixin):
-    """Ubicacion de Expediente"""
+    """UbicacionExpediente"""
 
     UBICACIONES = OrderedDict(
         [
@@ -30,8 +31,8 @@ class UbicacionExpediente(Base, UniversalMixin):
 
     # Columnas
     expediente = Column(String(256), nullable=False)
-    ubicacion = Column(
-        Enum(*UBICACIONES, name="ubicaciones_opciones", native_enum=False),
-        index=True,
-        nullable=False,
-    )
+    ubicacion = Column(Enum(*UBICACIONES, name="ubicaciones_opciones", native_enum=False), index=True, nullable=False)
+
+    def __repr__(self):
+        """Representación"""
+        return f"<UbicacionExpediente {self.id}>"

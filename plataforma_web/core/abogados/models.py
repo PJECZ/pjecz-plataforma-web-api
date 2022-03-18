@@ -8,10 +8,10 @@ from lib.universal_mixin import UniversalMixin
 
 
 class Abogado(Base, UniversalMixin):
-    """ Abogado """
+    """Abogado"""
 
     # Nombre de la tabla
-    __tablename__ = 'abogados'
+    __tablename__ = "abogados"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -23,5 +23,5 @@ class Abogado(Base, UniversalMixin):
     nombre = Column(String(256), nullable=False)
 
     def __repr__(self):
-        """ Representación """
+        """Representación"""
         return f"<Abogado {self.id}>"

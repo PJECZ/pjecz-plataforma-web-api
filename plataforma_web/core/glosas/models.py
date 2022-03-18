@@ -10,7 +10,7 @@ from lib.universal_mixin import UniversalMixin
 
 
 class Glosa(Base, UniversalMixin):
-    """ Glosa """
+    """Glosa"""
 
     TIPOS_JUICIOS = OrderedDict(
         [
@@ -29,7 +29,7 @@ class Glosa(Base, UniversalMixin):
     )
 
     # Nombre de la tabla
-    __tablename__ = 'glosas'
+    __tablename__ = "glosas"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -47,5 +47,5 @@ class Glosa(Base, UniversalMixin):
     url = Column(String(512))
 
     def __repr__(self):
-        """ Representación """
+        """Representación"""
         return f"<Glosa {self.id}>"

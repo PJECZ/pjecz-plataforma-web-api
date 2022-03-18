@@ -3,6 +3,7 @@ Materias Tipos de Juicios, modelos
 """
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -24,7 +25,7 @@ class MateriaTipoJuicio(Base, UniversalMixin):
     descripcion = Column(String(256), nullable=False)
 
     # Hijos
-    # sentencias = relationship("Sentencia", back_populates="materia_tipo_juicio", lazy="noload")
+    sentencias = relationship("Sentencia", back_populates="materia_tipo_juicio", lazy="noload")
 
     @property
     def materia_nombre(self):

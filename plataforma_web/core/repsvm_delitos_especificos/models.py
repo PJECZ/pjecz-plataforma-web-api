@@ -3,6 +3,7 @@ REPSVM Delitos Especificos, modelos
 """
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -11,7 +12,7 @@ class REPSVMDelitoEspecifico(Base, UniversalMixin):
     """REPSVMDelitoEspecifico"""
 
     # Nombre de la tabla
-    __tablename__ = 'repsvm_delitos_especificos'
+    __tablename__ = "repsvm_delitos_especificos"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -25,3 +26,7 @@ class REPSVMDelitoEspecifico(Base, UniversalMixin):
 
     # Hijos
     repsvm_agresores = relationship("REPSVMAgresor", back_populates="repsvm_delito_especifico", lazy="noload")
+
+    def __repr__(self):
+        """Representación"""
+        return f"<REPSVMDelitoEspecifico {self.id}>"

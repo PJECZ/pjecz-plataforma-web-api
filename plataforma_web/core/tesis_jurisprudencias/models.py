@@ -2,7 +2,6 @@
 Tesis Jurisprudencias, modelos
 """
 from collections import OrderedDict
-
 from sqlalchemy import Column, Date, DateTime, Enum, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
 
@@ -38,7 +37,7 @@ class TesisJurisprudencia(Base, UniversalMixin):
     )
 
     # Nombre de la tabla
-    __tablename__ = 'tesis_jurisprudencias'
+    __tablename__ = "tesis_jurisprudencias"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -71,13 +70,11 @@ class TesisJurisprudencia(Base, UniversalMixin):
     publicacion_tiempo = Column(DateTime(), nullable=False)
     aplicacion_tiempo = Column(DateTime(), nullable=False)
 
-    # Hijos de funcionarios
-    #tesis_jurisprudencias_funcionarios = relationship('TesisJurisprudenciaFuncionario', back_populates='tesis_jurisprudencias')
-
-    # Hijos a Sentencias
-    #tesis_jurisprudencias_sentencias = relationship('TesisJurisprudenciaSentencia', back_populates='tesis_jurisprudencia')
-
     @property
     def numero_registro_digital(self):
         """Número de registro digital (Número único por registro)"""
         return self.id
+
+    def __repr__(self):
+        """Representación"""
+        return f"<TesisJurisprudencia {self.id}>"

@@ -3,6 +3,7 @@ REPSVM Agresores, modelos
 """
 from sqlalchemy import Column, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -11,7 +12,7 @@ class REPSVMAgresor(Base, UniversalMixin):
     """REPSVMAgresor"""
 
     # Nombre de la tabla
-    __tablename__ = 'repsvm_agresores'
+    __tablename__ = "repsvm_agresores"
 
     # Clave primaria
     id = Column(Integer, primary_key=True)
@@ -32,3 +33,7 @@ class REPSVMAgresor(Base, UniversalMixin):
     pena_impuesta = Column(String(256), nullable=False)
     observaciones = Column(Text(), nullable=True)
     sentencia_url = Column(String(512), nullable=False)
+
+    def __repr__(self):
+        """Representación"""
+        return f"<REPSVMAgresor {self.id}>"

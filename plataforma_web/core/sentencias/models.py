@@ -3,6 +3,7 @@ Sentencias, modelos
 """
 from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from lib.database import Base
 from lib.universal_mixin import UniversalMixin
 
@@ -31,3 +32,7 @@ class Sentencia(Base, UniversalMixin):
     es_perspectiva_genero = Column(Boolean, nullable=False, default=False)
     archivo = Column(String(256), nullable=False)
     url = Column(String(512), nullable=False)
+
+    def __repr__(self):
+        """Representación"""
+        return f"<Sentencia {self.id}>"

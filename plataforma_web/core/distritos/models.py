@@ -24,8 +24,8 @@ class Distrito(Base, UniversalMixin):
 
     # Hijos
     autoridades = relationship("Autoridad", back_populates="distrito", lazy="noload")
-    # peritos = relationship("Perito", back_populates="distrito", lazy="noload")
-    # repsvm_agresores = relationship("REPSVMAgresor", back_populates="distrito", lazy="noload")
+    peritos = relationship("Perito", back_populates="distrito", lazy="noload")
+    repsvm_agresores = relationship("REPSVMAgresor", back_populates="distrito", lazy="noload")
 
     def __repr__(self):
         """Representación"""
