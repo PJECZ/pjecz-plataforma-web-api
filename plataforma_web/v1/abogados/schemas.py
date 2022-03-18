@@ -1,5 +1,5 @@
 """
-Abogados, esquemas de pydantic
+Abogados v1, esquemas de pydantic
 """
 from datetime import date
 from pydantic import BaseModel

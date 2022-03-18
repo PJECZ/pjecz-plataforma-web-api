@@ -5,18 +5,27 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_pagination import add_pagination
 
-#from .v1.abogados.paths import abogados as abogados_v1
-#from .v1.audiencias.paths import audiencias as audiencias_v1
 from .v1.autoridades.paths import autoridades as autoridades_v1
 from .v1.distritos.paths import distritos as distritos_v1
+from .v1.materias.paths import materias as materias_v1
+from .v1.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v1
+from .v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v1
+
+from .v2.autoridades.paths import autoridades as autoridades_v2
+from .v2.distritos.paths import distritos as distritos_v2
+from .v2.materias.paths import materias as materias_v2
+from .v2.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v2
+from .v2.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v2
+
+from .v1.abogados.paths import abogados as abogados_v1
+from .v2.abogados.paths import abogados as abogados_v2
+
+#from .v1.audiencias.paths import audiencias as audiencias_v1
 #from .v1.edictos.paths import edictos as edictos_v1
 #from .v1.epocas.paths import epocas as epocas_v1
 #from .v1.glosas.paths import glosas as glosas_v1
 #from .v1.listas_de_acuerdos.paths import listas_de_acuerdos as listas_de_acuerdos_v1
 #from .v1.listas_de_acuerdos_acuerdos.paths import listas_de_acuerdos_acuerdos as listas_de_acuerdos_acuerdos_v1
-from .v1.materias.paths import materias as materias_v1
-from .v1.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v1
-from .v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v1
 #from .v1.peritos.paths import peritos as peritos_v1
 #from .v1.peritos_tipos.paths import peritos_tipos as peritos_tipos_v1
 #from .v1.repsvm_agresores.paths import repsvm_agresores as repsvm_agresores_v1
@@ -26,12 +35,6 @@ from .v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materia
 #from .v1.sentencias.paths import sentencias as sentencias_v1
 #from .v1.tesis_jurisprudencias.paths import tesis_jurisprudencias as tesis_jurisprudencias_v1
 #from .v1.ubicaciones_expedientes.paths import ubicaciones_expedientes as ubicaciones_expedientes_v1
-
-from .v2.autoridades.paths import autoridades as autoridades_v2
-from .v2.distritos.paths import distritos as distritos_v2
-from .v2.materias.paths import materias as materias_v2
-from .v2.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v2
-from .v2.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v2
 
 try:
     from instance.settings import ORIGINS
@@ -62,7 +65,8 @@ app.include_router(materias_tipos_juicios_v2, prefix="/v2/materias_tipos_juicios
 app.include_router(materias_tipos_juzgados_v2, prefix="/v2/materias_tipos_juzgados", tags=["v2"])
 
 # Abogados registrados
-#app.include_router(abogados_v1, prefix="/abogados", tags=["abogados"])
+app.include_router(abogados_v1, prefix="/v1/abogados", tags=["v1"])
+app.include_router(abogados_v2, prefix="/v2/abogados", tags=["v2"])
 
 # Agenda de Audiencias
 #app.include_router(audiencias_v1, prefix="/audiencias", tags=["audiencias"])
