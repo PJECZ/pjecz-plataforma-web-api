@@ -28,6 +28,7 @@ class REPSVMAgresor(Base, UniversalMixin):
     repsvm_tipo_sentencia = relationship("REPSVMTipoSentencia", back_populates="repsvm_agresores")
 
     # Columnas
+    consecutivo = Column(Integer(), nullable=False)
     nombre = Column(String(256), nullable=False)
     numero_causa = Column(String(256), nullable=False)
     pena_impuesta = Column(String(256), nullable=False)
