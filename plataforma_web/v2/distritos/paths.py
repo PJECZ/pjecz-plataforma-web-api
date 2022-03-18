@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from .crud import get_distritos, get_distrito
-from .schemas import DistritoOut
+from plataforma_web.v2.distritos.crud import get_distritos, get_distrito
+from plataforma_web.v2.distritos.schemas import DistritoOut
 
 distritos = APIRouter()
 

@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from .crud import get_abogados, get_abogado
-from .schemas import AbogadoOut
+from plataforma_web.v2.abogados.crud import get_abogados, get_abogado
+from plataforma_web.v2.abogados.schemas import AbogadoOut
 
 abogados = APIRouter()
 

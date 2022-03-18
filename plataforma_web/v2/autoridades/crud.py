@@ -5,6 +5,7 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from lib.safe_string import safe_string
+
 from plataforma_web.core.autoridades.models import Autoridad
 from plataforma_web.v2.distritos.crud import get_distrito
 from plataforma_web.v2.materias.crud import get_materia
