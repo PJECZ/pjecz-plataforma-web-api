@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class MateriaOut(BaseModel):
-    """Esquema para entregar materia"""
+    """Esquema para entregar materias"""
 
     id: int
     nombre: str

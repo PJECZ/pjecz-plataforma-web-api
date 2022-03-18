@@ -20,7 +20,13 @@ async def listado_distritos(
     db: Session = Depends(get_db),
 ):
     """Listado de Distritos"""
-    return paginate(get_distritos(db, solo_distritos))
+    try:
+        listado = get_distritos(db, solo_distritos)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return paginate(listado)
 
 
 @distritos.get("/{distrito_id}", response_model=DistritoOut)

@@ -1,15 +1,14 @@
 """
-Distritos v2, esquemas
+Epocas v2, esquemas de pydantic
 """
 from pydantic import BaseModel
 
 
-class DistritoOut(BaseModel):
-    """Esquema para entregar distritos"""
+class EpocaOut(BaseModel):
+    """Esquema para entregar epocas"""
 
     id: int
     nombre: str
-    nombre_corto: str
 
     class Config:
         """SQLAlchemy config"""

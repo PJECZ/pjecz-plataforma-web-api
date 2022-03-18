@@ -24,16 +24,13 @@ async def listado_autoridades(
     db: Session = Depends(get_db),
 ):
     """Listado de Autoridades"""
-    return paginate(
-        get_autoridades(
-            db,
-            distrito_id=distrito_id,
-            materia_id=materia_id,
-            organo_jurisdiccional=organo_jurisdiccional,
-            con_notarias=con_notarias,
-            para_glosas=para_glosas,
-        )
-    )
+    try:
+        listado = get_autoridades(db, distrito_id, materia_id, organo_jurisdiccional, con_notarias, para_glosas)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return paginate(listado)
 
 
 @autoridades.get("/{autoridad_id}", response_model=AutoridadOut)

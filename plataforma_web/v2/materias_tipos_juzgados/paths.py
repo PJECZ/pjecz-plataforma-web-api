@@ -20,7 +20,13 @@ async def listado_materias_tipos_juzgados(
     db: Session = Depends(get_db),
 ):
     """Listado de Tipos de Juzgados"""
-    return paginate(get_materias_tipos_juzgados(db, materia_id))
+    try:
+        listado = get_materias_tipos_juzgados(db, materia_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return paginate(listado)
 
 
 @materias_tipos_juzgados.get("/{materia_tipo_juzgado_id}", response_model=MateriaTipoJuzgadoOut)

@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 
 class AbogadoOut(BaseModel):
-    """Esquema para entregar abogado"""
+    """Esquema para entregar abogados"""
 
     id: int
     fecha: date

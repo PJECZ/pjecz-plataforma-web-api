@@ -22,7 +22,13 @@ async def listado_abogados(
     db: Session = Depends(get_db),
 ):
     """Listado de Abogados"""
-    return paginate(get_abogados(db, nombre, ano_desde, ano_hasta))
+    try:
+        listado = get_abogados(db, nombre, ano_desde, ano_hasta)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return paginate(listado)
 
 
 @abogados.get("/{abogado_id}", response_model=AbogadoOut)

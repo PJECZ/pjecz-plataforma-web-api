@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class MateriaTipoJuzgadoOut(BaseModel):
-    """Esquema para entregar tipo de juzgado"""
+    """Esquema para entregar tipos de juzgados"""
 
     id: int
     materia_id: int

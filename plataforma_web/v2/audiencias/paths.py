@@ -23,7 +23,13 @@ async def listado_audiencias(
     db: Session = Depends(get_db),
 ):
     """Listado de Audiencias"""
-    return paginate(get_audiencias(db, autoridad_id, fecha, ano))
+    try:
+        listado = get_audiencias(db, autoridad_id, fecha, ano)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return paginate(listado)
 
 
 @audiencias.get("/{audiencia_id}", response_model=AudienciaOut)

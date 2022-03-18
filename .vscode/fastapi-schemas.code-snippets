@@ -12,7 +12,7 @@
             "",
             "",
             "class ${2:EsquemaOut}(BaseModel):",
-            "\t\"\"\" Esquema para entregar ${3:comentario} \"\"\"",
+            "\t\"\"\" Esquema para entregar ${3:plural} \"\"\"",
             "",
             "\tid: int",
             "\tfecha: date",
