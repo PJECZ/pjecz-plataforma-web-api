@@ -8,12 +8,12 @@ from plataforma_web.core.materias.models import Materia
 
 
 def get_materias(db: Session) -> Any:
-    """Consultar los materias activos"""
-    return db.query(Materia).filter_by(estatus="A").order_by(Materia.id)
+    """Consultar las materias activas (excepto el id 1 que es NO DEFINIDO)"""
+    return db.query(Materia).filter_by(estatus="A").filter(Materia.id != 1).order_by(Materia.nombre)
 
 
 def get_materia(db: Session, materia_id: int) -> Materia:
-    """Consultar un materia por su id"""
+    """Consultar una materia por su id"""
     materia = db.query(Materia).get(materia_id)
     if materia is None:
         raise IndexError("No existe ese materia")
