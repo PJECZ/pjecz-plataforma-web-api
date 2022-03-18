@@ -15,7 +15,7 @@ def get_audiencias(
     fecha: date = None,
     ano: int = None,
 ) -> Any:
-    """ Consultar los Audiencias activos """
+    """Consultar los Audiencias activos"""
     consulta = db.query(Audiencia)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
@@ -33,7 +33,7 @@ def get_audiencias(
 
 
 def get_audiencia(db: Session, audiencia_id: int) -> Audiencia:
-    """ Consultar un Audiencia por su id """
+    """Consultar un Audiencia por su id"""
     audiencia = db.query(Audiencia).get(audiencia_id)
     if audiencia is None:
         raise IndexError("No existe ese Audiencia")

@@ -14,7 +14,7 @@ def get_edictos(
     autoridad_id: int = None,
     ano: int = None,
 ) -> Any:
-    """ Consultar los Edictos activos """
+    """Consultar los Edictos activos"""
     consulta = db.query(Edicto)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
@@ -28,7 +28,7 @@ def get_edictos(
 
 
 def get_edicto(db: Session, edicto_id: int) -> Edicto:
-    """ Consultar un Edicto por su id """
+    """Consultar un Edicto por su id"""
     edicto = db.query(Edicto).get(edicto_id)
     if edicto is None:
         raise IndexError("No existe ese Edicto")

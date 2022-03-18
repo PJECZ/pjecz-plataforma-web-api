@@ -1,12 +1,12 @@
 """
-Edictos v2, esquemas de pydantic
+Glosas v2, esquemas de pydantic
 """
 from datetime import date
 from pydantic import BaseModel
 
 
-class EdictoOut(BaseModel):
-    """Esquema para entregar edictos"""
+class GlosaOut(BaseModel):
+    """Esquema para entregar glosas"""
 
     id: int
     distrito_id: int
@@ -17,9 +17,9 @@ class EdictoOut(BaseModel):
     autoridad_descripcion: str
     autoridad_descripcion_corta: str
     fecha: date
+    tipo_juicio: str
     descripcion: str
     expediente: str
-    numero_publicacion: str
     archivo: str
     url: str
 
