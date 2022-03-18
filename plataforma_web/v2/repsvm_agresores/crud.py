@@ -7,29 +7,29 @@ from sqlalchemy.orm import Session
 from lib.safe_string import safe_string
 
 from plataforma_web.core.repsvm_agresores.models import REPSVMAgresor
+from plataforma_web.v2.distritos.crud import get_distrito
 
 
 def get_repsvm_agresores(
     db: Session,
-    filtro_id: int = None,
-    filtro_descripcion: str = None,
-    filtro_boleano: bool = False,
+    distrito_id: int = None,
+    nombre: str = None,
 ) -> Any:
-    """ Consultar los Agresores activos """
+    """Consultar los Agresores activos"""
     consulta = db.query(REPSVMAgresor)
-    if filtro_id:
-        consulta = consulta.filter_by(filtro_id=filtro_id)
-    filtro_descripcion = safe_string(filtro_descripcion)
-    if filtro_descripcion:
-        consulta = consulta.filter_by(filtro_descripcion=filtro_descripcion)
-    if filtro_boleano is True:
-        consulta = consulta.filter_by(filtro_boleano=True)
+    if distrito_id is not None:
+        distrito = get_distrito(db, distrito_id)
+        consulta = consulta.filter(REPSVMAgresor.distrito == distrito)
+    if nombre is not None:
+        nombre = safe_string(nombre)
+        if nombre != "":
+            consulta = consulta.filter(REPSVMAgresor.nombre.contains(nombre))
     return consulta.filter_by(estatus="A").order_by(REPSVMAgresor.id.desc())
 
 
-def get_agresor(db: Session, agresor_id: int) -> REPSVMAgresor:
-    """ Consultar un Agresor por su id """
-    agresor = db.query(REPSVMAgresor).get(agresor_id)
+def get_repsvm_agresor(db: Session, repsvm_agresor_id: int) -> REPSVMAgresor:
+    """Consultar un Agresor por su id"""
+    agresor = db.query(REPSVMAgresor).get(repsvm_agresor_id)
     if agresor is None:
         raise IndexError("No existe ese Agresor")
     if agresor.estatus != "A":
