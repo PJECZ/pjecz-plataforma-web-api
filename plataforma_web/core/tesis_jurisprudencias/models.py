@@ -75,6 +75,41 @@ class TesisJurisprudencia(Base, UniversalMixin):
         """Número de registro digital (Número único por registro)"""
         return self.id
 
+    @property
+    def distrito_nombre(self):
+        """Nombre del distrito"""
+        return self.autoridad.distrito.nombre
+
+    @property
+    def distrito_nombre_corto(self):
+        """Nombre corto del distrito"""
+        return self.autoridad.distrito.nombre_corto
+
+    @property
+    def autoridad_clave(self):
+        """Nombre de la autoridad"""
+        return self.autoridad.clave
+
+    @property
+    def autoridad_descripcion(self):
+        """Descripcion de la autoridad"""
+        return self.autoridad.descripcion
+
+    @property
+    def autoridad_descripcion_corta(self):
+        """Descripcion corta de la autoridad"""
+        return self.autoridad.descripcion_corta
+
+    @property
+    def epoca_nombre(self):
+        """Nombre de la epoca"""
+        return self.epoca.nombre
+
+    @property
+    def materia_nombre(self):
+        """Nombre de la materia"""
+        return self.materia.nombre
+
     def __repr__(self):
         """Representación"""
         return f"<TesisJurisprudencia {self.id}>"

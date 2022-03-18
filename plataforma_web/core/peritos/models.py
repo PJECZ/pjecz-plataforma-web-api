@@ -31,6 +31,21 @@ class Perito(Base, UniversalMixin):
     email = Column(String(256))
     notas = Column(String(256))
 
+    @property
+    def distrito_nombre(self):
+        """Nombre del distrito"""
+        return self.autoridad.distrito.nombre
+
+    @property
+    def distrito_nombre_corto(self):
+        """Nombre corto del distrito"""
+        return self.autoridad.distrito.nombre_corto
+
+    @property
+    def perito_tipo_nombre(self):
+        """Nombre del tipo de perito"""
+        return self.autoridad.perito_tipo.nombre
+
     def __repr__(self):
         """Representación"""
         return f"<Perito {self.id}>"

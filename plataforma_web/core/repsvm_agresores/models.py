@@ -34,6 +34,31 @@ class REPSVMAgresor(Base, UniversalMixin):
     observaciones = Column(Text(), nullable=True)
     sentencia_url = Column(String(512), nullable=False)
 
+    @property
+    def distrito_nombre(self):
+        """Nombre del distrito"""
+        return self.autoridad.distrito.nombre
+
+    @property
+    def distrito_nombre_corto(self):
+        """Nombre corto del distrito"""
+        return self.autoridad.distrito.nombre_corto
+
+    @property
+    def materia_tipo_juzgado_descripcion(self):
+        """Descripción de la materia tipo de juzgado"""
+        return self.materia_tipo_juzgado.descripcion
+
+    @property
+    def repsvm_delito_especifico_descripcion(self):
+        """Descripción del delito especifico"""
+        return self.repsvm_delito_especifico.descripcion
+
+    @property
+    def repsvm_tipo_sentencia_nombre(self):
+        """Nombre del tipo de sentencia"""
+        return self.repsvm_tipo_sentencia.nombre
+
     def __repr__(self):
         """Representación"""
         return f"<REPSVMAgresor {self.id}>"

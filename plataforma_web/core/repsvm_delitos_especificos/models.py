@@ -27,6 +27,11 @@ class REPSVMDelitoEspecifico(Base, UniversalMixin):
     # Hijos
     repsvm_agresores = relationship("REPSVMAgresor", back_populates="repsvm_delito_especifico", lazy="noload")
 
+    @property
+    def repsvm_delito_generico_nombre(self):
+        """Nombre del delito genérico"""
+        return self.repsvm_delito_generico.nombre
+
     def __repr__(self):
         """Representación"""
         return f"<REPSVMDelitoEspecifico {self.id}>"
