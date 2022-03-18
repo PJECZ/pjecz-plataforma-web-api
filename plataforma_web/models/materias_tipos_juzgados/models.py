@@ -1,5 +1,5 @@
 """
-Materias Tipos de Juzgados v2, modelos
+Materias Tipos de Juzgados, modelos
 """
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
