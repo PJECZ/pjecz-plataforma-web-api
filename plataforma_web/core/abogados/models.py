@@ -24,4 +24,4 @@ class Abogado(Base, UniversalMixin):
 
     def __repr__(self):
         """ Representación """
-        return f"<Abogado {self.descripcion}>"
+        return f"<Abogado {self.id}>"

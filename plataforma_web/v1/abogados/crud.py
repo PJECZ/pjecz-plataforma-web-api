@@ -5,7 +5,7 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 from lib.safe_string import safe_string
 
-from .models import Abogado
+from plataforma_web.core.abogados.models import Abogado
 
 
 def get_abogados(

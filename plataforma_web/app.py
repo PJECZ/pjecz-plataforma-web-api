@@ -5,18 +5,21 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_pagination import add_pagination
 
+# V1 Catalogos
 from .v1.autoridades.paths import autoridades as autoridades_v1
 from .v1.distritos.paths import distritos as distritos_v1
 from .v1.materias.paths import materias as materias_v1
 from .v1.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v1
 from .v1.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v1
 
+# V2 Catalogos
 from .v2.autoridades.paths import autoridades as autoridades_v2
 from .v2.distritos.paths import distritos as distritos_v2
 from .v2.materias.paths import materias as materias_v2
 from .v2.materias_tipos_juicios.paths import materias_tipos_juicios as materias_tipos_juicios_v2
 from .v2.materias_tipos_juzgados.paths import materias_tipos_juzgados as materias_tipos_juzgados_v2
 
+# Abogados registrados
 from .v1.abogados.paths import abogados as abogados_v1
 from .v2.abogados.paths import abogados as abogados_v2
 

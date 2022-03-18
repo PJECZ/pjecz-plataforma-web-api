@@ -4,10 +4,10 @@ Glosas, CRUD: the four basic operations (create, read, update, and delete) of da
 from datetime import date
 from sqlalchemy.orm import Session
 
-from ..autoridades.models import Autoridad
-from ..autoridades.crud import get_autoridad
-from ..distritos.models import Distrito
-from .models import Glosa
+from plataforma_web.core.autoridades.models import Autoridad
+from plataforma_web.core.distritos.models import Distrito
+from plataforma_web.core.glosas.models import Glosa
+from plataforma_web.v1.autoridades.crud import get_autoridad
 
 
 def get_glosas(

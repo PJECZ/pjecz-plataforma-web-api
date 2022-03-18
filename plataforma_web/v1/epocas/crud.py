@@ -2,7 +2,8 @@
 Epocas, CRUD: the four basic operations (create, read, update, and delete) of data storage
 """
 from sqlalchemy.orm import Session
-from .models import Epoca
+
+from plataforma_web.core.epocas.models import Epoca
 
 
 def get_epocas(db: Session):

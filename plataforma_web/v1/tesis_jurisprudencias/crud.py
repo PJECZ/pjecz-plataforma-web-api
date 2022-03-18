@@ -5,12 +5,12 @@ from datetime import date
 from sqlalchemy.orm import Session
 from lib.safe_string import safe_string
 
-from ..autoridades.models import Autoridad
-from ..autoridades.crud import get_autoridad
-from ..distritos.models import Distrito
-from ..epocas.crud import get_epoca
-from ..materias.crud import get_materia
-from .models import TesisJurisprudencia
+from plataforma_web.core.autoridades.models import Autoridad
+from plataforma_web.core.distritos.models import Distrito
+from plataforma_web.core.tesis_jurisprudencias.models import TesisJurisprudencia
+from plataforma_web.v1.autoridades.crud import get_autoridad
+from plataforma_web.v1.epocas.crud import get_epoca
+from plataforma_web.v1.materias.crud import get_materia
 
 
 def get_tesis_jurisprudencias(

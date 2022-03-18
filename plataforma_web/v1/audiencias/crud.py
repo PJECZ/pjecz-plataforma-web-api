@@ -4,10 +4,10 @@ Audiencias, CRUD: the four basic operations (create, read, update, and delete) o
 from datetime import datetime, date
 from sqlalchemy.orm import Session
 
-from .models import Audiencia
-from ..autoridades.crud import get_autoridad
-from ..autoridades.models import Autoridad
-from ..distritos.models import Distrito
+from plataforma_web.core.audiencias.models import Audiencia
+from plataforma_web.core.autoridades.models import Autoridad
+from plataforma_web.core.distritos.models import Distrito
+from plataforma_web.v1.autoridades.crud import get_autoridad
 
 
 def get_audiencias(
