@@ -1,0 +1,32 @@
+@base_url = http://127.0.0.1:8001
+@version = v2
+
+### Distritos
+GET {{base_url}}/{{version}}/distritos
+
+### Distrito Judicial de Saltillo
+GET {{base_url}}/{{version}}/distritos/6
+
+### Autoridades
+GET {{base_url}}/{{version}}/autoridades
+
+### Juzgado Quinto de Primera Instancia en Materia Familiar
+GET {{base_url}}/{{version}}/autoridades/70
+
+### Materias
+GET {{base_url}}/{{version}}/materias
+
+### Familiar Oral
+GET {{base_url}}/{{version}}/materias/6
+
+### Tipos de Juicios de la materia Familiar Oral
+GET {{base_url}}/{{version}}/materias_tipos_juicios?materia_id=6
+
+### Divorcio
+GET {{base_url}}/{{version}}/materias_tipos_juicios/216
+
+### Tipos de Juzgados de la materia Penal
+GET {{base_url}}/{{version}}/materias_tipos_juzgados?materia_id=7
+
+### Juzgado Especializado en Violencia Familiar
+GET {{base_url}}/{{version}}/materias_tipos_juzgados/2

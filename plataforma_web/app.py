@@ -47,17 +47,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Catalogos
-app.include_router(autoridades_v1, prefix="/v1/autoridades", tags=["catalogos"])
-app.include_router(autoridades_v2, prefix="/v2/autoridades", tags=["catalogos"])
-app.include_router(distritos_v1, prefix="/v1/distritos", tags=["catalogos"])
-app.include_router(distritos_v2, prefix="/v2/distritos", tags=["catalogos"])
-app.include_router(materias_v1, prefix="/v1/materias", tags=["catalogos"])
-app.include_router(materias_v2, prefix="/v2/materias", tags=["catalogos"])
-app.include_router(materias_tipos_juicios_v1, prefix="/v1/materias_tipos_juicios", tags=["catalogos"])
-app.include_router(materias_tipos_juicios_v2, prefix="/v2/materias_tipos_juicios", tags=["catalogos"])
-app.include_router(materias_tipos_juzgados_v1, prefix="/v1/materias_tipos_juzgados", tags=["catalogos"])
-app.include_router(materias_tipos_juzgados_v2, prefix="/v2/materias_tipos_juzgados", tags=["catalogos"])
+# Catalogos v1
+app.include_router(autoridades_v1, prefix="/v1/autoridades", tags=["v1"])
+app.include_router(distritos_v1, prefix="/v1/distritos", tags=["v1"])
+app.include_router(materias_v1, prefix="/v1/materias", tags=["v1"])
+app.include_router(materias_tipos_juicios_v1, prefix="/v1/materias_tipos_juicios", tags=["v1"])
+app.include_router(materias_tipos_juzgados_v1, prefix="/v1/materias_tipos_juzgados", tags=["v1"])
+
+# Catalogos v2
+app.include_router(autoridades_v2, prefix="/v2/autoridades", tags=["v2"])
+app.include_router(distritos_v2, prefix="/v2/distritos", tags=["v2"])
+app.include_router(materias_v2, prefix="/v2/materias", tags=["v2"])
+app.include_router(materias_tipos_juicios_v2, prefix="/v2/materias_tipos_juicios", tags=["v2"])
+app.include_router(materias_tipos_juzgados_v2, prefix="/v2/materias_tipos_juzgados", tags=["v2"])
 
 # Abogados registrados
 #app.include_router(abogados_v1, prefix="/abogados", tags=["abogados"])
