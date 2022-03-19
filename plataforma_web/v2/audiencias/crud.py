@@ -19,14 +19,14 @@ def get_audiencias(
     consulta = db.query(Audiencia)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
-        audiencias = audiencias.filter(Audiencia.autoridad == autoridad)
+        consulta = consulta.filter(Audiencia.autoridad == autoridad)
     if fecha is not None:
         desde = datetime(year=fecha.year, month=fecha.month, day=fecha.day, hour=0, minute=0, second=0)
         hasta = datetime(year=fecha.year, month=fecha.month, day=fecha.day, hour=23, minute=59, second=59)
-        audiencias = audiencias.filter(Audiencia.tiempo >= desde).filter(Audiencia.tiempo <= hasta)
+        consulta = consulta.filter(Audiencia.tiempo >= desde).filter(Audiencia.tiempo <= hasta)
     elif ano is not None:
         if 2000 <= ano <= date.today().year:
-            audiencias = audiencias.filter(Audiencia.tiempo >= date(ano, 1, 1)).filter(Audiencia.tiempo <= date(ano, 12, 31))
+            consulta = consulta.filter(Audiencia.tiempo >= date(ano, 1, 1)).filter(Audiencia.tiempo <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
     return consulta.filter_by(estatus="A").order_by(Audiencia.id.desc())

@@ -18,10 +18,10 @@ def get_edictos(
     consulta = db.query(Edicto)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
-        edictos = edictos.filter(Edicto.autoridad == autoridad)
+        consulta = consulta.filter(Edicto.autoridad == autoridad)
     if ano is not None:
         if 2000 <= ano <= date.today().year:
-            edictos = edictos.filter(Edicto.fecha >= date(ano, 1, 1)).filter(Edicto.fecha <= date(ano, 12, 31))
+            consulta = consulta.filter(Edicto.fecha >= date(ano, 1, 1)).filter(Edicto.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
     return consulta.filter_by(estatus="A").order_by(Edicto.id.desc())

@@ -5,8 +5,6 @@ from datetime import date
 from typing import Any
 from sqlalchemy.orm import Session
 
-from lib.safe_string import safe_string
-
 from plataforma_web.core.glosas.models import Glosa
 from plataforma_web.v2.autoridades.crud import get_autoridad
 
@@ -20,10 +18,10 @@ def get_glosas(
     consulta = db.query(Glosa)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
-        glosas = glosas.filter(Glosa.autoridad == autoridad)
+        consulta = consulta.filter(Glosa.autoridad == autoridad)
     if ano is not None:
         if 2000 <= ano <= date.today().year:
-            glosas = glosas.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
+            consulta = consulta.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
     return consulta.filter_by(estatus="A").order_by(Glosa.id.desc())

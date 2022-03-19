@@ -10,11 +10,7 @@ from plataforma_web.core.repsvm_agresores.models import REPSVMAgresor
 from plataforma_web.v2.distritos.crud import get_distrito
 
 
-def get_repsvm_agresores(
-    db: Session,
-    distrito_id: int = None,
-    nombre: str = None,
-) -> Any:
+def get_repsvm_agresores(db: Session, distrito_id: int = None, nombre: str = None) -> Any:
     """Consultar los Agresores activos"""
     consulta = db.query(REPSVMAgresor)
     if distrito_id is not None:

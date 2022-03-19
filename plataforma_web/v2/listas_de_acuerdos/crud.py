@@ -19,12 +19,12 @@ def get_listas_de_acuerdos(
     consulta = db.query(ListaDeAcuerdo)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
-        listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.autoridad == autoridad)
+        consulta = consulta.filter(ListaDeAcuerdo.autoridad == autoridad)
     if fecha is not None:
-        listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.fecha == fecha)
+        consulta = consulta.filter(ListaDeAcuerdo.fecha == fecha)
     if ano is not None:
         if 2000 <= ano <= date.today().year:
-            listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.fecha >= date(ano, 1, 1)).filter(ListaDeAcuerdo.fecha <= date(ano, 12, 31))
+            consulta = consulta.filter(ListaDeAcuerdo.fecha >= date(ano, 1, 1)).filter(ListaDeAcuerdo.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
     return consulta.filter_by(estatus="A").order_by(ListaDeAcuerdo.id.desc())

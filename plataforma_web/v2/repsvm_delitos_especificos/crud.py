@@ -8,10 +8,7 @@ from plataforma_web.core.repsvm_delitos_especificos.models import REPSVMDelitoEs
 from plataforma_web.v2.repsvm_delitos_genericos.crud import get_repsvm_delito_generico
 
 
-def get_repsvm_delitos_especificos(
-    db: Session,
-    repsvm_delito_generico_id: int = None,
-) -> Any:
+def get_repsvm_delitos_especificos(db: Session, repsvm_delito_generico_id: int = None) -> Any:
     """Consultar los Delitos Especificos activos"""
     consulta = db.query(REPSVMDelitoEspecifico)
     if repsvm_delito_generico_id:

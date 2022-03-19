@@ -16,7 +16,7 @@ listas_de_acuerdos_acuerdos = APIRouter()
 
 @listas_de_acuerdos_acuerdos.get("", response_model=LimitOffsetPage[ListaDeAcuerdoAcuerdoOut])
 async def listado_listas_de_acuerdos_acuerdos(
-    lista_de_acuerdo_id: int,
+    lista_de_acuerdo_id: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Acuerdos"""
