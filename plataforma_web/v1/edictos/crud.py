@@ -25,7 +25,7 @@ def get_edictos(
             edictos = edictos.filter(Edicto.fecha >= date(ano, 1, 1)).filter(Edicto.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return edictos.filter(Edicto.estatus == "A").order_by(Edicto.fecha.desc()).limit(500).all()
+    return edictos.filter(Edicto.estatus == "A").order_by(Edicto.fecha.desc()).limit(400).all()
 
 
 def get_edicto(db: Session, edicto_id: int):

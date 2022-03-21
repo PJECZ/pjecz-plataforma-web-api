@@ -48,7 +48,7 @@ def get_tesis_jurisprudencias(
             tesis_jurisprudencias = tesis_jurisprudencias.filter(TesisJurisprudencia.fecha >= date(aprobacion_anio, 1, 1)).filter(TesisJurisprudencia.fecha <= date(aprobacion_anio, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return tesis_jurisprudencias.filter(TesisJurisprudencia.estatus == "A").order_by(TesisJurisprudencia.id.desc()).limit(100).all()
+    return tesis_jurisprudencias.filter(TesisJurisprudencia.estatus == "A").order_by(TesisJurisprudencia.id.desc()).limit(400).all()
 
 
 def get_tesis_jurisprudencia(db: Session, tesis_jurisprudencia_id: int):

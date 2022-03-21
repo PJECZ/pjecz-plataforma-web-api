@@ -26,7 +26,7 @@ def get_ubicaciones_expedientes(
         except (IndexError, ValueError) as error:
             raise ValueError("No correcto el expediente") from error
         consulta = consulta.filter(UbicacionExpediente.expediente == expediente)
-    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(500).all()
+    return consulta.filter(UbicacionExpediente.estatus == "A").order_by(Autoridad.descripcion, UbicacionExpediente.expediente).limit(400).all()
 
 
 def get_ubicacion_expediente(db: Session, ubicacion_expediente_id: int):

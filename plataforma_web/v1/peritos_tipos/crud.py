@@ -8,7 +8,7 @@ from plataforma_web.core.peritos_tipos.models import PeritoTipo
 
 def get_peritos_tipos(db: Session):
     """ Consultar peritos_tipos activos """
-    return db.query(PeritoTipo).filter(PeritoTipo.estatus == 'A').order_by(PeritoTipo.nombre).all()
+    return db.query(PeritoTipo).filter(PeritoTipo.estatus == 'A').order_by(PeritoTipo.nombre).limit(400).all()
 
 
 def get_perito_tipo(db: Session, perito_tipo_id: int):

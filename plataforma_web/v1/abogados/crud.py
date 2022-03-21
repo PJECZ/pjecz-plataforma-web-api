@@ -29,7 +29,7 @@ def get_abogados(
     nombre = safe_string(nombre)
     if nombre != "":
         consulta = consulta.filter(Abogado.nombre.like(f"%{nombre}%"))
-    return consulta.filter_by(estatus="A").order_by(Abogado.nombre).limit(500).all()
+    return consulta.filter_by(estatus="A").order_by(Abogado.nombre).limit(400).all()
 
 
 def get_abogado(db: Session, abogado_id: int):

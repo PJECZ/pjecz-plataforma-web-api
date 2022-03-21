@@ -11,7 +11,7 @@ from plataforma_web.v1.materias.crud import get_materia
 def get_materias_tipos_juzgados(db: Session, materia_id: int):
     """Consultar materias_tipos_juzgados activos"""
     materia = get_materia(db, materia_id)
-    return db.query(MateriaTipoJuzgado, Materia).join(Materia).filter(MateriaTipoJuzgado.materia == materia).filter(MateriaTipoJuzgado.estatus == "A").order_by(MateriaTipoJuzgado.descripcion).all()
+    return db.query(MateriaTipoJuzgado, Materia).join(Materia).filter(MateriaTipoJuzgado.materia == materia).filter(MateriaTipoJuzgado.estatus == "A").order_by(MateriaTipoJuzgado.descripcion).limit(400).all()
 
 
 def get_materia_tipo_juzgado(db: Session, materia_tipo_juzgado_id: int):

@@ -28,7 +28,7 @@ def get_listas_de_acuerdos(
             listas_de_acuerdos = listas_de_acuerdos.filter(ListaDeAcuerdo.fecha >= date(ano, 1, 1)).filter(ListaDeAcuerdo.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return listas_de_acuerdos.filter(ListaDeAcuerdo.estatus == "A").order_by(ListaDeAcuerdo.fecha.desc()).limit(500).all()
+    return listas_de_acuerdos.filter(ListaDeAcuerdo.estatus == "A").order_by(ListaDeAcuerdo.fecha.desc()).limit(400).all()
 
 
 def get_lista_de_acuerdo(db: Session, lista_de_acuerdo_id: int):

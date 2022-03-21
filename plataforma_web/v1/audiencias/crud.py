@@ -30,7 +30,7 @@ def get_audiencias(
             audiencias = audiencias.filter(Audiencia.tiempo >= date(ano, 1, 1)).filter(Audiencia.tiempo <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return audiencias.filter_by(estatus="A").order_by(Audiencia.tiempo.desc()).limit(500).all()
+    return audiencias.filter_by(estatus="A").order_by(Audiencia.tiempo.desc()).limit(400).all()
 
 
 def get_audiencia(db: Session, audiencia_id: int):

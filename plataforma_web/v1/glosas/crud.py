@@ -25,7 +25,7 @@ def get_glosas(
             glosas = glosas.filter(Glosa.fecha >= date(ano, 1, 1)).filter(Glosa.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return glosas.filter(Glosa.estatus == "A").order_by(Glosa.fecha.desc()).limit(500).all()
+    return glosas.filter(Glosa.estatus == "A").order_by(Glosa.fecha.desc()).limit(400).all()
 
 
 def get_glosa(db: Session, glosa_id: int):

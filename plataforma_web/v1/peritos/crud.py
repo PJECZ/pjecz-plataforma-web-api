@@ -22,7 +22,7 @@ def get_peritos(
         nombre = safe_string(nombre)
         if nombre != "":
             consulta = consulta.filter(Perito.nombre.like(f"%{nombre}%"))
-    return consulta.filter(Perito.estatus == "A").order_by(Distrito.nombre, Perito.nombre).limit(500).all()
+    return consulta.filter(Perito.estatus == "A").order_by(Distrito.nombre, Perito.nombre).limit(400).all()
 
 
 def get_perito(db: Session, perito_id: int):

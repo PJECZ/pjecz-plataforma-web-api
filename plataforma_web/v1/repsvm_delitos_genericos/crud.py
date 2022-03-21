@@ -8,7 +8,7 @@ from plataforma_web.core.repsvm_delitos_genericos.models import REPSVMDelitoGene
 
 def get_repsvm_delitos_genericos(db: Session):
     """ Consultar repsvm_delitos_genericos activos """
-    return db.query(REPSVMDelitoGenerico).filter(REPSVMDelitoGenerico.estatus == 'A').order_by(REPSVMDelitoGenerico.nombre).all()
+    return db.query(REPSVMDelitoGenerico).filter(REPSVMDelitoGenerico.estatus == 'A').order_by(REPSVMDelitoGenerico.nombre).limit(400).all()
 
 
 def get_repsvm_delito_generico(db: Session, repsvm_delito_generico_id: int):

@@ -26,7 +26,7 @@ def get_sentencias(
             sentencias = sentencias.filter(Sentencia.fecha >= date(ano, 1, 1)).filter(Sentencia.fecha <= date(ano, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
-    return sentencias.filter(Sentencia.estatus == "A").order_by(Sentencia.fecha.desc()).limit(500).all()
+    return sentencias.filter(Sentencia.estatus == "A").order_by(Sentencia.fecha.desc()).limit(400).all()
 
 
 def get_sentencia(db: Session, sentencia_id: int):

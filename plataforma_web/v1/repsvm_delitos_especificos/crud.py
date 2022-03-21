@@ -8,7 +8,7 @@ from plataforma_web.core.repsvm_delitos_especificos.models import REPSVMDelitoEs
 
 def get_repsvm_delitos_especificos(db: Session):
     """ Consultar repsvm_delitos_especificos activos """
-    return db.query(REPSVMDelitoEspecifico).filter(REPSVMDelitoEspecifico.estatus == 'A').order_by(REPSVMDelitoEspecifico.descripcion).all()
+    return db.query(REPSVMDelitoEspecifico).filter(REPSVMDelitoEspecifico.estatus == 'A').order_by(REPSVMDelitoEspecifico.descripcion).limit(400).all()
 
 
 def get_repsvm_delito_especifico(db: Session, repsvm_delito_especifico_id: int):
