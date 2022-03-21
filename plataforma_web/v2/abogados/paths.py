@@ -16,7 +16,7 @@ abogados = APIRouter()
 
 @abogados.get("", response_model=LimitOffsetPage[AbogadoOut])
 async def listado_abogados(
-    nombre: str,
+    nombre: str = None,
     ano_desde: int = None,
     ano_hasta: int = None,
     db: Session = Depends(get_db),

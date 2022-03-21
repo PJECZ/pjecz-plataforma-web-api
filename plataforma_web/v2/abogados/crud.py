@@ -12,7 +12,7 @@ from plataforma_web.core.abogados.models import Abogado
 
 def get_abogados(
     db: Session,
-    nombre: str,
+    nombre: str = None,
     ano_desde: int = None,
     ano_hasta: int = None,
 ) -> Any:
@@ -28,9 +28,10 @@ def get_abogados(
             consulta = consulta.filter(Abogado.fecha <= datetime.strptime(f"{ano_hasta}-12-31", "%Y-%m-%d"))
         else:
             raise ValueError("Año fuera de rango.")
-    nombre = safe_string(nombre)
-    if nombre != "":
-        consulta = consulta.filter(Abogado.nombre.contains(nombre))
+    if nombre is not None:
+        nombre = safe_string(nombre)
+        if nombre != "":
+            consulta = consulta.filter(Abogado.nombre.contains(nombre))
     return consulta.filter_by(estatus="A").order_by(Abogado.nombre)
 
 

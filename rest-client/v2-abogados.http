@@ -1,0 +1,16 @@
+@base_url = http://127.0.0.1:8001/v2
+
+### Abogados
+GET {{base_url}}/abogados
+
+### Abogados GARZA
+GET {{base_url}}/abogados?nombre=garza
+
+### Abogados GARZA desde 2000
+GET {{base_url}}/abogados?nombre=garza&ano_desde=2000
+
+### Abogados GARZA desde 2000 hasta 2002
+GET {{base_url}}/abogados?nombre=garza&ano_desde=2000&ano_hasta=2002
+
+### Abogado JUAN JOSE GARZA VALDES
+GET {{base_url}}/abogados/13014
