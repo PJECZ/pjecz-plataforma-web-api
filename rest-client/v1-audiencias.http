@@ -1,4 +1,7 @@
 @base_url = http://127.0.0.1:8001
 
-# Audiencias
+### Audiencias del Juzgado Quinto de Primera Instancia en Materia Familiar
 GET {{base_url}}/audiencias?autoridad_id=70
+
+### Audiencias del 2020 del Juzgado Quinto de Primera Instancia en Materia Familiar
+GET {{base_url}}/audiencias?autoridad_id=70&ano=2020

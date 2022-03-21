@@ -31,6 +31,11 @@ class ListaDeAcuerdo(Base, UniversalMixin):
     listas_de_acuerdos_acuerdos = relationship("ListaDeAcuerdoAcuerdo", back_populates="lista_de_acuerdo")
 
     @property
+    def distrito_id(self):
+        """ID del distrito"""
+        return self.autoridad.distrito_id
+
+    @property
     def distrito_nombre(self):
         """Nombre del distrito"""
         return self.autoridad.distrito.nombre

@@ -34,6 +34,11 @@ class UbicacionExpediente(Base, UniversalMixin):
     ubicacion = Column(Enum(*UBICACIONES, name="ubicaciones_opciones", native_enum=False), index=True, nullable=False)
 
     @property
+    def distrito_id(self):
+        """ID del distrito"""
+        return self.autoridad.distrito_id
+
+    @property
     def distrito_nombre(self):
         """Nombre del distrito"""
         return self.autoridad.distrito.nombre

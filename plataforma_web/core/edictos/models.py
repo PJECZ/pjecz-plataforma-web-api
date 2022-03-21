@@ -30,6 +30,11 @@ class Edicto(Base, UniversalMixin):
     url = Column(String(512))
 
     @property
+    def distrito_id(self):
+        """ID del distrito"""
+        return self.autoridad.distrito_id
+
+    @property
     def distrito_nombre(self):
         """Nombre del distrito"""
         return self.autoridad.distrito.nombre

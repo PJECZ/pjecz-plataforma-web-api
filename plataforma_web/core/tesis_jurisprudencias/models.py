@@ -71,6 +71,11 @@ class TesisJurisprudencia(Base, UniversalMixin):
     aplicacion_tiempo = Column(DateTime(), nullable=False)
 
     @property
+    def distrito_id(self):
+        """ID del distrito"""
+        return self.autoridad.distrito_id
+
+    @property
     def numero_registro_digital(self):
         """Número de registro digital (Número único por registro)"""
         return self.id
