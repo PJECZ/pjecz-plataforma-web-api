@@ -1,6 +1,7 @@
 """
 Listas de Acuerdos v2, rutas (paths)
 """
+from datetime import date
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
