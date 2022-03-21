@@ -16,13 +16,13 @@ edictos = APIRouter()
 
 @edictos.get("", response_model=LimitOffsetPage[EdictoOut])
 async def listado_edictos(
-    autoridad_id: int,
-    ano: int = None,
+    autoridad_id: int = None,
+    anio: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Edictos"""
     try:
-        listado = get_edictos(db, autoridad_id, ano)
+        listado = get_edictos(db, autoridad_id, anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

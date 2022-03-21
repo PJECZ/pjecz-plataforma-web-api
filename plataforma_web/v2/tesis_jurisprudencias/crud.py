@@ -25,25 +25,28 @@ def get_tesis_jurisprudencias(
 ) -> Any:
     """Consultar los Tesis Jurisprudencias activos"""
     consulta = db.query(TesisJurisprudencia)
-    if autoridad_id:
+    if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(TesisJurisprudencia.autoridad == autoridad)
-    if epoca_id:
+    if epoca_id is not None:
         epoca = get_epoca(db, epoca_id=epoca_id)
         consulta = consulta.filter(TesisJurisprudencia.epoca == epoca)
-    if materia_id:
+    if materia_id is not None:
         materia = get_materia(db, materia_id=materia_id)
         consulta = consulta.filter(TesisJurisprudencia.materia == materia)
-    clase = safe_string(clase)
-    if clase in TesisJurisprudencia.CLASES:
-        tesis_jurisprudencias = tesis_jurisprudencias.filter_by(clase=clase)
-    titulo = safe_string(titulo)
-    if titulo != "":
-        tesis_jurisprudencias = tesis_jurisprudencias.filter(TesisJurisprudencia.titulo.contains(titulo))
-    texto = safe_string(texto)
-    if texto != "":
-        tesis_jurisprudencias = tesis_jurisprudencias.filter(TesisJurisprudencia.texto.contains(texto))
-    if aprobacion_anio:
+    if clase is not None:
+        clase = safe_string(clase)
+        if clase in TesisJurisprudencia.CLASES:
+            tesis_jurisprudencias = tesis_jurisprudencias.filter_by(clase=clase)
+    if titulo is not None:
+        titulo = safe_string(titulo)
+        if titulo != "":
+            tesis_jurisprudencias = tesis_jurisprudencias.filter(TesisJurisprudencia.titulo.contains(titulo))
+    if texto is not None:
+        texto = safe_string(texto)
+        if texto != "":
+            tesis_jurisprudencias = tesis_jurisprudencias.filter(TesisJurisprudencia.texto.contains(texto))
+    if aprobacion_anio is not None:
         if 2000 <= aprobacion_anio <= date.today().year:
             tesis_jurisprudencias = tesis_jurisprudencias.filter(TesisJurisprudencia.fecha >= date(aprobacion_anio, 1, 1)).filter(TesisJurisprudencia.fecha <= date(aprobacion_anio, 12, 31))
         else:

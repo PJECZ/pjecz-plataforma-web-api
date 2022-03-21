@@ -27,12 +27,13 @@ def get_autoridades(
     if materia_id is not None:
         materia = get_materia(db, materia_id)
         consulta = consulta.filter(Autoridad.materia == materia)
-    organo_jurisdiccional = safe_string(organo_jurisdiccional)
-    if organo_jurisdiccional in Autoridad.ORGANOS_JURISDICCIONALES:
-        consulta = consulta.filter(Autoridad.organo_jurisdiccional == organo_jurisdiccional)
+    if organo_jurisdiccional is not None:
+        organo_jurisdiccional = safe_string(organo_jurisdiccional)
+        if organo_jurisdiccional in Autoridad.ORGANOS_JURISDICCIONALES:
+            consulta = consulta.filter(Autoridad.organo_jurisdiccional == organo_jurisdiccional)
     if con_notarias is False:
         consulta = consulta.filter(Autoridad.es_notaria == False)
-    if para_glosas:
+    if para_glosas is True:
         consulta = consulta.filter(Autoridad.organo_jurisdiccional.in_(["PLENO O SALA DEL TSJ", "TRIBUNAL DE CONCILIACION Y ARBITRAJE"]))
     return consulta.filter(Autoridad.es_jurisdiccional == True).filter_by(estatus="A").order_by(Autoridad.clave)
 

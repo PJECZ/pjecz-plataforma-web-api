@@ -17,14 +17,14 @@ listas_de_acuerdos = APIRouter()
 
 @listas_de_acuerdos.get("", response_model=LimitOffsetPage[ListaDeAcuerdoOut])
 async def listado_listas_de_acuerdos(
-    autoridad_id: int,
+    autoridad_id: int = None,
     fecha: date = None,
-    ano: int = None,
+    anio: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Listas de Acuerdos"""
     try:
-        listado = get_listas_de_acuerdos(db, autoridad_id, fecha, ano)
+        listado = get_listas_de_acuerdos(db, autoridad_id, fecha, anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

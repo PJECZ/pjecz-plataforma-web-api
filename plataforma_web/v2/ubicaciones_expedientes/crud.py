@@ -17,10 +17,10 @@ def get_ubicaciones_expedientes(
 ) -> Any:
     """Consultar los Ubicaciones Expedientes activos"""
     consulta = db.query(UbicacionExpediente)
-    if autoridad_id:
+    if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(UbicacionExpediente.autoridad == autoridad)
-    if expediente:
+    if expediente is not None:
         try:
             expediente = safe_expediente(expediente)
         except (IndexError, ValueError) as error:

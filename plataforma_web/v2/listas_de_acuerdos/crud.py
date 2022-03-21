@@ -13,7 +13,7 @@ def get_listas_de_acuerdos(
     db: Session,
     autoridad_id: int = None,
     fecha: date = None,
-    ano: int = None,
+    anio: int = None,
 ) -> Any:
     """Consultar los Listas de Acuerdos activos"""
     consulta = db.query(ListaDeAcuerdo)
@@ -22,9 +22,9 @@ def get_listas_de_acuerdos(
         consulta = consulta.filter(ListaDeAcuerdo.autoridad == autoridad)
     if fecha is not None:
         consulta = consulta.filter(ListaDeAcuerdo.fecha == fecha)
-    if ano is not None:
-        if 2000 <= ano <= date.today().year:
-            consulta = consulta.filter(ListaDeAcuerdo.fecha >= date(ano, 1, 1)).filter(ListaDeAcuerdo.fecha <= date(ano, 12, 31))
+    if anio is not None:
+        if 2000 <= anio <= date.today().year:
+            consulta = consulta.filter(ListaDeAcuerdo.fecha >= date(anio, 1, 1)).filter(ListaDeAcuerdo.fecha <= date(anio, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
     return consulta.filter_by(estatus="A").order_by(ListaDeAcuerdo.id.desc())

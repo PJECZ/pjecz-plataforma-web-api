@@ -17,13 +17,13 @@ abogados = APIRouter()
 @abogados.get("", response_model=LimitOffsetPage[AbogadoOut])
 async def listado_abogados(
     nombre: str = None,
-    ano_desde: int = None,
-    ano_hasta: int = None,
+    anio_desde: int = None,
+    anio_hasta: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Abogados"""
     try:
-        listado = get_abogados(db, nombre, ano_desde, ano_hasta)
+        listado = get_abogados(db, nombre, anio_desde, anio_hasta)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

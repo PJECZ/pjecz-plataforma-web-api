@@ -12,16 +12,16 @@ from plataforma_web.v2.autoridades.crud import get_autoridad
 def get_sentencias(
     db: Session,
     autoridad_id: int = None,
-    ano: int = None,
+    anio: int = None,
 ) -> Any:
     """Consultar los Sentencias activos"""
     consulta = db.query(Sentencia)
     if autoridad_id is not None:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(Sentencia.autoridad == autoridad)
-    if ano is not None:
-        if 2000 <= ano <= date.today().year:
-            consulta = consulta.filter(Sentencia.fecha >= date(ano, 1, 1)).filter(Sentencia.fecha <= date(ano, 12, 31))
+    if anio is not None:
+        if 2000 <= anio <= date.today().year:
+            consulta = consulta.filter(Sentencia.fecha >= date(anio, 1, 1)).filter(Sentencia.fecha <= date(anio, 12, 31))
         else:
             raise ValueError("Año fuera de rango.")
     return consulta.filter_by(estatus="A").order_by(Sentencia.id.desc())

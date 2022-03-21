@@ -16,13 +16,13 @@ sentencias = APIRouter()
 
 @sentencias.get("", response_model=LimitOffsetPage[SentenciaOut])
 async def listado_sentencias(
-    autoridad_id: int,
-    ano: int = None,
+    autoridad_id: int = None,
+    anio: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Sentencias"""
     try:
-        listado = get_sentencias(db, autoridad_id, ano)
+        listado = get_sentencias(db, autoridad_id, anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

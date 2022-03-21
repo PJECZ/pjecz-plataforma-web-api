@@ -23,7 +23,7 @@ from .v2.materias_tipos_juzgados.paths import materias_tipos_juzgados as materia
 from .v1.abogados.paths import abogados as abogados_v1
 from .v2.abogados.paths import abogados as abogados_v2
 
-# Agenda de Audiencias
+# Audiencias
 from .v1.audiencias.paths import audiencias as audiencias_v1
 from .v2.audiencias.paths import audiencias as audiencias_v2
 
@@ -109,9 +109,9 @@ app.include_router(materias_tipos_juzgados_v2, prefix="/v2/materias_tipos_juzgad
 app.include_router(abogados_v1, prefix="/abogados", tags=["abogados registrados"])
 app.include_router(abogados_v2, prefix="/v2/abogados", tags=["abogados registrados"])
 
-# Agenda de Audiencias
-app.include_router(audiencias_v1, prefix="/audiencias", tags=["audiencias"])
-app.include_router(audiencias_v2, prefix="/v2/audiencias", tags=["audiencias"])
+# Audiencias
+app.include_router(audiencias_v1, prefix="/audiencias", tags=["agenda de audiencias"])
+app.include_router(audiencias_v2, prefix="/v2/audiencias", tags=["agenda de audiencias"])
 
 # Edictos
 app.include_router(edictos_v1, prefix="/edictos", tags=["edictos"])

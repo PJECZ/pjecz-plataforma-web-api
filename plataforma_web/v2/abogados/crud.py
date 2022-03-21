@@ -13,19 +13,19 @@ from plataforma_web.core.abogados.models import Abogado
 def get_abogados(
     db: Session,
     nombre: str = None,
-    ano_desde: int = None,
-    ano_hasta: int = None,
+    anio_desde: int = None,
+    anio_hasta: int = None,
 ) -> Any:
     """Consultar los Abogados activos"""
     consulta = db.query(Abogado)
-    if ano_desde is not None:
-        if 1925 <= ano_desde <= datetime.now().year:
-            consulta = consulta.filter(Abogado.fecha >= datetime.strptime(f"{ano_desde}-01-01", "%Y-%m-%d"))
+    if anio_desde is not None:
+        if 1925 <= anio_desde <= datetime.now().year:
+            consulta = consulta.filter(Abogado.fecha >= datetime.strptime(f"{anio_desde}-01-01", "%Y-%m-%d"))
         else:
             raise ValueError("Año fuera de rango.")
-    if ano_hasta is not None:
-        if 1925 <= ano_hasta <= datetime.now().year:
-            consulta = consulta.filter(Abogado.fecha <= datetime.strptime(f"{ano_hasta}-12-31", "%Y-%m-%d"))
+    if anio_hasta is not None:
+        if 1925 <= anio_hasta <= datetime.now().year:
+            consulta = consulta.filter(Abogado.fecha <= datetime.strptime(f"{anio_hasta}-12-31", "%Y-%m-%d"))
         else:
             raise ValueError("Año fuera de rango.")
     if nombre is not None:

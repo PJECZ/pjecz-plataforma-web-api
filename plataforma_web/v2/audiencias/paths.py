@@ -17,14 +17,14 @@ audiencias = APIRouter()
 
 @audiencias.get("", response_model=LimitOffsetPage[AudienciaOut])
 async def listado_audiencias(
-    autoridad_id: int,
+    autoridad_id: int = None,
     fecha: date = None,
-    ano: int = None,
+    anio: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Audiencias"""
     try:
-        listado = get_audiencias(db, autoridad_id, fecha, ano)
+        listado = get_audiencias(db, autoridad_id, fecha, anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

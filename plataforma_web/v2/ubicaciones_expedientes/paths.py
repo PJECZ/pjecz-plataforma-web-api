@@ -16,7 +16,7 @@ ubicaciones_expedientes = APIRouter()
 
 @ubicaciones_expedientes.get("", response_model=LimitOffsetPage[UbicacionExpedienteOut])
 async def listado_ubicaciones_expedientes(
-    autoridad_id: int,
+    autoridad_id: int = None,
     expediente: str = None,
     db: Session = Depends(get_db),
 ):

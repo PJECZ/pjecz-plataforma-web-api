@@ -11,7 +11,7 @@ from plataforma_web.v2.repsvm_delitos_genericos.crud import get_repsvm_delito_ge
 def get_repsvm_delitos_especificos(db: Session, repsvm_delito_generico_id: int = None) -> Any:
     """Consultar los Delitos Especificos activos"""
     consulta = db.query(REPSVMDelitoEspecifico)
-    if repsvm_delito_generico_id:
+    if repsvm_delito_generico_id is not None:
         repsvm_delito_generico = get_repsvm_delito_generico(db, repsvm_delito_generico_id)
         consulta = consulta.filter(REPSVMDelitoEspecifico.repsvm_delito_generico == repsvm_delito_generico)
     return consulta.filter_by(estatus="A").order_by(REPSVMDelitoEspecifico.id.desc())

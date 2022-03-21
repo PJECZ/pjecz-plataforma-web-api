@@ -16,13 +16,13 @@ glosas = APIRouter()
 
 @glosas.get("", response_model=LimitOffsetPage[GlosaOut])
 async def listado_glosas(
-    autoridad_id: int,
-    ano: int = None,
+    autoridad_id: int = None,
+    anio: int = None,
     db: Session = Depends(get_db),
 ):
     """Listado de Glosas"""
     try:
-        listado = get_glosas(db, autoridad_id, ano)
+        listado = get_glosas(db, autoridad_id, anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
