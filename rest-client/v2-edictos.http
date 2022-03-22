@@ -1,0 +1,10 @@
+@base_url = http://127.0.0.1:8001/v2
+
+### Edictos
+GET {{base_url}}/edictos
+
+### Edictos del Juzgado Quinto de Primera Instancia en Materia Familiar
+GET {{base_url}}/edictos?autoridad_id=70
+
+### Edictos del 2019 del Juzgado Quinto de Primera Instancia en Materia Familiar
+GET {{base_url}}/edictos?autoridad_id=70&anio=2019

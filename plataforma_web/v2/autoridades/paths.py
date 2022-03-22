@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.autoridades.crud import get_autoridades, get_autoridad
+from plataforma_web.v2.autoridades.crud import get_autoridades, get_autoridad, get_autoridad_from_clave
 from plataforma_web.v2.autoridades.schemas import AutoridadOut
 
 autoridades = APIRouter()
@@ -41,6 +41,21 @@ async def detalle_autoridad(
     """Detalle de un Autoridad a partir de su id"""
     try:
         autoridad = get_autoridad(db, autoridad_id)
+    except IndexError as error:
+        raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
+    except ValueError as error:
+        raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
+    return AutoridadOut.from_orm(autoridad)
+
+
+@autoridades.get("/clave/{autoridad_clave}", response_model=AutoridadOut)
+async def detalle_autoridad_con_clave(
+    autoridad_clave: str,
+    db: Session = Depends(get_db),
+):
+    """Detalle de un Autoridad a partir de su id"""
+    try:
+        autoridad = get_autoridad_from_clave(db, autoridad_clave)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

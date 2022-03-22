@@ -1,0 +1,13 @@
+@base_url = http://127.0.0.1:8001/v2
+
+### PTSJ: Pleno del Tribunal Superior de Justicia
+GET {{base_url}}/autoridades/clave/PTSJ
+
+### Glosas
+GET {{base_url}}/glosas
+
+### Glosas del PTSJ
+GET {{base_url}}/glosas?autoridad_id=107
+
+### Glosas del 2019 del PTSJ
+GET {{base_url}}/glosas?autoridad_id=107&anio=2019
