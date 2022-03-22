@@ -18,7 +18,7 @@ class REPSVMAgresorOut(BaseModel):
     repsvm_tipo_sentencia_nombre: str
     consecutivo: int
     nombre: str
-    numero_causa: int
+    numero_causa: str
     pena_impuesta: str
     observaciones: str
     sentencia_url: str

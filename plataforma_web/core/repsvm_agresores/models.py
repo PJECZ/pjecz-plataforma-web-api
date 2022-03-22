@@ -38,12 +38,12 @@ class REPSVMAgresor(Base, UniversalMixin):
     @property
     def distrito_nombre(self):
         """Nombre del distrito"""
-        return self.autoridad.distrito.nombre
+        return self.distrito.nombre
 
     @property
     def distrito_nombre_corto(self):
         """Nombre corto del distrito"""
-        return self.autoridad.distrito.nombre_corto
+        return self.distrito.nombre_corto
 
     @property
     def materia_tipo_juzgado_descripcion(self):

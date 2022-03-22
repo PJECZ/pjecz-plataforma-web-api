@@ -12,9 +12,10 @@ from plataforma_web.v2.distritos.crud import get_distrito
 
 def get_peritos(db: Session, distrito_id: int = None, nombre: str = None) -> Any:
     """Consultar los Peritos activos"""
+    consulta = db.query(Perito)
     if distrito_id is not None:
         distrito = get_distrito(db, distrito_id)
-        consulta = db.query(Perito).filter(Perito.distrito == distrito)
+        consulta = consulta.filter(Perito.distrito == distrito)
     if nombre is not None:
         nombre = safe_string(nombre)
         if nombre != "":

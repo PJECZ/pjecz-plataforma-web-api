@@ -1,0 +1,16 @@
+@base_url = http://127.0.0.1:8001
+
+### SLT-J2-MER: J. 2do. Mercantil de Saltillo
+GET {{base_url}}/autoridades/clave/SLT-J2-MER
+
+### Listas de Acuerdos del SLT-J1-FAM
+GET {{base_url}}/listas_de_acuerdos?autoridad_id=40
+
+### Listas de Acuerdos del SLT-J1-FAM del 2019
+GET {{base_url}}/listas_de_acuerdos?autoridad_id=40&ano=2019
+
+### Listas de Acuerdos del SLT-J1-FAM del 2022-03-15
+GET {{base_url}}/listas_de_acuerdos?autoridad_id=40&fecha=2022-03-15
+
+### Acuerdos de la lista 96991
+GET {{base_url}}/listas_de_acuerdos_acuerdos?lista_de_acuerdo_id=96991

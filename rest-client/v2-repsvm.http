@@ -1,0 +1,22 @@
+@base_url = http://127.0.0.1:8001/v2
+
+### Tipos de Sentencias
+GET {{base_url}}/repsvm_tipos_sentencias
+
+### Delitos Genericos
+GET {{base_url}}/repsvm_delitos_genericos
+
+### Delitos Especificos
+GET {{base_url}}/repsvm_delitos_especificos
+
+### Agresores
+GET {{base_url}}/repsvm_agresores
+
+### Agresores de Saltillo
+GET {{base_url}}/repsvm_agresores?distrito_id=6
+
+### Agresores de Saltillo con nombre Juan
+GET {{base_url}}/repsvm_agresores?distrito_id=6&nombre=juan
+
+### Agresores con nombre Juan
+GET {{base_url}}/repsvm_agresores?nombre=juan
