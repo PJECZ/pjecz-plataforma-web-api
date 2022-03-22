@@ -1,0 +1,10 @@
+@base_url = http://127.0.0.1:8001
+
+### Autoridad SLT-J2-MER
+GET {{base_url}}/autoridades/clave/SLT-J2-MER
+
+### Ubicaciones de Expedientes del SLT-J2-MER
+GET {{base_url}}/ubicaciones_expedientes?autoridad_id=40
+
+### Ubicacion del Expediente 1058/2016 del SLT-J2-MER
+GET {{base_url}}/ubicaciones_expedientes?autoridad_id=40&expediente=1058/2016

@@ -1,0 +1,7 @@
+@base_url = http://127.0.0.1:8001
+
+### Peritos de Saltillo
+GET {{base_url}}/peritos?distrito_id=6
+
+### Peritos de Saltillo con Lopez
+GET {{base_url}}/peritos?distrito_id=6&nombre=lopez
