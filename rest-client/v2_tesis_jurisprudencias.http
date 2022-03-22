@@ -1,0 +1,13 @@
+@base_url = http://127.0.0.1:8001/v2
+
+### Autoridad SLT-SC-CIV-FAM
+GET {{base_url}}/autoridades/clave/SLT-SC-CIV-FAM
+
+### Tesis y Jurisprudencias
+GET {{base_url}}/tesis_jurisprudencias
+
+### Tesis y Jurisprudencias de SLT-SC-CIV-FAM
+GET {{base_url}}/tesis_jurisprudencias?autoridad_id=50
+
+### Tesis y Jurisprudencias ID 3
+GET {{base_url}}/tesis_jurisprudencias/3

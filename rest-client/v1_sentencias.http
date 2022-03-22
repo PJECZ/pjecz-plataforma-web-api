@@ -1,0 +1,13 @@
+@base_url = http://127.0.0.1:8001
+
+### Autoridad SLT-J2-MER
+GET {{base_url}}/autoridades/clave/SLT-J2-MER
+
+### Sentencias del SLT-J2-MER
+GET {{base_url}}/sentencias?autoridad_id=40
+
+### Sentencias del SLT-J2-MER del 2019
+GET {{base_url}}/sentencias?autoridad_id=40&ano=2019
+
+### Sentencia 22700
+GET {{base_url}}/sentencias/22700
