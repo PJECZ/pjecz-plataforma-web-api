@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.autoridades.crud import get_autoridades, get_autoridad
-from plataforma_web.v2.autoridades.schemas import AutoridadOut
+from .crud import get_autoridades, get_autoridad
+from .schemas import AutoridadOut
 
 autoridades = APIRouter()
 

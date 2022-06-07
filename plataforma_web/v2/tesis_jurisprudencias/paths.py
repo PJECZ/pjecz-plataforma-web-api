@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.tesis_jurisprudencias.crud import get_tesis_jurisprudencias, get_tesis_jurisprudencia
-from plataforma_web.v2.tesis_jurisprudencias.schemas import TesisJurisprudenciaOut
+from .crud import get_tesis_jurisprudencias, get_tesis_jurisprudencia
+from .schemas import TesisJurisprudenciaOut
 
 tesis_jurisprudencias = APIRouter()
 

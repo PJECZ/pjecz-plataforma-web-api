@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.epocas.crud import get_epocas, get_epoca
-from plataforma_web.v2.epocas.schemas import EpocaOut
+from .crud import get_epocas, get_epoca
+from .schemas import EpocaOut
 
 epocas = APIRouter()
 

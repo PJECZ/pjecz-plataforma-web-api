@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.repsvm_agresores.crud import get_repsvm_agresores, get_repsvm_agresor
-from plataforma_web.v2.repsvm_agresores.schemas import REPSVMAgresorOut
+from .crud import get_repsvm_agresores, get_repsvm_agresor
+from .schemas import REPSVMAgresorOut
 
 repsvm_agresores = APIRouter()
 

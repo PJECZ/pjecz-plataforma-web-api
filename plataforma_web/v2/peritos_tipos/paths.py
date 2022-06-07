@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.peritos_tipos.crud import get_peritos_tipos, get_perito_tipo
-from plataforma_web.v2.peritos_tipos.schemas import PeritoTipoOut
+from .crud import get_peritos_tipos, get_perito_tipo
+from .schemas import PeritoTipoOut
 
 peritos_tipos = APIRouter()
 

@@ -3,7 +3,7 @@ REPSVM Delitos Especificos, CRUD: the four basic operations (create, read, updat
 """
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.repsvm_delitos_especificos.models import REPSVMDelitoEspecifico
+from ...core.repsvm_delitos_especificos.models import REPSVMDelitoEspecifico
 
 
 def get_repsvm_delitos_especificos(db: Session):

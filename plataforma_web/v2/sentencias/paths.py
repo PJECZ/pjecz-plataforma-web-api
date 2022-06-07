@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.sentencias.crud import get_sentencias, get_sentencia
-from plataforma_web.v2.sentencias.schemas import SentenciaOut
+from .crud import get_sentencias, get_sentencia
+from .schemas import SentenciaOut
 
 sentencias = APIRouter()
 

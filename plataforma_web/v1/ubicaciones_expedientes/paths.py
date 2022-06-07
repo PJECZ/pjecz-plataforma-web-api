@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+
 from .crud import get_ubicacion_expediente, get_ubicaciones_expedientes
 from .schemas import UbicacionExpedienteOut
 

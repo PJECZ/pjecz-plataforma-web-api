@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+
 from .crud import get_repsvm_tipo_sentencia, get_repsvm_tipos_sentencias
 from .schemas import REPSVMTipoSentenciaOut
 

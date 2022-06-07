@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.materias.crud import get_materias, get_materia
-from plataforma_web.v2.materias.schemas import MateriaOut
+from .crud import get_materias, get_materia
+from .schemas import MateriaOut
 
 materias = APIRouter()
 

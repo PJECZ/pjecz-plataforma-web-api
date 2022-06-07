@@ -5,8 +5,8 @@ from datetime import datetime, date
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.audiencias.models import Audiencia
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.audiencias.models import Audiencia
+from ..autoridades.crud import get_autoridad
 
 
 def get_audiencias(

@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.edictos.crud import get_edictos, get_edicto
-from plataforma_web.v2.edictos.schemas import EdictoOut
+from .crud import get_edictos, get_edicto
+from .schemas import EdictoOut
 
 edictos = APIRouter()
 

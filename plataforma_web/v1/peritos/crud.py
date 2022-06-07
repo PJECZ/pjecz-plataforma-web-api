@@ -4,10 +4,10 @@ Peritos, CRUD: the four basic operations (create, read, update, and delete) of d
 from sqlalchemy.orm import Session
 from lib.safe_string import safe_string
 
-from plataforma_web.core.distritos.models import Distrito
-from plataforma_web.core.peritos_tipos.models import PeritoTipo
-from plataforma_web.core.peritos.models import Perito
-from plataforma_web.v1.distritos.crud import get_distrito
+from ...core.distritos.models import Distrito
+from ...core.peritos_tipos.models import PeritoTipo
+from ...core.peritos.models import Perito
+from ..distritos.crud import get_distrito
 
 
 def get_peritos(

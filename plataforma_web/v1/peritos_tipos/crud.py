@@ -3,7 +3,7 @@ Peritos Tipos, CRUD: the four basic operations (create, read, update, and delete
 """
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.peritos_tipos.models import PeritoTipo
+from ...core.peritos_tipos.models import PeritoTipo
 
 
 def get_peritos_tipos(db: Session):

@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.glosas.crud import get_glosas, get_glosa
-from plataforma_web.v2.glosas.schemas import GlosaOut
+from .crud import get_glosas, get_glosa
+from .schemas import GlosaOut
 
 glosas = APIRouter()
 

@@ -4,7 +4,7 @@ REPSVM Tipos de Sentencias v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.repsvm_tipos_sentencias.models import REPSVMTipoSentencia
+from ...core.repsvm_tipos_sentencias.models import REPSVMTipoSentencia
 
 
 def get_repsvm_tipos_sentencias(db: Session) -> Any:

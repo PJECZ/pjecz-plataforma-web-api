@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.listas_de_acuerdos_acuerdos.crud import get_listas_de_acuerdos_acuerdos, get_lista_de_acuerdo_acuerdo
-from plataforma_web.v2.listas_de_acuerdos_acuerdos.schemas import ListaDeAcuerdoAcuerdoOut
+from .crud import get_listas_de_acuerdos_acuerdos, get_lista_de_acuerdo_acuerdo
+from .schemas import ListaDeAcuerdoAcuerdoOut
 
 listas_de_acuerdos_acuerdos = APIRouter()
 

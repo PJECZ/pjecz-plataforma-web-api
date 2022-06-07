@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.redams.crud import get_redams, get_redam
-from plataforma_web.v2.redams.schemas import RedamOut
+from .crud import get_redams, get_redam
+from .schemas import RedamOut
 
 redams = APIRouter()
 

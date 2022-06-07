@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 
 from lib.safe_string import safe_expediente
 
-from plataforma_web.core.ubicaciones_expedientes.models import UbicacionExpediente
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.ubicaciones_expedientes.models import UbicacionExpediente
+from ..autoridades.crud import get_autoridad
 
 
 def get_ubicaciones_expedientes(

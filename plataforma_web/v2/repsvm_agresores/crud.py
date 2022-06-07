@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 
 from lib.safe_string import safe_string
 
-from plataforma_web.core.repsvm_agresores.models import REPSVMAgresor
-from plataforma_web.v2.distritos.crud import get_distrito
+from ...core.repsvm_agresores.models import REPSVMAgresor
+from ..distritos.crud import get_distrito
 
 
 def get_repsvm_agresores(db: Session, distrito_id: int = None, nombre: str = None) -> Any:

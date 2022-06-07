@@ -9,8 +9,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.audiencias.crud import get_audiencias, get_audiencia
-from plataforma_web.v2.audiencias.schemas import AudienciaOut
+from .crud import get_audiencias, get_audiencia
+from .schemas import AudienciaOut
 
 audiencias = APIRouter()
 

@@ -4,8 +4,8 @@ REDAM (Registro Estatal de Deudores Alimentarios) v2, CRUD (create, read, update
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.redams.models import Redam
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.redams.models import Redam
+from ..autoridades.crud import get_autoridad
 
 
 def get_redams(

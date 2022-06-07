@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+
 from .crud import get_perito_tipo, get_peritos_tipos
 from .schemas import PeritoTipoOut
 

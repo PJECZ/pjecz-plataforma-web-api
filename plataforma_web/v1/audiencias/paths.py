@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+
 from .crud import get_audiencia, get_audiencias
 from .schemas import AudienciaOut
 

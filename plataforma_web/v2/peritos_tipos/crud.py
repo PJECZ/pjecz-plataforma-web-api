@@ -4,7 +4,7 @@ Peritos Tipos v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.peritos_tipos.models import PeritoTipo
+from ...core.peritos_tipos.models import PeritoTipo
 
 
 def get_peritos_tipos(db: Session) -> Any:
