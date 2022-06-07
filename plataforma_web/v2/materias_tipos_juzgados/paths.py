@@ -8,7 +8,10 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.materias_tipos_juzgados.crud import get_materias_tipos_juzgados, get_materia_tipo_juzgado
+from plataforma_web.v2.materias_tipos_juzgados.crud import (
+    get_materias_tipos_juzgados,
+    get_materia_tipo_juzgado,
+)
 from plataforma_web.v2.materias_tipos_juzgados.schemas import MateriaTipoJuzgadoOut
 
 materias_tipos_juzgados = APIRouter()

@@ -8,7 +8,10 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.repsvm_tipos_sentencias.crud import get_repsvm_tipos_sentencias, get_repsvm_tipo_sentencia
+from plataforma_web.v2.repsvm_tipos_sentencias.crud import (
+    get_repsvm_tipos_sentencias,
+    get_repsvm_tipo_sentencia,
+)
 from plataforma_web.v2.repsvm_tipos_sentencias.schemas import REPSVMTipoSentenciaOut
 
 repsvm_tipos_sentencias = APIRouter()

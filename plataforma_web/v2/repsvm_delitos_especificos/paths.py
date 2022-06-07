@@ -8,8 +8,13 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.repsvm_delitos_especificos.crud import get_repsvm_delitos_especificos, get_repsvm_delito_especifico
-from plataforma_web.v2.repsvm_delitos_especificos.schemas import REPSVMDelitoEspecificoOut
+from plataforma_web.v2.repsvm_delitos_especificos.crud import (
+    get_repsvm_delitos_especificos,
+    get_repsvm_delito_especifico,
+)
+from plataforma_web.v2.repsvm_delitos_especificos.schemas import (
+    REPSVMDelitoEspecificoOut,
+)
 
 repsvm_delitos_especificos = APIRouter()
 

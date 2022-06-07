@@ -18,13 +18,19 @@ class Autoridad(Base, UniversalMixin):
             ("JUZGADO DE PRIMERA INSTANCIA", "Juzgado de Primera Instancia"),
             ("PLENO O SALA DEL TSJ", "Pleno o Sala del TSJ"),
             ("TRIBUNAL DISTRITAL", "Tribunal Distrital"),
-            ("TRIBUNAL DE CONCILIACION Y ARBITRAJE", "Tribunal de Conciliación y Arbitraje"),
+            (
+                "TRIBUNAL DE CONCILIACION Y ARBITRAJE",
+                "Tribunal de Conciliación y Arbitraje",
+            ),
         ]
     )
     AUDIENCIAS_CATEGORIAS = OrderedDict(
         [
             ("NO DEFINIDO", "No Definido"),
-            ("CIVIL FAMILIAR MERCANTIL LETRADO TCYA", "Civil Familiar Mercantil Letrado TCyA"),
+            (
+                "CIVIL FAMILIAR MERCANTIL LETRADO TCYA",
+                "Civil Familiar Mercantil Letrado TCyA",
+            ),
             ("MATERIA ACUSATORIO PENAL ORAL", "Materia Acusatorio Penal Oral"),
             ("DISTRITALES", "Distritales"),
             ("SALAS", "Salas"),
@@ -50,12 +56,20 @@ class Autoridad(Base, UniversalMixin):
     es_jurisdiccional = Column(Boolean(), nullable=False, default=False)
     es_notaria = Column(Boolean(), nullable=False, default=False)
     organo_jurisdiccional = Column(
-        Enum(*ORGANOS_JURISDICCIONALES, name="tipos_organos_jurisdiccionales", native_enum=False),
+        Enum(
+            *ORGANOS_JURISDICCIONALES,
+            name="tipos_organos_jurisdiccionales",
+            native_enum=False,
+        ),
         index=True,
         nullable=False,
     )
     audiencia_categoria = Column(
-        Enum(*AUDIENCIAS_CATEGORIAS, name="tipos_audiencias_categorias", native_enum=False),
+        Enum(
+            *AUDIENCIAS_CATEGORIAS,
+            name="tipos_audiencias_categorias",
+            native_enum=False,
+        ),
         index=True,
         nullable=False,
     )

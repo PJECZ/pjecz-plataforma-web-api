@@ -8,7 +8,10 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.tesis_jurisprudencias.crud import get_tesis_jurisprudencias, get_tesis_jurisprudencia
+from plataforma_web.v2.tesis_jurisprudencias.crud import (
+    get_tesis_jurisprudencias,
+    get_tesis_jurisprudencia,
+)
 from plataforma_web.v2.tesis_jurisprudencias.schemas import TesisJurisprudenciaOut
 
 tesis_jurisprudencias = APIRouter()
@@ -27,7 +30,16 @@ async def listado_tesis_jurisprudencias(
 ):
     """Listado de Tesis Jurisprudencias"""
     try:
-        listado = get_tesis_jurisprudencias(db, autoridad_id, epoca_id, materia_id, clase, titulo, texto, aprobacion_anio)
+        listado = get_tesis_jurisprudencias(
+            db,
+            autoridad_id,
+            epoca_id,
+            materia_id,
+            clase,
+            titulo,
+            texto,
+            aprobacion_anio,
+        )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

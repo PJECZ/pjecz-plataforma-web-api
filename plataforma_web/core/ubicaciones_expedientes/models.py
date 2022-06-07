@@ -31,7 +31,11 @@ class UbicacionExpediente(Base, UniversalMixin):
 
     # Columnas
     expediente = Column(String(256), nullable=False)
-    ubicacion = Column(Enum(*UBICACIONES, name="ubicaciones_opciones", native_enum=False), index=True, nullable=False)
+    ubicacion = Column(
+        Enum(*UBICACIONES, name="ubicaciones_opciones", native_enum=False),
+        index=True,
+        nullable=False,
+    )
 
     @property
     def distrito_id(self):

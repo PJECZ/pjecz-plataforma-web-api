@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class PeritoOut(BaseModel):
-    """ Esquema para entregar peritos """
+    """Esquema para entregar peritos"""
 
     id: int
     distrito_id: int
@@ -21,6 +21,6 @@ class PeritoOut(BaseModel):
     notas: str
 
     class Config:
-        """ SQLAlchemy config """
+        """SQLAlchemy config"""
 
         orm_mode = True

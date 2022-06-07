@@ -9,7 +9,10 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.listas_de_acuerdos.crud import get_listas_de_acuerdos, get_lista_de_acuerdo
+from plataforma_web.v2.listas_de_acuerdos.crud import (
+    get_listas_de_acuerdos,
+    get_lista_de_acuerdo,
+)
 from plataforma_web.v2.listas_de_acuerdos.schemas import ListaDeAcuerdoOut
 
 listas_de_acuerdos = APIRouter()

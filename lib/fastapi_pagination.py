@@ -4,7 +4,10 @@ FastAPI Pagination
 from typing import TypeVar, Generic
 from fastapi import Query
 from fastapi_pagination.default import Page as BasePage, Params as BaseParams
-from fastapi_pagination.limit_offset import LimitOffsetPage as BaseLimitOffsetPage, LimitOffsetParams as BaseLimitOffsetParams
+from fastapi_pagination.limit_offset import (
+    LimitOffsetPage as BaseLimitOffsetPage,
+    LimitOffsetParams as BaseLimitOffsetParams,
+)
 
 T = TypeVar("T")
 
