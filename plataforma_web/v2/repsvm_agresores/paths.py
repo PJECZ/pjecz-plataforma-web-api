@@ -8,10 +8,7 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.repsvm_agresores.crud import (
-    get_repsvm_agresores,
-    get_repsvm_agresor,
-)
+from plataforma_web.v2.repsvm_agresores.crud import get_repsvm_agresores, get_repsvm_agresor
 from plataforma_web.v2.repsvm_agresores.schemas import REPSVMAgresorOut
 
 repsvm_agresores = APIRouter()
@@ -25,7 +22,7 @@ async def listado_repsvm_agresores(
 ):
     """Listado de Agresores"""
     try:
-        listado = get_repsvm_agresores(db, distrito_id, nombre)
+        listado = get_repsvm_agresores(db, distrito_id=distrito_id, nombre=nombre)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -40,7 +37,7 @@ async def detalle_repsvm_agresor(
 ):
     """Detalle de un Agresor a partir de su id"""
     try:
-        repsvm_agresor = get_repsvm_agresor(db, repsvm_agresor_id)
+        repsvm_agresor = get_repsvm_agresor(db, repsvm_agresor_id=repsvm_agresor_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

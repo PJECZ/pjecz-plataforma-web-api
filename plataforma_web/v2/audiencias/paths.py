@@ -24,7 +24,7 @@ async def listado_audiencias(
 ):
     """Listado de Audiencias"""
     try:
-        listado = get_audiencias(db, autoridad_id, fecha, anio)
+        listado = get_audiencias(db, autoridad_id=autoridad_id, fecha=fecha, anio=anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -39,7 +39,7 @@ async def detalle_audiencia(
 ):
     """Detalle de un Audiencia a partir de su id"""
     try:
-        audiencia = get_audiencia(db, audiencia_id)
+        audiencia = get_audiencia(db, audiencia_id=audiencia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

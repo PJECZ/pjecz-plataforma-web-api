@@ -23,7 +23,7 @@ async def listado_abogados(
 ):
     """Listado de Abogados"""
     try:
-        listado = get_abogados(db, nombre, anio_desde, anio_hasta)
+        listado = get_abogados(db, nombre=nombre, anio_desde=anio_desde, anio_hasta=anio_hasta)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -38,7 +38,7 @@ async def detalle_abogado(
 ):
     """Detalle de un Abogado a partir de su id"""
     try:
-        abogado = get_abogado(db, abogado_id)
+        abogado = get_abogado(db, abogado_id=abogado_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

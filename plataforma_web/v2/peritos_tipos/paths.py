@@ -33,7 +33,7 @@ async def detalle_perito_tipo(
 ):
     """Detalle de un Tipo de Perito a partir de su id"""
     try:
-        perito_tipo = get_perito_tipo(db, perito_tipo_id)
+        perito_tipo = get_perito_tipo(db, perito_tipo_id=perito_tipo_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

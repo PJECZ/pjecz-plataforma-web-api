@@ -8,10 +8,7 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.materias_tipos_juicios.crud import (
-    get_materias_tipos_juicios,
-    get_materia_tipo_juicio,
-)
+from plataforma_web.v2.materias_tipos_juicios.crud import get_materias_tipos_juicios, get_materia_tipo_juicio
 from plataforma_web.v2.materias_tipos_juicios.schemas import MateriaTipoJuicioOut
 
 materias_tipos_juicios = APIRouter()
@@ -24,7 +21,7 @@ async def listado_materias_tipos_juicios(
 ):
     """Listado de Tipos de Juicios"""
     try:
-        listado = get_materias_tipos_juicios(db, materia_id)
+        listado = get_materias_tipos_juicios(db, materia_id=materia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -39,7 +36,7 @@ async def detalle_materia_tipo_juicio(
 ):
     """Detalle de un Tipo de Juicio a partir de su id"""
     try:
-        materia_tipo_juicio = get_materia_tipo_juicio(db, materia_tipo_juicio_id)
+        materia_tipo_juicio = get_materia_tipo_juicio(db, materia_tipo_juicio_id=materia_tipo_juicio_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

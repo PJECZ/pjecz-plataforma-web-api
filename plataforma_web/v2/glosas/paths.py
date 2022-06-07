@@ -22,7 +22,7 @@ async def listado_glosas(
 ):
     """Listado de Glosas"""
     try:
-        listado = get_glosas(db, autoridad_id, anio)
+        listado = get_glosas(db, autoridad_id=autoridad_id, anio=anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_glosa(
 ):
     """Detalle de una Glosa a partir de su id"""
     try:
-        glosa = get_glosa(db, glosa_id)
+        glosa = get_glosa(db, glosa_id=glosa_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

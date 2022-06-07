@@ -22,7 +22,7 @@ async def listado_edictos(
 ):
     """Listado de Edictos"""
     try:
-        listado = get_edictos(db, autoridad_id, anio)
+        listado = get_edictos(db, autoridad_id=autoridad_id, anio=anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_edicto(
 ):
     """Detalle de un Edicto a partir de su id"""
     try:
-        edicto = get_edicto(db, edicto_id)
+        edicto = get_edicto(db, edicto_id=edicto_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

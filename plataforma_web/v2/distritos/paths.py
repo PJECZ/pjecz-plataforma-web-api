@@ -21,7 +21,7 @@ async def listado_distritos(
 ):
     """Listado de Distritos"""
     try:
-        listado = get_distritos(db, solo_distritos)
+        listado = get_distritos(db, solo_distritos=solo_distritos)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -36,7 +36,7 @@ async def detalle_distrito(
 ):
     """Detalle de un Distrito a partir de su id"""
     try:
-        distrito = get_distrito(db, distrito_id)
+        distrito = get_distrito(db, distrito_id=distrito_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

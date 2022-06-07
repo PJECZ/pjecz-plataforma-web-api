@@ -36,7 +36,7 @@ async def detalle_redam(
 ):
     """Detalle de un deudor a partir de su id"""
     try:
-        redam = get_redam(db, redam_id)
+        redam = get_redam(db, redam_id=redam_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

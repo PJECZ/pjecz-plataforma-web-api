@@ -35,7 +35,7 @@ async def detalle_materia(
 ):
     """Detalle de un Materia a partir de su id"""
     try:
-        materia = get_materia(db, materia_id)
+        materia = get_materia(db, materia_id=materia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

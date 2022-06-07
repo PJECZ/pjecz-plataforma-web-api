@@ -33,7 +33,7 @@ async def detalle_epoca(
 ):
     """Detalle de un Epoca a partir de su id"""
     try:
-        epoca = get_epoca(db, epoca_id)
+        epoca = get_epoca(db, epoca_id=epoca_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

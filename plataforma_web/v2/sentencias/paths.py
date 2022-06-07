@@ -22,7 +22,7 @@ async def listado_sentencias(
 ):
     """Listado de Sentencias"""
     try:
-        listado = get_sentencias(db, autoridad_id, anio)
+        listado = get_sentencias(db, autoridad_id=autoridad_id, anio=anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_sentencia(
 ):
     """Detalle de un Sentencia a partir de su id"""
     try:
-        sentencia = get_sentencia(db, sentencia_id)
+        sentencia = get_sentencia(db, sentencia_id=sentencia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

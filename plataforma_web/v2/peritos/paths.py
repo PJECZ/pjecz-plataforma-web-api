@@ -22,7 +22,7 @@ async def listado_peritos(
 ):
     """Listado de Peritos"""
     try:
-        listado = get_peritos(db, distrito_id, nombre)
+        listado = get_peritos(db, distrito_id=distrito_id, nombre=nombre)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_perito(
 ):
     """Detalle de un Perito a partir de su id"""
     try:
-        perito = get_perito(db, perito_id)
+        perito = get_perito(db, perito_id=perito_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
