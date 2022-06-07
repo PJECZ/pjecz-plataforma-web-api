@@ -47,6 +47,9 @@ from .v2.peritos.paths import peritos as peritos_v2
 from .v1.peritos_tipos.paths import peritos_tipos as peritos_tipos_v1
 from .v2.peritos_tipos.paths import peritos_tipos as peritos_tipos_v2
 
+# REDAM
+from .v2.redams.paths import redams as redams_v2
+
 # REPSVM
 from .v1.repsvm_agresores.paths import repsvm_agresores as repsvm_agresores_v1
 from .v2.repsvm_agresores.paths import repsvm_agresores as repsvm_agresores_v2
@@ -132,6 +135,9 @@ app.include_router(peritos_v1, prefix="/peritos", tags=["peritos"])
 app.include_router(peritos_v2, prefix="/v2/peritos", tags=["peritos"])
 app.include_router(peritos_tipos_v1, prefix="/peritos_tipos", tags=["peritos"])
 app.include_router(peritos_tipos_v2, prefix="/v2/peritos_tipos", tags=["peritos"])
+
+# REDAM
+app.include_router(redams_v2, prefix="/redam", tags=["redam"])
 
 # REPSVM
 app.include_router(repsvm_agresores_v1, prefix="/repsvm_agresores", tags=["repsvm"])
