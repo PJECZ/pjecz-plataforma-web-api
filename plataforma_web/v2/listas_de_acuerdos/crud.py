@@ -6,7 +6,7 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from ...core.listas_de_acuerdos.models import ListaDeAcuerdo
-from .crud import get_autoridad
+from ..autoridades.crud import get_autoridad
 
 
 def get_listas_de_acuerdos(

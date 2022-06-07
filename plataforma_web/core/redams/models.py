@@ -14,6 +14,9 @@ class Redam(Base, UniversalMixin):
     # Nombre de la tabla
     __tablename__ = "redam"
 
+    # Clave primaria
+    id = Column(Integer, primary_key=True)
+
     # Clave foránea
     autoridad_id = Column(Integer, ForeignKey("autoridades.id"), index=True, nullable=False)
     autoridad = relationship("Autoridad", back_populates="redams")
