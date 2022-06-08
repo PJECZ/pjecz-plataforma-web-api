@@ -12,8 +12,8 @@ from ..distritos.crud import get_distrito
 
 def get_redams(
     db: Session,
-    distrito_id: int = None,
     autoridad_id: int = None,
+    distrito_id: int = None,
 ) -> Any:
     """Consultar los deudores activos"""
     consulta = db.query(Redam)
