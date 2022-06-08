@@ -1,4 +1,24 @@
 @base_url = http://127.0.0.1:8001/v2
 
-### REDAM listado
-GET {{base_url}}/redam
+### REDAM listado de deudores
+GET {{base_url}}/redams
+    ?limit=50
+
+### Distrito Monclova
+GET {{base_url}}/distritos/2
+
+### REDAM listado de deudores del Distrito de Monclova
+GET {{base_url}}/redams
+    ?distrito_id=2
+    &limit=20
+
+### Autoridad detalle del J. 3ro Familiar de Monclova
+GET {{base_url}}/autoridades/11
+
+### REDAM listado de deudores del J. 3ro Familiar de Monclova
+GET {{base_url}}/redams
+    ?autoridad_id=11
+    &limit=20
+
+### REDAM un deudor
+GET {{base_url}}/redams/108
