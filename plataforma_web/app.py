@@ -137,7 +137,7 @@ app.include_router(peritos_tipos_v1, prefix="/peritos_tipos", tags=["peritos"])
 app.include_router(peritos_tipos_v2, prefix="/v2/peritos_tipos", tags=["peritos"])
 
 # REDAM
-app.include_router(redams_v2, prefix="/v2/redam", tags=["redam"])
+app.include_router(redams_v2, prefix="/v2/redams", tags=["redam"])
 
 # REPSVM
 app.include_router(repsvm_agresores_v1, prefix="/repsvm_agresores", tags=["repsvm"])
