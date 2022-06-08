@@ -1,0 +1,4 @@
+@base_url = http://127.0.0.1:8001/v2
+
+### REDAM listado
+GET {{base_url}}/redam
