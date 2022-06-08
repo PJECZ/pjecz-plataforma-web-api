@@ -4,8 +4,8 @@ REPSVM Delitos Especificos v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.repsvm_delitos_especificos.models import REPSVMDelitoEspecifico
-from plataforma_web.v2.repsvm_delitos_genericos.crud import get_repsvm_delito_generico
+from ...core.repsvm_delitos_especificos.models import REPSVMDelitoEspecifico
+from ..repsvm_delitos_genericos.crud import get_repsvm_delito_generico
 
 
 def get_repsvm_delitos_especificos(db: Session, repsvm_delito_generico_id: int = None) -> Any:

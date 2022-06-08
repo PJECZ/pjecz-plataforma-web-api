@@ -5,8 +5,8 @@ from datetime import date
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.sentencias.models import Sentencia
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.sentencias.models import Sentencia
+from ..autoridades.crud import get_autoridad
 
 
 def get_sentencias(

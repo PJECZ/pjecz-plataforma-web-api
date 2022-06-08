@@ -40,7 +40,11 @@ class Glosa(Base, UniversalMixin):
 
     # Columnas
     fecha = Column(Date, index=True, nullable=False)
-    tipo_juicio = Column(Enum(*TIPOS_JUICIOS, name="tipos_juicios", native_enum=False), index=True, nullable=False)
+    tipo_juicio = Column(
+        Enum(*TIPOS_JUICIOS, name="tipos_juicios", native_enum=False),
+        index=True,
+        nullable=False,
+    )
     descripcion = Column(String(256), nullable=False)
     expediente = Column(String(16), nullable=False)
     archivo = Column(String(256))

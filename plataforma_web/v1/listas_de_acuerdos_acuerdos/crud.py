@@ -3,9 +3,9 @@ Listas de Acuerdos Acuerdos, CRUD: the four basic operations (create, read, upda
 """
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.listas_de_acuerdos.models import ListaDeAcuerdo
-from plataforma_web.core.listas_de_acuerdos_acuerdos.models import ListaDeAcuerdoAcuerdo
-from plataforma_web.v1.listas_de_acuerdos.crud import get_lista_de_acuerdo
+from ...core.listas_de_acuerdos.models import ListaDeAcuerdo
+from ...core.listas_de_acuerdos_acuerdos.models import ListaDeAcuerdoAcuerdo
+from ..listas_de_acuerdos.crud import get_lista_de_acuerdo
 
 
 def get_listas_de_acuerdos_acuerdos(db: Session, lista_de_acuerdo_id: int):

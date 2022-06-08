@@ -40,7 +40,7 @@
             "):",
             "\t\"\"\"Detalle de un ${6:Singular} a partir de su id\"\"\"",
             "\ttry:",
-            "\t\t${3:singular} = get_${3:singular}(db, ${3:singular}_id)",
+            "\t\t${3:singular} = get_${3:singular}(db, ${3:singular}_id=${3:singular}_id)",
             "\texcept IndexError as error:",
             "\t\traise HTTPException(status_code=404, detail=f\"Not found: {str(error)}\") from error",
             "\texcept ValueError as error:",

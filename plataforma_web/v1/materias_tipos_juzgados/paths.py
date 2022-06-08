@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+
 from .crud import get_materia_tipo_juzgado, get_materias_tipos_juzgados
 from .schemas import MateriaTipoJuzgadoOut
 

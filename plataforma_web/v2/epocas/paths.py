@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.epocas.crud import get_epocas, get_epoca
-from plataforma_web.v2.epocas.schemas import EpocaOut
+from .crud import get_epocas, get_epoca
+from .schemas import EpocaOut
 
 epocas = APIRouter()
 
@@ -33,7 +33,7 @@ async def detalle_epoca(
 ):
     """Detalle de un Epoca a partir de su id"""
     try:
-        epoca = get_epoca(db, epoca_id)
+        epoca = get_epoca(db, epoca_id=epoca_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

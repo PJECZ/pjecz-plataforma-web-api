@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.ubicaciones_expedientes.crud import get_ubicaciones_expedientes, get_ubicacion_expediente
-from plataforma_web.v2.ubicaciones_expedientes.schemas import UbicacionExpedienteOut
+from .crud import get_ubicaciones_expedientes, get_ubicacion_expediente
+from .schemas import UbicacionExpedienteOut
 
 ubicaciones_expedientes = APIRouter()
 
@@ -22,7 +22,7 @@ async def listado_ubicaciones_expedientes(
 ):
     """Listado de Ubicaciones Expedientes"""
     try:
-        listado = get_ubicaciones_expedientes(db, autoridad_id, expediente)
+        listado = get_ubicaciones_expedientes(db, autoridad_id=autoridad_id, expediente=expediente)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_ubicacion_expediente(
 ):
     """Detalle de un Ubicacion Expediente a partir de su id"""
     try:
-        ubicacion_expediente = get_ubicacion_expediente(db, ubicacion_expediente_id)
+        ubicacion_expediente = get_ubicacion_expediente(db, ubicacion_expediente_id=ubicacion_expediente_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

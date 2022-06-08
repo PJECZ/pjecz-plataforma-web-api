@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from lib.safe_string import safe_string
 
-from plataforma_web.core.abogados.models import Abogado
+from ...core.abogados.models import Abogado
 
 
 def get_abogados(

@@ -7,10 +7,10 @@ from sqlalchemy.orm import Session
 
 from lib.safe_string import safe_string
 
-from plataforma_web.core.tesis_jurisprudencias.models import TesisJurisprudencia
-from plataforma_web.v2.autoridades.crud import get_autoridad
-from plataforma_web.v2.epocas.crud import get_epoca
-from plataforma_web.v2.materias.crud import get_materia
+from ...core.tesis_jurisprudencias.models import TesisJurisprudencia
+from ..autoridades.crud import get_autoridad
+from ..epocas.crud import get_epoca
+from ..materias.crud import get_materia
 
 
 def get_tesis_jurisprudencias(

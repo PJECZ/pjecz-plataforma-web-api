@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.distritos.crud import get_distritos, get_distrito
-from plataforma_web.v2.distritos.schemas import DistritoOut
+from .crud import get_distritos, get_distrito
+from .schemas import DistritoOut
 
 distritos = APIRouter()
 
@@ -21,7 +21,7 @@ async def listado_distritos(
 ):
     """Listado de Distritos"""
     try:
-        listado = get_distritos(db, solo_distritos)
+        listado = get_distritos(db, solo_distritos=solo_distritos)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -36,7 +36,7 @@ async def detalle_distrito(
 ):
     """Detalle de un Distrito a partir de su id"""
     try:
-        distrito = get_distrito(db, distrito_id)
+        distrito = get_distrito(db, distrito_id=distrito_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

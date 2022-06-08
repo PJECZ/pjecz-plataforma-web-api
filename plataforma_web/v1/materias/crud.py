@@ -3,7 +3,7 @@ Materias, CRUD: the four basic operations (create, read, update, and delete) of 
 """
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.materias.models import Materia
+from ...core.materias.models import Materia
 
 
 def get_materias(db: Session):

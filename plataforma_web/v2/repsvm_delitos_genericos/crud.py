@@ -4,7 +4,7 @@ REPSVM Delitos Genericos v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.repsvm_delitos_genericos.models import REPSVMDelitoGenerico
+from ...core.repsvm_delitos_genericos.models import REPSVMDelitoGenerico
 
 
 def get_repsvm_delitos_genericos(db: Session) -> Any:

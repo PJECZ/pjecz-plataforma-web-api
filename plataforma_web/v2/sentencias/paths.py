@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.sentencias.crud import get_sentencias, get_sentencia
-from plataforma_web.v2.sentencias.schemas import SentenciaOut
+from .crud import get_sentencias, get_sentencia
+from .schemas import SentenciaOut
 
 sentencias = APIRouter()
 
@@ -22,7 +22,7 @@ async def listado_sentencias(
 ):
     """Listado de Sentencias"""
     try:
-        listado = get_sentencias(db, autoridad_id, anio)
+        listado = get_sentencias(db, autoridad_id=autoridad_id, anio=anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_sentencia(
 ):
     """Detalle de un Sentencia a partir de su id"""
     try:
-        sentencia = get_sentencia(db, sentencia_id)
+        sentencia = get_sentencia(db, sentencia_id=sentencia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

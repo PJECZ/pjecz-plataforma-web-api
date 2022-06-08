@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.glosas.crud import get_glosas, get_glosa
-from plataforma_web.v2.glosas.schemas import GlosaOut
+from .crud import get_glosas, get_glosa
+from .schemas import GlosaOut
 
 glosas = APIRouter()
 
@@ -22,7 +22,7 @@ async def listado_glosas(
 ):
     """Listado de Glosas"""
     try:
-        listado = get_glosas(db, autoridad_id, anio)
+        listado = get_glosas(db, autoridad_id=autoridad_id, anio=anio)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
@@ -37,7 +37,7 @@ async def detalle_glosa(
 ):
     """Detalle de una Glosa a partir de su id"""
     try:
-        glosa = get_glosa(db, glosa_id)
+        glosa = get_glosa(db, glosa_id=glosa_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

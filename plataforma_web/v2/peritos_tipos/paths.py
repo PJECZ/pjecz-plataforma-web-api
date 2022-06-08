@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.peritos_tipos.crud import get_peritos_tipos, get_perito_tipo
-from plataforma_web.v2.peritos_tipos.schemas import PeritoTipoOut
+from .crud import get_peritos_tipos, get_perito_tipo
+from .schemas import PeritoTipoOut
 
 peritos_tipos = APIRouter()
 
@@ -33,7 +33,7 @@ async def detalle_perito_tipo(
 ):
     """Detalle de un Tipo de Perito a partir de su id"""
     try:
-        perito_tipo = get_perito_tipo(db, perito_tipo_id)
+        perito_tipo = get_perito_tipo(db, perito_tipo_id=perito_tipo_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

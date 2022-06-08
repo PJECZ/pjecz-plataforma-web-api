@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.materias.crud import get_materias, get_materia
-from plataforma_web.v2.materias.schemas import MateriaOut
+from .crud import get_materias, get_materia
+from .schemas import MateriaOut
 
 materias = APIRouter()
 
@@ -35,7 +35,7 @@ async def detalle_materia(
 ):
     """Detalle de un Materia a partir de su id"""
     try:
-        materia = get_materia(db, materia_id)
+        materia = get_materia(db, materia_id=materia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

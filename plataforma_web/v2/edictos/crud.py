@@ -5,8 +5,8 @@ from datetime import date
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.edictos.models import Edicto
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.edictos.models import Edicto
+from ..autoridades.crud import get_autoridad
 
 
 def get_edictos(

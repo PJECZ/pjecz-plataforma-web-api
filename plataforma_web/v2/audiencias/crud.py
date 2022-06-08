@@ -5,8 +5,8 @@ from datetime import datetime, date
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.audiencias.models import Audiencia
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.audiencias.models import Audiencia
+from ..autoridades.crud import get_autoridad
 
 
 def get_audiencias(
@@ -21,8 +21,22 @@ def get_audiencias(
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(Audiencia.autoridad == autoridad)
     if fecha is not None:
-        desde = datetime(year=fecha.year, month=fecha.month, day=fecha.day, hour=0, minute=0, second=0)
-        hasta = datetime(year=fecha.year, month=fecha.month, day=fecha.day, hour=23, minute=59, second=59)
+        desde = datetime(
+            year=fecha.year,
+            month=fecha.month,
+            day=fecha.day,
+            hour=0,
+            minute=0,
+            second=0,
+        )
+        hasta = datetime(
+            year=fecha.year,
+            month=fecha.month,
+            day=fecha.day,
+            hour=23,
+            minute=59,
+            second=59,
+        )
         consulta = consulta.filter(Audiencia.tiempo >= desde).filter(Audiencia.tiempo <= hasta)
     elif anio is not None:
         if 2000 <= anio <= date.today().year:

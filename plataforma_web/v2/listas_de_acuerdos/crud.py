@@ -5,8 +5,8 @@ from datetime import date
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.listas_de_acuerdos.models import ListaDeAcuerdo
-from plataforma_web.v2.autoridades.crud import get_autoridad
+from ...core.listas_de_acuerdos.models import ListaDeAcuerdo
+from ..autoridades.crud import get_autoridad
 
 
 def get_listas_de_acuerdos(

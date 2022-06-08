@@ -4,7 +4,7 @@ Epocas v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.epocas.models import Epoca
+from ...core.epocas.models import Epoca
 
 
 def get_epocas(db: Session) -> Any:

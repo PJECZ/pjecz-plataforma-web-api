@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 from lib.fastapi_pagination import LimitOffsetPage
 
-from plataforma_web.v2.repsvm_tipos_sentencias.crud import get_repsvm_tipos_sentencias, get_repsvm_tipo_sentencia
-from plataforma_web.v2.repsvm_tipos_sentencias.schemas import REPSVMTipoSentenciaOut
+from .crud import get_repsvm_tipos_sentencias, get_repsvm_tipo_sentencia
+from .schemas import REPSVMTipoSentenciaOut
 
 repsvm_tipos_sentencias = APIRouter()
 
@@ -35,7 +35,7 @@ async def detalle_repsvm_tipo_sentencia(
 ):
     """Detalle de un Tipo de Sentencia a partir de su id"""
     try:
-        repsvm_tipo_sentencia = get_repsvm_tipo_sentencia(db, repsvm_tipo_sentencia_id)
+        repsvm_tipo_sentencia = get_repsvm_tipo_sentencia(db, repsvm_tipo_sentencia_id=repsvm_tipo_sentencia_id)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
