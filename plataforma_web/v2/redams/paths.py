@@ -18,11 +18,12 @@ redams = APIRouter()
 async def listado_redams(
     autoridad_id: int = None,
     distrito_id: int = None,
+    nombre: str = None,
     db: Session = Depends(get_db),
 ):
     """Listado de deudores"""
     try:
-        listado = get_redams(db, autoridad_id=autoridad_id, distrito_id=distrito_id)
+        listado = get_redams(db, autoridad_id=autoridad_id, distrito_id=distrito_id, nombre=nombre)
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:

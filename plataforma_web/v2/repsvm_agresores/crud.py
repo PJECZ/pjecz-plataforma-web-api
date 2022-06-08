@@ -10,7 +10,11 @@ from ...core.repsvm_agresores.models import REPSVMAgresor
 from ..distritos.crud import get_distrito
 
 
-def get_repsvm_agresores(db: Session, distrito_id: int = None, nombre: str = None) -> Any:
+def get_repsvm_agresores(
+    db: Session,
+    distrito_id: int = None,
+    nombre: str = None,
+) -> Any:
     """Consultar los Agresores activos"""
     consulta = db.query(REPSVMAgresor)
     if distrito_id is not None:
@@ -23,7 +27,10 @@ def get_repsvm_agresores(db: Session, distrito_id: int = None, nombre: str = Non
     return consulta.filter_by(estatus="A").order_by(REPSVMAgresor.id.desc())
 
 
-def get_repsvm_agresor(db: Session, repsvm_agresor_id: int) -> REPSVMAgresor:
+def get_repsvm_agresor(
+    db: Session,
+    repsvm_agresor_id: int,
+) -> REPSVMAgresor:
     """Consultar un Agresor por su id"""
     agresor = db.query(REPSVMAgresor).get(repsvm_agresor_id)
     if agresor is None:
