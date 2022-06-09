@@ -12,7 +12,7 @@ content-type: application/json
 
 {
     "draw": 1,
-    "start": 0,
+    "start": 20,
     "length": 10
 }
 
@@ -24,20 +24,19 @@ POST {{base_url}}/redams
 content-type: application/json
 
 {
-    "draw": 1,
-    "start": 0,
-    "length": 10,
     "distrito_id": 2
 }
-
 
 ### Autoridad detalle del J. 3ro Familiar de Monclova
 GET {{base_url}}/autoridades/11
 
 ### REDAM listado de deudores del J. 3ro Familiar de Monclova
-GET {{base_url}}/redams
-    ?autoridad_id=11
-    &limit=20
+POST {{base_url}}/redams
+content-type: application/json
+
+{
+    "autoridad_id": 11
+}
 
 ### REDAM un deudor
 GET {{base_url}}/redams/108

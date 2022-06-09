@@ -1,0 +1,60 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}REDAM{% endblock %}
+
+{% block header %}
+    <h2>REDAM</h2>
+{% endblock %}
+
+{% block content %}
+    <table id="resultadosDataTable" class="table table-striped table-bordered" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Distrito</th>
+                <th>Juzgado</th>
+                <th>Nombre</th>
+                <th>Expediente</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}
+
+{% block custom_javascript %}
+    <script>
+
+    const distritos_api_url = "http://localhost:8001/distritos";
+    const redams_api_url = "http://localhost:8001/v2/redams";
+
+    $(document).ready(function() {
+        $('#resultadosDataTable').DataTable({
+            ordering: false,
+            searching: false,
+            serverSide: true,
+            ajax: {
+                url: redams_api_url,
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                dataSrc: "data",
+                processData: false,
+                data: JSON.stringify({
+                    draw: 1,
+                    distrito_id: 2
+                })
+            },
+            processing: true,
+            columns: [
+                { data: "id" },
+                { data: "distrito_nombre_corto" },
+                { data: "autoridad_descripcion_corta" },
+                { data: "nombre" },
+                { data: "expediente" },
+                { data: "fecha" }
+            ]
+        });
+    });
+
+    </script>
+{% endblock %}

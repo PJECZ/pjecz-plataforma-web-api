@@ -8,7 +8,7 @@ from pydantic import BaseModel
 class DataTableBase(BaseModel):
     """DataTableBase"""
 
-    draw: int = 1
+    draw: int
 
 
 class DataTableRequest(DataTableBase):

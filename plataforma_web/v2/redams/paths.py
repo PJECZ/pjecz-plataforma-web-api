@@ -13,7 +13,7 @@ redams = APIRouter()
 
 
 @redams.post("")
-async def listado_redams(
+async def datatable_redams(
     request: RedamDataTableRequest,
     db: Session = Depends(get_db),
 ) -> RedamDataTableResponse:
@@ -21,8 +21,8 @@ async def listado_redams(
     try:
         listado = get_redams(
             db,
-            autoridad_id=request.autoridad_id,
             distrito_id=request.distrito_id,
+            autoridad_id=request.autoridad_id,
             nombre=request.nombre,
         )
     except IndexError as error:
