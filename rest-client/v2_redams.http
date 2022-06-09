@@ -1,46 +1,25 @@
 @base_url = http://127.0.0.1:8001/v2
 
 ### REDAM DataTable de deudores
-POST {{base_url}}/redams
-content-type: application/json
-
-{
-    "draw": 1
-}
+GET {{base_url}}/redams
 
 ### REDAM DataTable de deudores
-POST {{base_url}}/redams
-content-type: application/json
-
-{
-    "draw": 1,
-    "start": 20,
-    "length": 10
-}
+GET {{base_url}}/redams
+    ?start=20
 
 ### Distrito Monclova
 GET {{base_url}}/distritos/2
 
 ### REDAM listado de deudores del Distrito de Monclova
-POST {{base_url}}/redams
-content-type: application/json
-
-{
-    "draw": 1,
-    "distrito_id": 2
-}
+GET {{base_url}}/redams
+    ?distrito_id=2
 
 ### Autoridad detalle del J. 3ro Familiar de Monclova
 GET {{base_url}}/autoridades/11
 
 ### REDAM listado de deudores del J. 3ro Familiar de Monclova
-POST {{base_url}}/redams
-content-type: application/json
-
-{
-    "draw": 1,
-    "autoridad_id": 11
-}
+GET {{base_url}}/redams
+    ?autoridad_id=11
 
 ### REDAM un deudor
 GET {{base_url}}/redams/108

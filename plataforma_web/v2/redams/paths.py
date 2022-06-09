@@ -12,28 +12,33 @@ from .schemas import RedamOut, RedamDataTableRequest, RedamDataTableResponse
 redams = APIRouter()
 
 
-@redams.post("")
+@redams.get("")
 async def datatable_redams(
-    request: RedamDataTableRequest,
+    draw: int = 0,
+    start: int = 0,
+    length: int = 10,
+    autoridad_id: int = None,
+    distrito_id: int = None,
+    nombre: str = None,
     db: Session = Depends(get_db),
 ) -> RedamDataTableResponse:
     """Listado de deudores"""
     try:
         listado = get_redams(
             db,
-            distrito_id=request.distrito_id,
-            autoridad_id=request.autoridad_id,
-            nombre=request.nombre,
+            distrito_id=distrito_id,
+            autoridad_id=autoridad_id,
+            nombre=nombre,
         )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return RedamDataTableResponse(
-        draw=request.draw,
-        iTotalRecords=listado.count(),
-        iTotalDisplayRecords=listado.count(),
-        aaData=listado.offset(request.start).limit(request.length).all(),
+        draw=draw,
+        recordsTotal=listado.count(),
+        recordsFiltered=listado.count(),
+        data=listado.offset(start).limit(length).all(),
     )
 
 

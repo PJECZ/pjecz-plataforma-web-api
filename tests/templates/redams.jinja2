@@ -29,66 +29,57 @@
 
     $(document).ready(function() {
 
-        $.ajax({
-            url: redams_api_url,
-            type: "POST",
-            contentType: "application/json",
-            dataType: "json",
-            processData: false,
-            data: JSON.stringify({
-                draw: 1,
-                distrito_id: 2
-            }),
-            success: function(data) {
-                mostrarRedamDataTable(data);
-            }
+        // $.ajax({
+        //     url: redams_api_url,
+        //     type: "GET",
+        //     dataSrc: "json",
+        //     data: {
+        //         draw: 999,
+        //         distrito_id: 2
+        //     },
+        //     dataType: "json",
+        //     success: function(result) {
+        //         mostrarRedamDataTable(result);
+        //     }
+        // });
+        // function mostrarRedamDataTable(result) {
+        //     $('#resultadosDataTable').DataTable({
+        //         lengthChange: false,
+        //         ordering: false,
+        //         searching: false,
+        //         data: result.data,
+        //         columns: [
+        //             { data: 'id' },
+        //             { data: 'distrito_nombre_corto' },
+        //             { data: 'autoridad_descripcion_corta' },
+        //             { data: 'nombre' },
+        //             { data: 'expediente' },
+        //             { data: 'fecha' }
+        //         ]
+        //     });
+        // };
+
+        $('#resultadosDataTable').DataTable({
+            lengthChange: false,
+            ordering: false,
+            searching: false,
+            serverSide: true,
+            ajax: {
+                url: redams_api_url,
+                type: "GET",
+                dataType: "json"
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'distrito_nombre_corto' },
+                { data: 'autoridad_descripcion_corta' },
+                { data: 'nombre' },
+                { data: 'expediente' },
+                { data: 'fecha' }
+            ]
         });
-        function mostrarRedamDataTable(data) {
-            $('#resultadosDataTable').DataTable({
-                lengthChange: false,
-                ordering: false,
-                searching: false,
-                data: data.aaData,
-                columns: [
-                    { data: 'id' },
-                    { data: 'distrito_nombre_corto' },
-                    { data: 'autoridad_descripcion_corta' },
-                    { data: 'nombre' },
-                    { data: 'expediente' },
-                    { data: 'fecha' }
-                ]
-            });
-        };
 
     });
-
-    // $(document).ready(function() {
-    //     $('#resultadosDataTable').DataTable({
-    //         serverSide: true,
-    //         ajax: {
-    //             url: redams_api_url,
-    //             type: "POST",
-    //             contentType: "application/json",
-    //             dataType: "json",
-    //             processData: false,
-    //             data: JSON.stringify({
-    //                 draw: 1,
-    //                 distrito_id: 2
-    //             })
-    //         },
-    //         dataSrc: "aaData",
-    //         processing: true,
-    //         columns: [
-    //             { data: "id" },
-    //             { data: "distrito_nombre_corto" },
-    //             { data: "autoridad_descripcion_corta" },
-    //             { data: "nombre" },
-    //             { data: "expediente" },
-    //             { data: "fecha" }
-    //         ],
-    //         columnDefs: null
-    //     });
-    // });
 
     </script>
 {% endblock %}
