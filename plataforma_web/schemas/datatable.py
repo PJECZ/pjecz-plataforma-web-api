@@ -21,7 +21,7 @@ class DataTableRequest(DataTableBase):
 class DataTableResponse(DataTableBase):
     """DataTableResponse"""
 
-    recordsTotal: int
-    recordsFiltered: int
-    # data: List[Part] = []
+    iTotalRecords: int
+    iTotalDisplayRecords: int
+    # aaData: List[Part] = []
     error: Optional[str] = None

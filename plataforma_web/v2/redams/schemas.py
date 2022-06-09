@@ -40,4 +40,4 @@ class RedamDataTableRequest(DataTableRequest):
 class RedamDataTableResponse(DataTableResponse):
     """Esquema para entregar deudores"""
 
-    data: List[RedamOut] = []
+    aaData: List[RedamOut] = []

@@ -31,9 +31,9 @@ async def datatable_redams(
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return RedamDataTableResponse(
         draw=request.draw,
-        recordsTotal=listado.count(),
-        recordsFiltered=listado.count(),
-        data=listado.offset(request.start).limit(request.length).all(),
+        iTotalRecords=listado.count(),
+        iTotalDisplayRecords=listado.count(),
+        aaData=listado.offset(request.start).limit(request.length).all(),
     )
 
 

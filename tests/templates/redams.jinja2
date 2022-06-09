@@ -28,33 +28,67 @@
     const redams_api_url = "http://localhost:8001/v2/redams";
 
     $(document).ready(function() {
-        $('#resultadosDataTable').DataTable({
-            ordering: false,
-            searching: false,
-            serverSide: true,
-            ajax: {
-                url: redams_api_url,
-                type: "POST",
-                contentType: "application/json",
-                dataType: "json",
-                dataSrc: "data",
-                processData: false,
-                data: JSON.stringify({
-                    draw: 1,
-                    distrito_id: 2
-                })
-            },
-            processing: true,
-            columns: [
-                { data: "id" },
-                { data: "distrito_nombre_corto" },
-                { data: "autoridad_descripcion_corta" },
-                { data: "nombre" },
-                { data: "expediente" },
-                { data: "fecha" }
-            ]
+
+        $.ajax({
+            url: redams_api_url,
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            processData: false,
+            data: JSON.stringify({
+                draw: 1,
+                distrito_id: 2
+            }),
+            success: function(data) {
+                mostrarRedamDataTable(data);
+            }
         });
+        function mostrarRedamDataTable(data) {
+            $('#resultadosDataTable').DataTable({
+                lengthChange: false,
+                ordering: false,
+                searching: false,
+                data: data.aaData,
+                columns: [
+                    { data: 'id' },
+                    { data: 'distrito_nombre_corto' },
+                    { data: 'autoridad_descripcion_corta' },
+                    { data: 'nombre' },
+                    { data: 'expediente' },
+                    { data: 'fecha' }
+                ]
+            });
+        };
+
     });
+
+    // $(document).ready(function() {
+    //     $('#resultadosDataTable').DataTable({
+    //         serverSide: true,
+    //         ajax: {
+    //             url: redams_api_url,
+    //             type: "POST",
+    //             contentType: "application/json",
+    //             dataType: "json",
+    //             processData: false,
+    //             data: JSON.stringify({
+    //                 draw: 1,
+    //                 distrito_id: 2
+    //             })
+    //         },
+    //         dataSrc: "aaData",
+    //         processing: true,
+    //         columns: [
+    //             { data: "id" },
+    //             { data: "distrito_nombre_corto" },
+    //             { data: "autoridad_descripcion_corta" },
+    //             { data: "nombre" },
+    //             { data: "expediente" },
+    //             { data: "fecha" }
+    //         ],
+    //         columnDefs: null
+    //     });
+    // });
 
     </script>
 {% endblock %}

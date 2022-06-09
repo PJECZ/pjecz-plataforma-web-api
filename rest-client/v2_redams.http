@@ -4,7 +4,9 @@
 POST {{base_url}}/redams
 content-type: application/json
 
-{}
+{
+    "draw": 1
+}
 
 ### REDAM DataTable de deudores
 POST {{base_url}}/redams
@@ -24,6 +26,7 @@ POST {{base_url}}/redams
 content-type: application/json
 
 {
+    "draw": 1,
     "distrito_id": 2
 }
 
@@ -35,6 +38,7 @@ POST {{base_url}}/redams
 content-type: application/json
 
 {
+    "draw": 1,
     "autoridad_id": 11
 }
 
