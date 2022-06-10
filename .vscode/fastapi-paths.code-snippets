@@ -49,5 +49,43 @@
             ""
         ],
         "description": "Contenido para paths.py"
+    },
+    "FastAPI paths datatable": {
+        "scope": "python",
+        "prefix": "fpaths_datatable",
+        "body": [
+            "@${1:plural}.get(\"\", response_model=${2:SingularDataTableResponse})",
+            "async def datatable_${1:plural}(",
+            "\tdraw: int = 0,",
+            "\tstart: int = 0,",
+            "\tlength: int = 10,",
+            "\tfiltro_id: int = None,",
+            "\tfiltro_str: str = None,",
+            "\tdb: Session = Depends(get_db),",
+            "):",
+            "\t\"\"\"DataTable de ${3:Plural}\"\"\"",
+            "\ttry:",
+            "\t\tconsulta = get_${1:plural}(",
+            "\t\t\tdb,",
+            "\t\t\tfiltro_id=filtro_id,",
+            "\t\t\tfiltro_str=filtro_str,",
+            "\t\t)",
+            "\t\tcantidad_total = consulta.count()",
+            "\t\tcantidad_filtrados = cantidad_total",
+            "\t\tlistado = consulta.offset(start).limit(length).all()",
+            "\texcept IndexError as error:",
+            "\t\traise HTTPException(status_code=404, detail=f'Not found: {str(error)}') from error",
+            "\texcept ValueError as error:",
+            "\t\traise HTTPException(status_code=406, detail=f'Not acceptable: {str(error)}') from error",
+            "\treturn ${2:SingularDataTableResponse}(",
+            "\t\tdraw=draw,",
+            "\t\trecordsTotal=cantidad_total,",
+            "\t\trecordsFiltered=cantidad_filtrados,",
+            "\t\tdata=listado,",
+            "\t)",
+            "",
+            ""
+        ],
+        "description": "DataTable"
     }
 }

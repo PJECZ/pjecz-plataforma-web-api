@@ -7,12 +7,12 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 
 from .crud import get_redams, get_redam
-from .schemas import RedamOut, RedamDataTableRequest, RedamDataTableResponse
+from .schemas import RedamOut, RedamDataTableResponse
 
 redams = APIRouter()
 
 
-@redams.get("")
+@redams.get("", response_model=RedamDataTableResponse)
 async def datatable_redams(
     draw: int = 0,
     start: int = 0,
@@ -22,23 +22,26 @@ async def datatable_redams(
     nombre: str = None,
     db: Session = Depends(get_db),
 ) -> RedamDataTableResponse:
-    """Listado de deudores"""
+    """DataTable de deudores"""
     try:
-        listado = get_redams(
+        consulta = get_redams(
             db,
             distrito_id=distrito_id,
             autoridad_id=autoridad_id,
             nombre=nombre,
         )
+        cantidad_total = consulta.count()
+        cantidad_filtrados = cantidad_total
+        listado = consulta.offset(start).limit(length).all()
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return RedamDataTableResponse(
         draw=draw,
-        recordsTotal=listado.count(),
-        recordsFiltered=listado.count(),
-        data=listado.offset(start).limit(length).all(),
+        recordsTotal=cantidad_total,
+        recordsFiltered=cantidad_filtrados,
+        data=listado,
     )
 
 
