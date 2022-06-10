@@ -19,7 +19,7 @@ Usa la paginacion combinada con SQLAlchemy para entregar una respuesta compatibl
 from typing import TypeVar, Generic, Sequence
 
 from fastapi import Query
-from fastapi_pagination.bases import AbstractParams
+from fastapi_pagination.bases import AbstractParams, RawParams
 from fastapi_pagination.limit_offset import (
     LimitOffsetPage as BaseLimitOffsetPage,
     LimitOffsetParams as BaseLimitOffsetParams,
@@ -28,12 +28,24 @@ from fastapi_pagination.limit_offset import (
 T = TypeVar("T")
 
 
-class Params(BaseLimitOffsetParams):
-    """LimitOffsetParams"""
+class Params(BaseLimitOffsetParams, AbstractParams):
+    """
+    Params transforma los parametros de DataTable para el paginador
+
+    - El paginador requiere limit y offset
+    - DataTables entrega start (que comienza en cero) y length
+    """
 
     draw: int = 1
-    start: int = Query(1, ge=1, description="Page offset")
+    start: int = Query(0, ge=0, description="Page offset")
     length: int = Query(50, ge=1, le=100, description="Page size limit")
+
+    def to_raw_params(self) -> RawParams:
+        """Definir limit y offset a partir de start y length"""
+        return RawParams(
+            limit=self.length,
+            offset=self.start + 1,
+        )
 
 
 class LimitOffsetPage(BaseLimitOffsetPage[T], Generic[T]):
@@ -46,6 +58,8 @@ class LimitOffsetPage(BaseLimitOffsetPage[T], Generic[T]):
     recordsFiltered: int
     start: int
     length: int
+    limit: int
+    offset: int
 
     class Config:
         """Config"""
@@ -54,8 +68,8 @@ class LimitOffsetPage(BaseLimitOffsetPage[T], Generic[T]):
         fields = {
             "items": {"alias": "data"},
             "total": {"alias": "recordsTotal"},
-            "limit": {"alias": "start"},
-            "offset": {"alias": "length"},
+            "offset": {"alias": "start"},
+            "limit": {"alias": "length"},
         }
 
     @classmethod

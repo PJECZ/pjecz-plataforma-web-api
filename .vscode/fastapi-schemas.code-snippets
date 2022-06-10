@@ -27,18 +27,5 @@
             ""
         ],
         "description": "Contenido para schemas.py"
-    },
-    "FastAPI schemas DataTable response": {
-        "scope": "python",
-        "prefix": "fschemas_datatable_response",
-        "body": [
-            "class ${1:SingularDataTableResponse}(DataTableResponse):",
-            "\t\"\"\" Esquema para entregar ${2:plural} \"\"\"",
-            "",
-            "\tdata: List[RedamOut] = []",
-            "",
-            ""
-        ],
-        "description": "Esquema DataTable response"
     }
 }

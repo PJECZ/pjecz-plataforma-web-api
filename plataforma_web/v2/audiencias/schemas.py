@@ -2,10 +2,7 @@
 Audiencias v2, esquemas de pydantic
 """
 from datetime import datetime
-from typing import List
 from pydantic import BaseModel
-
-from ...schemas.datatable import DataTableResponse
 
 
 class AudienciaOut(BaseModel):
@@ -37,9 +34,3 @@ class AudienciaOut(BaseModel):
         """SQLAlchemy config"""
 
         orm_mode = True
-
-
-class AudienciaDataTableReponse(DataTableResponse):
-    """Esquema para entregar audiencias"""
-
-    data: List[AudienciaOut] = []

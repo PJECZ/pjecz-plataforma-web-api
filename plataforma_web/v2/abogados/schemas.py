@@ -2,10 +2,7 @@
 Abogados v2, esquemas de pydantic
 """
 from datetime import date
-from typing import List
 from pydantic import BaseModel
-
-from ...schemas.datatable import DataTableResponse
 
 
 class AbogadoOut(BaseModel):
@@ -21,9 +18,3 @@ class AbogadoOut(BaseModel):
         """SQLAlchemy config"""
 
         orm_mode = True
-
-
-class AbogadoDataTableResponse(DataTableResponse):
-    """Esquema para entregar abogados"""
-
-    data: List[AbogadoOut] = []

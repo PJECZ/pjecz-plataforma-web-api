@@ -1,8 +1,6 @@
 """
 Abogados v2, rutas (paths)
 """
-from typing import Any
-
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
@@ -21,10 +19,9 @@ async def datatable_abogados(
     anio_desde: int = None,
     anio_hasta: int = None,
     nombre: str = None,
-    draw: int = 5432,
     db: Session = Depends(get_db),
-) -> Any:
-    """Consulta de abogados"""
+):
+    """DataTable de abogados"""
     try:
         consulta = get_abogados(
             db,

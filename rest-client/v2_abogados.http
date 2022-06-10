@@ -2,7 +2,9 @@
 
 ### Abogados default
 GET {{base_url}}/abogados
-    ?draw=555
+    ?draw=999
+    &start=0
+    &length=10
 
 ### Abogados GARZA
 GET {{base_url}}/abogados?nombre=garza

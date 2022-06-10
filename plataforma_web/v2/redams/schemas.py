@@ -2,10 +2,7 @@
 REDAM (Registro Estatal de Deudores Alimentarios) v2, esquemas de pydantic
 """
 from datetime import date
-from typing import List
 from pydantic import BaseModel
-
-from ...schemas.datatable import DataTableResponse
 
 
 class RedamOut(BaseModel):
@@ -27,9 +24,3 @@ class RedamOut(BaseModel):
         """SQLAlchemy config"""
 
         orm_mode = True
-
-
-class RedamDataTableResponse(DataTableResponse):
-    """Esquema para entregar deudores"""
-
-    data: List[RedamOut] = []
