@@ -1,28 +1,30 @@
 """
 Abogados v2, rutas (paths)
 """
+from typing import Any
+
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 from .crud import get_abogados, get_abogado
-from .schemas import AbogadoOut, AbogadoDataTableResponse
+from .schemas import AbogadoOut
 
 abogados = APIRouter()
 
 
-@abogados.get("", response_model=AbogadoDataTableResponse)
+@abogados.get("", response_model=LimitOffsetPage[AbogadoOut])
 async def datatable_abogados(
-    draw: int = 0,
-    start: int = 0,
-    length: int = 10,
-    nombre: str = None,
     anio_desde: int = None,
     anio_hasta: int = None,
+    nombre: str = None,
+    draw: int = 5432,
     db: Session = Depends(get_db),
-):
-    """DataTable de abogados"""
+) -> Any:
+    """Consulta de abogados"""
     try:
         consulta = get_abogados(
             db,
@@ -30,19 +32,11 @@ async def datatable_abogados(
             anio_desde=anio_desde,
             anio_hasta=anio_hasta,
         )
-        cantidad_total = consulta.count()
-        cantidad_filtrados = cantidad_total
-        listado = consulta.offset(start).limit(length).all()
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return AbogadoDataTableResponse(
-        draw=draw,
-        recordsTotal=cantidad_total,
-        recordsFiltered=cantidad_filtrados,
-        data=listado,
-    )
+    return paginate(consulta)
 
 
 @abogados.get("/{abogado_id}", response_model=AbogadoOut)
