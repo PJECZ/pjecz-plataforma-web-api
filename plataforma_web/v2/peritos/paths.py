@@ -6,16 +6,12 @@ from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
-from lib.fastapi_pagination import LimitOffsetPage
+from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 from .crud import get_peritos, get_perito
 from .schemas import PeritoOut
 
 peritos = APIRouter()
-
-
-from fastapi_pagination.ext.sqlalchemy import paginate
-from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 
 @peritos.get("", response_model=LimitOffsetPage[PeritoOut])
