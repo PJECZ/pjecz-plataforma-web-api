@@ -1,7 +1,9 @@
 """
 FastAPI pagination for DataTables
 
-Usa la paginacion combinada con SQLAlchemy para entregar una respuesta compatible con DataTables, por ejmplo...
+This module provides a pagination class for FastAPI that can be used to paginate with DataTables.
+
+This is an example of the output JSON:
 
     {
     "data": [
@@ -30,10 +32,10 @@ T = TypeVar("T")
 
 class Params(BaseLimitOffsetParams, AbstractParams):
     """
-    Params transforma los parametros de DataTable para el paginador
+    Process the parameters from the request
 
-    - El paginador requiere limit y offset
-    - DataTables entrega start (que comienza en cero) y length
+    - FastApi pagination requires limit and offset
+    - DataTables gives start (that start with zero) and length
     """
 
     draw: int = 1
@@ -41,7 +43,7 @@ class Params(BaseLimitOffsetParams, AbstractParams):
     length: int = Query(50, ge=1, le=100, description="Page size limit")
 
     def to_raw_params(self) -> RawParams:
-        """Definir limit y offset a partir de start y length"""
+        """Define limit and offset with start and length"""
         return RawParams(
             limit=self.length,
             offset=self.start + 1,
