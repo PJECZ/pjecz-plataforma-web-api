@@ -1,7 +1,10 @@
 @base_url = http://127.0.0.1:8001/v2
 
-### Abogados
+### Abogados default
 GET {{base_url}}/abogados
+    ?draw=999
+    &start=0
+    &length=10
 
 ### Abogados GARZA
 GET {{base_url}}/abogados?nombre=garza

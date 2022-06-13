@@ -21,16 +21,13 @@
     {% block custom_head %}{% endblock %}
 </head>
 
-<body>
-    <header>
-        <div class="jumbotron text-center">
-            {% block header %}{% endblock %}
-        </div>
+<body style="padding-top: 5rem;">
+    {% include 'layouts/navigation.jinja2' %}
+    <header class="text-center">
+        {% block header %}{% endblock %}
     </header>
-    <main>
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
+    <main role="main" class="container-fluid">
+        {% block content %}{% endblock %}
     </main>
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -2,29 +2,28 @@
 REDAM (Registro Estatal de Deudores Alimentarios) v2, rutas (paths)
 """
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
+from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 from .crud import get_redams, get_redam
-from .schemas import RedamOut, RedamDataTableRequest, RedamDataTableResponse
+from .schemas import RedamOut
 
 redams = APIRouter()
 
 
-@redams.get("")
+@redams.get("", response_model=LimitOffsetPage[RedamOut])
 async def datatable_redams(
-    draw: int = 0,
-    start: int = 0,
-    length: int = 10,
     autoridad_id: int = None,
     distrito_id: int = None,
     nombre: str = None,
     db: Session = Depends(get_db),
-) -> RedamDataTableResponse:
-    """Listado de deudores"""
+):
+    """DataTable de deudores"""
     try:
-        listado = get_redams(
+        consulta = get_redams(
             db,
             distrito_id=distrito_id,
             autoridad_id=autoridad_id,
@@ -34,12 +33,7 @@ async def datatable_redams(
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return RedamDataTableResponse(
-        draw=draw,
-        recordsTotal=listado.count(),
-        recordsFiltered=listado.count(),
-        data=listado.offset(start).limit(length).all(),
-    )
+    return paginate(consulta)
 
 
 @redams.get("/{redam_id}", response_model=RedamOut)

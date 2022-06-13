@@ -7,7 +7,7 @@ from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
-from lib.fastapi_pagination import LimitOffsetPage
+from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 from .crud import get_audiencias, get_audiencia
 from .schemas import AudienciaOut
@@ -16,20 +16,25 @@ audiencias = APIRouter()
 
 
 @audiencias.get("", response_model=LimitOffsetPage[AudienciaOut])
-async def listado_audiencias(
+async def datatable_audiencias(
     autoridad_id: int = None,
     fecha: date = None,
     anio: int = None,
     db: Session = Depends(get_db),
 ):
-    """Listado de Audiencias"""
+    """DataTable de audiencias"""
     try:
-        listado = get_audiencias(db, autoridad_id=autoridad_id, fecha=fecha, anio=anio)
+        consulta = get_audiencias(
+            db,
+            autoridad_id=autoridad_id,
+            fecha=fecha,
+            anio=anio,
+        )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return paginate(listado)
+    return paginate(consulta)
 
 
 @audiencias.get("/{audiencia_id}", response_model=AudienciaOut)
