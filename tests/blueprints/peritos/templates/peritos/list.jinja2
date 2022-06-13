@@ -1,9 +1,9 @@
 {% extends 'layouts/base.jinja2' %}
 
-{% block title %}Audiencias{% endblock %}
+{% block title %}Peritos{% endblock %}
 
 {% block header %}
-    <h2>Audiencias</h2>
+    <h2>Peritos</h2>
 {% endblock %}
 
 {% block content %}
@@ -12,14 +12,13 @@
             <tr>
                 <th>ID</th>
                 <th>Distrito</th>
-                <th>Juzgado</th>
-                <th>Tiempo</th>
-                <th>Tipo de Audiencia</th>
-                <th>Expediente</th>
-                <th>Actores</th>
-                <th>Demandados</th>
-                <th>Sala</th>
-                <th>Caracter</th>
+                <th>Tipo</th>
+                <th>Nombre</th>
+                <th>Domicilio</th>
+                <th>Telefono fijo</th>
+                <th>Telefono celular</th>
+                <th>e-mail</th>
+                <th>Notas</th>
             </tr>
         </thead>
     </table>
@@ -34,25 +33,24 @@
                 searching: false,
                 serverSide: true,
                 ajax: {
-                    url: "http://localhost:8001/v2/audiencias",
+                    url: "http://localhost:8001/v2/peritos",
                     type: "GET",
                     dataType: "json"
                 },
                 columns: [
                     { data: 'id' },
                     { data: 'distrito_nombre_corto' },
-                    { data: 'autoridad_descripcion_corta' },
-                    { data: 'tiempo' },
-                    { data: 'tipo_audiencia' },
-                    { data: 'expediente' },
-                    { data: 'actores' },
-                    { data: 'demandados' },
-                    { data: 'sala' },
-                    { data: 'caracter' }
+                    { data: 'perito_tipo_nombre' },
+                    { data: 'nombre' },
+                    { data: 'domicilio' },
+                    { data: 'telefono_fijo' },
+                    { data: 'telefono_celular' },
+                    { data: 'email' },
+                    { data: 'notas' }
                 ],
                 columnDefs: [
                     {
-                        targets: [4, 5, 6, 7, 8, 9],
+                        targets: [2, 3, 4, 5, 6, 7, 8],
                         data: null,
                         render: function(data, type, row, meta) {
                             if (data.length > 24) {
