@@ -23,8 +23,6 @@
 
 {% block custom_javascript %}
     <script>
-        const distritos_api_url = "http://localhost:8001/distritos";
-        const redams_api_url = "http://localhost:8001/v2/redams";
         $(document).ready(function() {
             $('#resultadosDataTable').DataTable({
                 lengthChange: false,
@@ -32,7 +30,7 @@
                 searching: false,
                 serverSide: true,
                 ajax: {
-                    url: redams_api_url,
+                    url: "http://localhost:8001/v2/redams",
                     type: "GET",
                     dataType: "json"
                 },

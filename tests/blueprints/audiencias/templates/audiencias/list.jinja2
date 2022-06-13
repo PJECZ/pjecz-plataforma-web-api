@@ -13,9 +13,13 @@
                 <th>ID</th>
                 <th>Distrito</th>
                 <th>Juzgado</th>
-                <th>Nombre</th>
+                <th>Tiempo</th>
+                <th>Tipo de Audiencia</th>
                 <th>Expediente</th>
-                <th>Fecha</th>
+                <th>Actores</th>
+                <th>Demandados</th>
+                <th>Sala</th>
+                <th>Caracter</th>
             </tr>
         </thead>
     </table>
@@ -23,8 +27,6 @@
 
 {% block custom_javascript %}
     <script>
-        const distritos_api_url = "http://localhost:8001/distritos";
-        const redams_api_url = "http://localhost:8001/v2/redams";
         $(document).ready(function() {
             $('#resultadosDataTable').DataTable({
                 lengthChange: false,
@@ -32,7 +34,7 @@
                 searching: false,
                 serverSide: true,
                 ajax: {
-                    url: redams_api_url,
+                    url: "http://localhost:8001/v2/audiencias",
                     type: "GET",
                     dataType: "json"
                 },
@@ -40,9 +42,13 @@
                     { data: 'id' },
                     { data: 'distrito_nombre_corto' },
                     { data: 'autoridad_descripcion_corta' },
-                    { data: 'nombre' },
+                    { data: 'tiempo' },
+                    { data: 'tipo_audiencia' },
                     { data: 'expediente' },
-                    { data: 'fecha' }
+                    { data: 'actores' },
+                    { data: 'demandados' },
+                    { data: 'sala' },
+                    { data: 'caracter' }
                 ]
             });
         });

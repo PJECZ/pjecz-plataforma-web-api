@@ -11,11 +11,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Distrito</th>
-                <th>Juzgado</th>
-                <th>Nombre</th>
-                <th>Expediente</th>
                 <th>Fecha</th>
+                <th>Libro</th>
+                <th>Numero</th>
+                <th>Nombre</th>
             </tr>
         </thead>
     </table>
@@ -23,8 +22,6 @@
 
 {% block custom_javascript %}
     <script>
-        const distritos_api_url = "http://localhost:8001/distritos";
-        const redams_api_url = "http://localhost:8001/v2/redams";
         $(document).ready(function() {
             $('#resultadosDataTable').DataTable({
                 lengthChange: false,
@@ -32,17 +29,16 @@
                 searching: false,
                 serverSide: true,
                 ajax: {
-                    url: redams_api_url,
+                    url: "http://localhost:8001/v2/abogados",
                     type: "GET",
                     dataType: "json"
                 },
                 columns: [
                     { data: 'id' },
-                    { data: 'distrito_nombre_corto' },
-                    { data: 'autoridad_descripcion_corta' },
-                    { data: 'nombre' },
-                    { data: 'expediente' },
-                    { data: 'fecha' }
+                    { data: 'fecha' },
+                    { data: 'libro' },
+                    { data: 'numero' },
+                    { data: 'nombre' }
                 ]
             });
         });
