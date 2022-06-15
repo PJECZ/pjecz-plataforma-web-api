@@ -6,7 +6,7 @@ from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
-from lib.fastapi_pagination import LimitOffsetPage
+from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 from .crud import get_edictos, get_edicto
 from .schemas import EdictoOut
@@ -15,19 +15,23 @@ edictos = APIRouter()
 
 
 @edictos.get("", response_model=LimitOffsetPage[EdictoOut])
-async def listado_edictos(
+async def datatable_edictos(
     autoridad_id: int = None,
     anio: int = None,
     db: Session = Depends(get_db),
 ):
-    """Listado de Edictos"""
+    """DataTable de edictos"""
     try:
-        listado = get_edictos(db, autoridad_id=autoridad_id, anio=anio)
+        consulta = get_edictos(
+            db,
+            autoridad_id=autoridad_id,
+            anio=anio,
+        )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return paginate(listado)
+    return paginate(consulta)
 
 
 @edictos.get("/{edicto_id}", response_model=EdictoOut)
