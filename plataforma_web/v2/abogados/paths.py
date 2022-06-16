@@ -25,9 +25,9 @@ async def datatable_abogados(
     try:
         consulta = get_abogados(
             db,
-            nombre=nombre,
             anio_desde=anio_desde,
             anio_hasta=anio_hasta,
+            nombre=nombre,
         )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
