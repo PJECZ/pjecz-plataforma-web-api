@@ -64,6 +64,16 @@ class Sentencia(Base, UniversalMixin):
         return self.autoridad.descripcion_corta
 
     @property
+    def materia_id(self):
+        """Materia id"""
+        return self.materia_tipo_juicio.materia_id
+
+    @property
+    def materia_nombre(self):
+        """Materia nombre"""
+        return self.materia_tipo_juicio.materia.nombre
+
+    @property
     def materia_tipo_juicio_descripcion(self):
         """Descripcion de la materia tipo de juicio"""
         return self.materia_tipo_juicio.descripcion
