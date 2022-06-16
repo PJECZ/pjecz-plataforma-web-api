@@ -62,15 +62,20 @@ Cree el archivo `instance/settings.py` que cargue las variables de entorno
     DB_HOST = os.environ.get("DB_HOST", "127.0.0.1")
 
     # MariaDB o MySQL
-    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
+    # SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
+
+    # PostgreSQL
+    SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
 
     # CORS or "Cross-Origin Resource Sharing" refers to the situations when a frontend
     # running in a browser has JavaScript code that communicates with a backend,
     # and the backend is in a different "origin" than the frontend.
     # https://fastapi.tiangolo.com/tutorial/cors/
     ORIGINS = [
-        "http://127.0.0.1:8001",
+        "http://localhost:5000",
         "http://localhost:8001",
+        "http://127.0.0.1:5000",
+        "http://127.0.0.1:8001",
     ]
 
 ## Crear Entorno Virtual
