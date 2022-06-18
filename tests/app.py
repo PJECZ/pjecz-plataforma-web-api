@@ -10,6 +10,7 @@ from tests.blueprints.listas_de_acuerdos.views import listas_de_acuerdos
 from tests.blueprints.peritos.views import peritos
 from tests.blueprints.redams.views import redams
 from tests.blueprints.sistemas.views import sistemas
+from tests.blueprints.sentencias.views import sentencias
 
 
 def create_app():
@@ -22,4 +23,5 @@ def create_app():
     app.register_blueprint(peritos)
     app.register_blueprint(redams)
     app.register_blueprint(sistemas)
+    app.register_blueprint(sentencias)
     return app
