@@ -1,9 +1,9 @@
 {% extends 'layouts/base.jinja2' %}
 
-{% block title %}Edictos{% endblock %}
+{% block title %}Glosas{% endblock %}
 
 {% block header %}
-    <h2>Edictos</h2>
+    <h2>Glosas</h2>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +14,9 @@
                 <th>Distrito</th>
                 <th>Autoridad</th>
                 <th>Fecha</th>
+                <th>Tipo de juicio</th>
                 <th>Descripcion</th>
                 <th>Expediente</th>
-                <th>No. Pub.</th>
                 <th>Archivo</th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                 searching: false,
                 serverSide: true,
                 ajax: {
-                    url: "http://localhost:8001/v2/edictos",
+                    url: "http://localhost:8001/v2/glosas",
                     type: "GET",
                     dataType: "json"
                 },
@@ -41,14 +41,14 @@
                     { data: 'distrito_nombre_corto' },
                     { data: 'autoridad_clave' },
                     { data: 'fecha' },
+                    { data: 'tipo_juicio' },
                     { data: 'descripcion' },
                     { data: 'expediente' },
-                    { data: 'numero_publicacion' },
                     { data: 'archivo' }
                 ],
                 columnDefs: [
                     {
-                        targets: 4, // descripcion
+                        targets: 5, // descripcion
                         data: null,
                         render: function(data, type, row, meta) {
                             if (data.length > 24) {
