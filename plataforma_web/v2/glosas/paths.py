@@ -6,7 +6,7 @@ from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
-from lib.fastapi_pagination import LimitOffsetPage
+from lib.fastapi_pagination_datatable import LimitOffsetPage
 
 from .crud import get_glosas, get_glosa
 from .schemas import GlosaOut
@@ -15,19 +15,23 @@ glosas = APIRouter()
 
 
 @glosas.get("", response_model=LimitOffsetPage[GlosaOut])
-async def listado_glosas(
+async def datatable_glosas(
     autoridad_id: int = None,
     anio: int = None,
     db: Session = Depends(get_db),
 ):
-    """Listado de Glosas"""
+    """DataTable de glosas"""
     try:
-        listado = get_glosas(db, autoridad_id=autoridad_id, anio=anio)
+        consulta = get_glosas(
+            db,
+            autoridad_id=autoridad_id,
+            anio=anio,
+        )
     except IndexError as error:
         raise HTTPException(status_code=404, detail=f"Not found: {str(error)}") from error
     except ValueError as error:
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
-    return paginate(listado)
+    return paginate(consulta)
 
 
 @glosas.get("/{glosa_id}", response_model=GlosaOut)
