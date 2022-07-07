@@ -1,5 +1,8 @@
 @base_url = http://127.0.0.1:8001
 
+### Distritos
+GET {{base_url}}/distritos
+
 ### Autoridad SLT-J2-MER
 GET {{base_url}}/autoridades/clave/SLT-J2-MER
 

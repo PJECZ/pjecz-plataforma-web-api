@@ -95,7 +95,6 @@ app.add_middleware(
 # Catalogos v1
 app.include_router(autoridades_v1, prefix="/autoridades", tags=["catalogos"])
 app.include_router(distritos_v1, prefix="/distritos", tags=["catalogos"])
-app.include_router(epocas_v1, prefix="/epocas", tags=["catalogos"])
 app.include_router(materias_v1, prefix="/materias", tags=["catalogos"])
 app.include_router(materias_tipos_juicios_v1, prefix="/materias_tipos_juicios", tags=["catalogos"])
 app.include_router(materias_tipos_juzgados_v1, prefix="/materias_tipos_juzgados", tags=["catalogos"])
@@ -103,7 +102,6 @@ app.include_router(materias_tipos_juzgados_v1, prefix="/materias_tipos_juzgados"
 # Catalogos v2
 app.include_router(autoridades_v2, prefix="/v2/autoridades", tags=["catalogos"])
 app.include_router(distritos_v2, prefix="/v2/distritos", tags=["catalogos"])
-app.include_router(epocas_v2, prefix="/v2/epocas", tags=["catalogos"])
 app.include_router(materias_v2, prefix="/v2/materias", tags=["catalogos"])
 app.include_router(materias_tipos_juicios_v2, prefix="/v2/materias_tipos_juicios", tags=["catalogos"])
 app.include_router(materias_tipos_juzgados_v2, prefix="/v2/materias_tipos_juzgados", tags=["catalogos"])
