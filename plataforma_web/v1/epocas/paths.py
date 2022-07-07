@@ -23,7 +23,7 @@ async def listar_epocas(db: Session = Depends(get_db)):
 
 
 @epocas.get("/{epoca_id}", response_model=EpocaOut)
-async def consultar_un_epoca(epoca_id: int, db: Session = Depends(get_db)):
+async def consultar_una_epoca(epoca_id: int, db: Session = Depends(get_db)):
     """Consultar una epoca"""
     try:
         epoca = get_epoca(db, epoca_id=epoca_id)
