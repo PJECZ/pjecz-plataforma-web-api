@@ -11,7 +11,7 @@ from ..materias.crud import get_materia
 def get_materias_tipos_juzgados(db: Session, materia_id: int = None) -> Any:
     """Consultar los tipos de juzgados activos"""
     consulta = db.query(MateriaTipoJuzgado)
-    if materia_id is not None:
+    if materia_id is not None and materia_id != 0:
         materia = get_materia(db, materia_id)
         consulta = consulta.filter(MateriaTipoJuzgado.materia == materia)
     return consulta.filter_by(estatus="A").order_by(MateriaTipoJuzgado.descripcion)

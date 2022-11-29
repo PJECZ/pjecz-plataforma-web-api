@@ -16,7 +16,7 @@ def get_glosas(
 ) -> Any:
     """Consultar las Glosas activas"""
     consulta = db.query(Glosa)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(Glosa.autoridad == autoridad)
     if anio is not None:

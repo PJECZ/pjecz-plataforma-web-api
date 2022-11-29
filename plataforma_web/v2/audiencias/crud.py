@@ -17,7 +17,7 @@ def get_audiencias(
 ) -> Any:
     """Consultar los Audiencias activos"""
     consulta = db.query(Audiencia)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(Audiencia.autoridad == autoridad)
     if fecha is not None:

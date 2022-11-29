@@ -16,7 +16,7 @@ def get_sentencias(
 ) -> Any:
     """Consultar los Sentencias activos"""
     consulta = db.query(Sentencia)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(Sentencia.autoridad == autoridad)
     if anio is not None:

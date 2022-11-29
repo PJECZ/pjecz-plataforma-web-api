@@ -16,7 +16,7 @@ def get_edictos(
 ) -> Any:
     """Consultar los Edictos activos"""
     consulta = db.query(Edicto)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(Edicto.autoridad == autoridad)
     if anio is not None:

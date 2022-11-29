@@ -17,7 +17,7 @@ def get_repsvm_agresores(
 ) -> Any:
     """Consultar los Agresores activos"""
     consulta = db.query(REPSVMAgresor)
-    if distrito_id is not None:
+    if distrito_id is not None and distrito_id != 0:
         distrito = get_distrito(db, distrito_id)
         consulta = consulta.filter(REPSVMAgresor.distrito == distrito)
     if nombre is not None:

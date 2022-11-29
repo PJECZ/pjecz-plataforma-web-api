@@ -17,7 +17,7 @@ def get_listas_de_acuerdos(
 ) -> Any:
     """Consultar los Listas de Acuerdos activos"""
     consulta = db.query(ListaDeAcuerdo)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(ListaDeAcuerdo.autoridad == autoridad)
     if fecha is not None:

@@ -25,13 +25,13 @@ def get_tesis_jurisprudencias(
 ) -> Any:
     """Consultar los Tesis Jurisprudencias activos"""
     consulta = db.query(TesisJurisprudencia)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(TesisJurisprudencia.autoridad == autoridad)
-    if epoca_id is not None:
+    if epoca_id is not None and epoca_id != 0:
         epoca = get_epoca(db, epoca_id=epoca_id)
         consulta = consulta.filter(TesisJurisprudencia.epoca == epoca)
-    if materia_id is not None:
+    if materia_id is not None and materia_id != 0:
         materia = get_materia(db, materia_id=materia_id)
         consulta = consulta.filter(TesisJurisprudencia.materia == materia)
     if clase is not None:

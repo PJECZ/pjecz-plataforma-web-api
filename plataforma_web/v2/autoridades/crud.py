@@ -21,10 +21,10 @@ def get_autoridades(
 ) -> Any:
     """Consultar las Autoridades activas"""
     consulta = db.query(Autoridad)
-    if distrito_id is not None:
+    if distrito_id is not None and distrito_id != 0:
         distrito = get_distrito(db, distrito_id)
         consulta = consulta.filter(Autoridad.distrito == distrito)
-    if materia_id is not None:
+    if materia_id is not None and materia_id != 0:
         materia = get_materia(db, materia_id)
         consulta = consulta.filter(Autoridad.materia == materia)
     if organo_jurisdiccional is not None:
