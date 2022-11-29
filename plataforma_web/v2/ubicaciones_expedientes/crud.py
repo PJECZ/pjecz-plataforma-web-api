@@ -17,7 +17,7 @@ def get_ubicaciones_expedientes(
 ) -> Any:
     """Consultar los Ubicaciones Expedientes activos"""
     consulta = db.query(UbicacionExpediente)
-    if autoridad_id is not None:
+    if autoridad_id is not None and autoridad_id != 0:
         autoridad = get_autoridad(db, autoridad_id=autoridad_id)
         consulta = consulta.filter(UbicacionExpediente.autoridad == autoridad)
     if expediente is not None:

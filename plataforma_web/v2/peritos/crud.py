@@ -13,7 +13,7 @@ from ..distritos.crud import get_distrito
 def get_peritos(db: Session, distrito_id: int = None, nombre: str = None) -> Any:
     """Consultar los Peritos activos"""
     consulta = db.query(Perito)
-    if distrito_id is not None:
+    if distrito_id is not None and distrito_id != 0:
         distrito = get_distrito(db, distrito_id)
         consulta = consulta.filter(Perito.distrito == distrito)
     if nombre is not None:

@@ -11,7 +11,7 @@ from ..listas_de_acuerdos.crud import get_lista_de_acuerdo
 def get_listas_de_acuerdos_acuerdos(db: Session, lista_de_acuerdo_id: int = None) -> Any:
     """Consultar los Acuerdos activos"""
     consulta = db.query(ListaDeAcuerdoAcuerdo)
-    if lista_de_acuerdo_id is not None:
+    if lista_de_acuerdo_id is not None and lista_de_acuerdo_id != 0:
         lista_de_acuerdo = get_lista_de_acuerdo(db, lista_de_acuerdo_id)
         consulta = consulta.filter(ListaDeAcuerdoAcuerdo.lista_de_acuerdo == lista_de_acuerdo)
     return consulta.filter_by(estatus="A").order_by(ListaDeAcuerdoAcuerdo.id.desc())
