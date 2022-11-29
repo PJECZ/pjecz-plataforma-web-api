@@ -11,7 +11,7 @@
             "from sqlalchemy.orm import Session",
             "",
             "from lib.database import get_db",
-            "from lib.fastapi_pagination import LimitOffsetPage",
+            "from lib.fastapi_pagination_datatable import LimitOffsetPage",
             "",
             "from plataforma_web.v2.${2:plural}.crud import get_${2:plural}, get_${3:singular}",
             "from plataforma_web.v2.${2:plural}.schemas import ${4:EsquemaOut}",
