@@ -6,7 +6,7 @@ from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from lib.database import get_db
-from lib.fastapi_pagination_datatable import LimitOffsetPage
+from lib.fastapi_pagination import LimitOffsetPage
 
 from .crud import get_repsvm_delitos_especificos, get_repsvm_delito_especifico
 from .schemas import REPSVMDelitoEspecificoOut

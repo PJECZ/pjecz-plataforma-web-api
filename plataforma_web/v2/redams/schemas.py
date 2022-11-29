@@ -9,7 +9,6 @@ class RedamOut(BaseModel):
     """Esquema para entregar deudores"""
 
     id: int
-    distrito_id: int
     distrito_nombre: str
     distrito_nombre_corto: str
     autoridad_descripcion: str

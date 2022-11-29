@@ -51,6 +51,11 @@ class REPSVMAgresor(Base, UniversalMixin):
         return self.materia_tipo_juzgado.descripcion
 
     @property
+    def repsvm_delito_generico_nombre(self):
+        """Descripción del delito especifico"""
+        return self.repsvm_delito_especifico.repsvm_delito_generico.nombre
+
+    @property
     def repsvm_delito_especifico_descripcion(self):
         """Descripción del delito especifico"""
         return self.repsvm_delito_especifico.descripcion

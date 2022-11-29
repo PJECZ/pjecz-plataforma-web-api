@@ -46,7 +46,7 @@ class Params(BaseLimitOffsetParams, AbstractParams):
         """Define limit and offset with start and length"""
         return RawParams(
             limit=self.length,
-            offset=self.start + 1,
+            offset=self.start,
         )
 
 

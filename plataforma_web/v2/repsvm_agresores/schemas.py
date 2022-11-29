@@ -8,13 +8,11 @@ class REPSVMAgresorOut(BaseModel):
     """Esquema para entregar agresores"""
 
     id: int
-    distrito_id: int
     distrito_nombre: str
-    materia_tipo_juzgado_id: int
+    distrito_nombre_corto: str
     materia_tipo_juzgado_descripcion: str
-    repsvm_delito_especifico_id: int
+    repsvm_delito_generico_nombre: str
     repsvm_delito_especifico_descripcion: str
-    repsvm_tipo_sentencia_id: int
     repsvm_tipo_sentencia_nombre: str
     consecutivo: int
     nombre: str

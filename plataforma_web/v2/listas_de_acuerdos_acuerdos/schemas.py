@@ -9,7 +9,6 @@ class ListaDeAcuerdoAcuerdoOut(BaseModel):
     """Esquema para entregar acuerdos de una lista de acuerdos"""
 
     id: int
-    lista_de_acuerdo_id: int
     fecha: date
     folio: str
     expediente: str
