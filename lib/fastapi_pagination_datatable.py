@@ -40,13 +40,13 @@ class Params(BaseLimitOffsetParams, AbstractParams):
 
     draw: int = 1
     start: int = Query(0, ge=0, description="Page offset")
-    length: int = Query(50, ge=1, le=100, description="Page size limit")
+    length: int = Query(10, ge=1, le=100, description="Page size limit")
 
     def to_raw_params(self) -> RawParams:
         """Define limit and offset with start and length"""
         return RawParams(
             limit=self.length,
-            offset=self.start + 1,
+            offset=self.start,
         )
 
 

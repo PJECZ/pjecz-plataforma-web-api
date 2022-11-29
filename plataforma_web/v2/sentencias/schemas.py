@@ -9,10 +9,8 @@ class SentenciaOut(BaseModel):
     """Esquema para entregar sentencias"""
 
     id: int
-    distrito_id: int
     distrito_nombre: str
     distrito_nombre_corto: str
-    autoridad_id: int
     autoridad_clave: str
     autoridad_descripcion: str
     autoridad_descripcion_corta: str
