@@ -8,18 +8,19 @@ class REPSVMAgresorOut(BaseModel):
     """Esquema para entregar agresores"""
 
     id: int
+    distrito_id: int
     distrito_nombre: str
     distrito_nombre_corto: str
-    materia_tipo_juzgado_descripcion: str
-    repsvm_delito_generico_nombre: str
-    repsvm_delito_especifico_descripcion: str
-    repsvm_tipo_sentencia_nombre: str
     consecutivo: int
+    delito_generico: str
+    delito_especifico: str
     nombre: str
     numero_causa: str
     pena_impuesta: str
     observaciones: str
     sentencia_url: str
+    tipo_juzgado: str
+    tipo_sentencia: str
 
     class Config:
         """SQLAlchemy config"""
