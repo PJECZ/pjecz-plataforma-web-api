@@ -4,26 +4,24 @@ REPSVM Agresores-Delitos v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from lib.safe_string import safe_string
-
-from plataforma_web.core.repsvm_agresores_delitos.models import REPSVMAgresorDelito
+from ...core.repsvm_agresores_delitos.models import REPSVMAgresorDelito
+from ..repsvm_agresores.crud import get_repsvm_agresor
+from ..repsvm_delitos.crud import get_repsvm_delito
 
 
 def get_repsvm_agresores_delitos(
     db: Session,
-    filtro_id: int = None,
-    filtro_descripcion: str = None,
-    filtro_boleano: bool = False,
+    repsvm_agresor_id: int = None,
+    repsvm_delito_id: int = None,
 ) -> Any:
     """Consultar los agresores-delitos activos"""
     consulta = db.query(REPSVMAgresorDelito)
-    if filtro_id:
-        consulta = consulta.filter_by(filtro_id=filtro_id)
-    filtro_descripcion = safe_string(filtro_descripcion)
-    if filtro_descripcion:
-        consulta = consulta.filter_by(filtro_descripcion=filtro_descripcion)
-    if filtro_boleano is True:
-        consulta = consulta.filter_by(filtro_boleano=True)
+    if repsvm_agresor_id is not None and repsvm_agresor_id != 0:
+        repsvm_agresor = get_repsvm_agresor(db, repsvm_agresor_id=repsvm_agresor_id)
+        consulta = consulta.filter(REPSVMAgresorDelito.repsvm_agresor == repsvm_agresor)
+    if repsvm_delito_id is not None and repsvm_delito_id != 0:
+        repsvm_delito = get_repsvm_delito(db, repsvm_delito_id=repsvm_delito_id)
+        consulta = consulta.filter(REPSVMAgresorDelito.repsvm_delito == repsvm_delito)
     return consulta.filter_by(estatus="A").order_by(REPSVMAgresorDelito.id.desc())
 
 

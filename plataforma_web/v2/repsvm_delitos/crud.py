@@ -4,7 +4,7 @@ REPSVM Delitos v2, CRUD (create, read, update, and delete)
 from typing import Any
 from sqlalchemy.orm import Session
 
-from plataforma_web.core.repsvm_delitos.models import REPSVMDelito
+from ...core.repsvm_delitos.models import REPSVMDelito
 
 
 def get_repsvm_delitos(db: Session) -> Any:
