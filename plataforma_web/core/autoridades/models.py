@@ -16,21 +16,16 @@ class Autoridad(Base, UniversalMixin):
         [
             ("NO DEFINIDO", "No Definido"),
             ("JUZGADO DE PRIMERA INSTANCIA", "Juzgado de Primera Instancia"),
+            ("JUZGADO DE PRIMERA INSTANCIA ORAL", "Juzgado de Primera Instancia Oral"),
             ("PLENO O SALA DEL TSJ", "Pleno o Sala del TSJ"),
             ("TRIBUNAL DISTRITAL", "Tribunal Distrital"),
-            (
-                "TRIBUNAL DE CONCILIACION Y ARBITRAJE",
-                "Tribunal de Conciliación y Arbitraje",
-            ),
+            ("TRIBUNAL DE CONCILIACION Y ARBITRAJE", "Tribunal de Conciliación y Arbitraje"),
         ]
     )
     AUDIENCIAS_CATEGORIAS = OrderedDict(
         [
             ("NO DEFINIDO", "No Definido"),
-            (
-                "CIVIL FAMILIAR MERCANTIL LETRADO TCYA",
-                "Civil Familiar Mercantil Letrado TCyA",
-            ),
+            ("CIVIL FAMILIAR MERCANTIL LETRADO TCYA", "Civil Familiar Mercantil Letrado TCyA"),
             ("MATERIA ACUSATORIO PENAL ORAL", "Materia Acusatorio Penal Oral"),
             ("DISTRITALES", "Distritales"),
             ("SALAS", "Salas"),
