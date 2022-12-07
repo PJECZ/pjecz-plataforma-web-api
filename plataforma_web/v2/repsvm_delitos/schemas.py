@@ -1,11 +1,11 @@
 """
-REPSVM Tipos Sentencias v2, esquemas de pydantic
+REPSVM Delitos v2, esquemas de pydantic
 """
 from pydantic import BaseModel
 
 
-class REPSVMTipoSentenciaOut(BaseModel):
-    """Esquema para entregar tipos de sentencias"""
+class REPSVMDelitoOut(BaseModel):
+    """Esquema para entregar delitos"""
 
     id: int
     nombre: str
