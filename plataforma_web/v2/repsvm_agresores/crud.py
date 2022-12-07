@@ -24,7 +24,7 @@ def get_repsvm_agresores(
         nombre = safe_string(nombre)
         if nombre != "":
             consulta = consulta.filter(REPSVMAgresor.nombre.contains(nombre))
-    return consulta.filter_by(es_publico=True).filter_by(estatus="A").order_by(REPSVMAgresor.nombre)
+    return consulta.filter_by(es_publico=True).filter_by(estatus="A").order_by(REPSVMAgresor.distrito_id, REPSVMAgresor.nombre)
 
 
 def get_repsvm_agresor(
