@@ -7,11 +7,11 @@ from sqlalchemy.orm import Session
 from ...core.distritos.models import Distrito
 
 
-def get_distritos(db: Session, solo_distritos: bool = False) -> Any:
+def get_distritos(db: Session, solo_distritos: bool = None) -> Any:
     """Consultar los Distritos judiciales activos"""
     consulta = db.query(Distrito).filter_by(es_distrito_judicial=True)
     if solo_distritos:
-        consulta = consulta.filter(Distrito.nombre.like("Distrito%"))
+        consulta = consulta.filter(Distrito.nombre.like("DISTRITO%"))
     return consulta.filter_by(estatus="A").order_by(Distrito.nombre)
 
 
