@@ -38,6 +38,16 @@ def get_autoridades(
     return consulta.filter(Autoridad.es_jurisdiccional == True).filter_by(estatus="A").order_by(Autoridad.clave)
 
 
+def get_defensorias(db: Session) -> Any:
+    """Consultar las Defensorias activas"""
+    return db.query(Autoridad).filter_by(es_defensoria=True).filter_by(estatus="A").order_by(Autoridad.clave)
+
+
+def get_cemascs(db: Session) -> Any:
+    """Consultar los Centros de Medios Alternos de Solución de Controversias activos"""
+    return db.query(Autoridad).filter_by(es_cemasc=True).filter_by(estatus="A").order_by(Autoridad.clave)
+
+
 def get_autoridad(db: Session, autoridad_id: int) -> Autoridad:
     """Consultar una Autoridad por su id"""
     autoridad = db.query(Autoridad).get(autoridad_id)

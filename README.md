@@ -11,6 +11,7 @@ Cree un archivo para las variables de entorno `.env`
     DB_PASS=****************
     DB_NAME=pjecz_plataforma_web
     DB_HOST=127.0.0.1
+    DB_PORT=5432
 
 Para Bash Shell cree un archivo `.bashrc` con este contenido
 
@@ -28,6 +29,7 @@ Para Bash Shell cree un archivo `.bashrc` con este contenido
 
     echo "-- Database"
     echo "   DB_HOST: ${DB_HOST}"
+    echo "   DB_PORT: ${DB_PORT}"
     echo "   DB_NAME: ${DB_NAME}"
     echo "   DB_PASS: ${DB_PASS}"
     echo "   DB_USER: ${DB_USER}"
@@ -59,15 +61,10 @@ Cree el archivo `instance/settings.py` que cargue las variables de entorno
     DB_PASS = os.environ.get("DB_PASS", "badpassword")
     DB_NAME = os.environ.get("DB_NAME", "pjecz_plataforma_web")
     DB_HOST = os.environ.get("DB_HOST", "127.0.0.1")
-
-    # MariaDB o MySQL
-    # SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
+    DB_PORT = os.environ.get("DB_PORT", "5432")
 
     # PostgreSQL
-    SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
-
-    # SQLite
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///pjecz_plataforma_web.sqlite3'
+    SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
     # CORS or "Cross-Origin Resource Sharing" refers to the situations when a frontend
     # running in a browser has JavaScript code that communicates with a backend,
