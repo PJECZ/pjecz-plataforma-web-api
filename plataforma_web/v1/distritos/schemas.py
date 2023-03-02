@@ -8,6 +8,7 @@ class DistritoOut(BaseModel):
     """Esquema Distrito"""
 
     id: int
+    clave: str
     distrito: str
     distrito_corto: str
 
