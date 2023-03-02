@@ -24,6 +24,7 @@ async def listar_distritos(
         resultados.append(
             DistritoOut(
                 id=distrito.id,
+                clave=distrito.clave,
                 distrito=distrito.nombre,
                 distrito_corto=distrito.nombre_corto,
             )
@@ -42,6 +43,7 @@ async def consultar_un_distrito(distrito_id: int, db: Session = Depends(get_db))
         raise HTTPException(status_code=406, detail=f"Not acceptable: {str(error)}") from error
     return DistritoOut(
         id=distrito.id,
+        clave=distrito.clave,
         distrito=distrito.nombre,
         distrito_corto=distrito.nombre_corto,
     )
